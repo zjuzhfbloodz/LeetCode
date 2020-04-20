@@ -1,9 +1,8 @@
-#!/usr/bin/env python
-# Created by Bruce yuan on 18-1-22.
 import requests
 import os
 import json
 import time
+
 
 class Config:
     """
@@ -18,6 +17,7 @@ class Config:
     # solution of pat,　暂时还没写
     #github_pat_url = 'https://github.com/hey-bruce/algorithms_and_oj/blob/master/pat-algorithms/'
     leetcode_url = 'https://leetcode.com/problems/'
+
 
 class Question:
     """
@@ -45,6 +45,7 @@ class Question:
         :return:
         """
         return str(self.id_) + ' ' + str(self.title) + ' ' + str(self.url)
+
 
 class TableInform:
     def __init__(self):
@@ -89,7 +90,7 @@ class TableInform:
 
     # create problems folders
     def __create_folder(self, oj_name):
-        oj_algorithms = Config.local_path + '/' + oj_name + '-algorithms'
+        oj_algorithms = Config.local_path + '/' + oj_name
         if os.path.exists(oj_algorithms):
             print(oj_name, ' algorithms is already exits')
         else:
@@ -97,7 +98,9 @@ class TableInform:
             os.mkdir(oj_algorithms)
         for item in self.table_item.values():
             question_folder_name = oj_algorithms + '/' + item.id_ + '. ' + item.title
-            question_folder_name = question_folder_name.replace("?","")
+            if os.name != 'posix':
+                # 如果不是linux，那么就要吧后面的问号去掉
+                question_folder_name = question_folder_name[:-1]
             if not os.path.exists(question_folder_name):
                 print(question_folder_name + 'is not exits, create it now....')
                 os.mkdir(question_folder_name)
@@ -110,20 +113,27 @@ class TableInform:
         complete_info.total = len(self.table)
         complete_info.lock = self.locked
         self.__create_folder(oj)
-        oj_algorithms = Config.local_path + '/' + oj + '-algorithms'
+        oj_algorithms = Config.local_path + '/' + oj
         # 查看os.walk看具体返回的是什么东西
         for _, folders, _ in os.walk(oj_algorithms):
+            # print(folders)
             for folder in folders:
+                # print(folder)
+                # print(os.path.join(oj_algorithms, folder))
                 for _, _, files in os.walk(os.path.join(oj_algorithms, folder)):
                     # print(files)
                     if len(files) != 0:
                         complete_info.complete_num += 1
                     for item in files:
+                        # print(os.path.abspath(item))
+                        # print(folder)
                         if item.endswith('.py'):
                             complete_info.solved['python'] += 1
+                            # update problem inform
                             folder_url = folder.replace(' ', "%20")
                             folder_url = os.path.join(folder_url, item)
                             folder_url = os.path.join(Config.github_leetcode_url, folder_url)
+                            # print(folder_url)
                             self.table_item[folder[:3]].python = '[Python]({})'.format(folder_url)
                         elif item.endswith('.java'):
                             complete_info.solved['java'] += 1
@@ -136,20 +146,25 @@ class TableInform:
                             folder_url = folder.replace(' ', "%20")
                             folder_url = os.path.join(folder_url, item)
                             folder_url = os.path.join(Config.github_leetcode_url, folder_url)
+                            # print(folder_url)
                             self.table_item[folder[:3]].c_plus_plus = '[C++]({})'.format(folder_url)
                         elif item.endswith('.js'):
                             complete_info.solved['javascript'] += 1
                             folder_url = folder.replace(' ', "%20")
                             folder_url = os.path.join(folder_url, item)
                             folder_url = os.path.join(Config.github_leetcode_url, folder_url)
+                            # print(folder_url)
                             self.table_item[folder[:3]].javascript = '[JavaScript]({})'.format(folder_url)
-        readme = Readme(complete_info.total, 
-                        complete_info.complete_num, 
-                        complete_info.lock, 
+        readme = Readme(complete_info.total,
+                        complete_info.complete_num,
+                        complete_info.lock,
                         complete_info.solved)
         readme.create_leetcode_readme([self.table, self.table_item])
         print('-------the complete inform-------')
         print(complete_info.solved)
+        print('the total complete num is: {}'.format(
+            complete_info.complete_num))
+
 
 class CompleteInform:
     """
@@ -170,13 +185,14 @@ class CompleteInform:
     def __repr__(self):
         return str(self.solved)
 
+
 class Readme:
     """
     generate folder and markdown file
     update README.md when you finish one problem by some language
     """
 
-    def __init__(self, total, solved, locked, others):
+    def __init__(self, total, solved, locked, others=None):
         """
         :param total: total problems nums
         :param solved: solved problem nums
@@ -214,6 +230,10 @@ class Readme:
             f.write('| ID | Title | Difficulty | JavaScript | Python | C++ | Java |\n')
             f.write('|:---:' * 7 + '|\n')
             table, table_item = table_instance
+            # print(table)
+            # for i in range(2):
+            #     print(table_item[table[i]])
+            # exit(1)
             for index in table:
                 item = table_item[index]
                 if item.lock:
@@ -233,9 +253,11 @@ class Readme:
                 f.write(line)
             print('README.md was created.....')
 
+
 def main():
     table = TableInform()
-    table.update_table('leetcode')
+    table.update_table('leetcode-algorithms')
+
 
 if __name__ == '__main__':
     main()
