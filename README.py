@@ -13,7 +13,7 @@ class Config:
     """
     local_path = 'D:/Code/LeetCode'
     # solution of leetcode
-    github_leetcode_url = 'https://github.com/zjuzhfbloodz/LeetCode/leetcode-algorithms/'
+    github_leetcode_url = 'https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/'
     # solution of pat,　暂时还没写
     #github_pat_url = 'https://github.com/hey-bruce/algorithms_and_oj/blob/master/pat-algorithms/'
     leetcode_url = 'https://leetcode.com/problems/'
@@ -209,7 +209,7 @@ class Readme:
         with open(file_path, 'a') as f:
             f.write('## LeetCode Solution Table\n')
             f.write('| ID | Title | Difficulty | Markdown | Python |\n')
-            f.write('|:---:' * 7 + '|\n')
+            f.write('|:---:' * 5 + '|\n')
             table, table_item = table_instance
             # print(table)
             # for i in range(2):
