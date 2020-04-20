@@ -13,7 +13,7 @@ class Config:
     """
     local_path = 'D:/Code/LeetCode'
     # solution of leetcode
-    github_leetcode_url = 'https://github.com/zjuzhfbloodz/LeetCode/'
+    github_leetcode_url = 'https://github.com/zjuzhfbloodz/LeetCode/leetcode-algorithms/'
     # solution of pat,　暂时还没写
     #github_pat_url = 'https://github.com/hey-bruce/algorithms_and_oj/blob/master/pat-algorithms/'
     leetcode_url = 'https://leetcode.com/problems/'
@@ -35,9 +35,7 @@ class Question:
         self.difficulty = difficulty
         # the solution url
         self.python = ''
-        self.java = ''
-        self.javascript = ''
-        self.c_plus_plus = ''
+        self.markdown = ''
 
     def __repr__(self):
         """
@@ -135,26 +133,13 @@ class TableInform:
                             folder_url = os.path.join(Config.github_leetcode_url, folder_url)
                             # print(folder_url)
                             self.table_item[folder[:3]].python = '[Python]({})'.format(folder_url)
-                        elif item.endswith('.java'):
-                            complete_info.solved['java'] += 1
-                            folder_url = folder.replace(' ', "%20")
-                            folder_url = os.path.join(folder_url, item)
-                            folder_url = os.path.join(Config.github_leetcode_url, folder_url)
-                            self.table_item[folder[:3]].java = '[Java]({})'.format(folder_url)
-                        elif item.endswith('.cpp'):
-                            complete_info.solved['c++'] += 1
+                        elif item.endswith('.md'):
+                            complete_info.solved['markdown'] += 1
                             folder_url = folder.replace(' ', "%20")
                             folder_url = os.path.join(folder_url, item)
                             folder_url = os.path.join(Config.github_leetcode_url, folder_url)
                             # print(folder_url)
-                            self.table_item[folder[:3]].c_plus_plus = '[C++]({})'.format(folder_url)
-                        elif item.endswith('.js'):
-                            complete_info.solved['javascript'] += 1
-                            folder_url = folder.replace(' ', "%20")
-                            folder_url = os.path.join(folder_url, item)
-                            folder_url = os.path.join(Config.github_leetcode_url, folder_url)
-                            # print(folder_url)
-                            self.table_item[folder[:3]].javascript = '[JavaScript]({})'.format(folder_url)
+                            self.table_item[folder[:3]].markdown = '[Markdown]({})'.format(folder_url)
         readme = Readme(complete_info.total,
                         complete_info.complete_num,
                         complete_info.lock,
@@ -174,9 +159,7 @@ class CompleteInform:
     def __init__(self):
         self.solved = {
             'python': 0,
-            'c++': 0,
-            'java': 0,
-            'javascript': 0
+            'markdown':0,
         }
         self.complete_num = 0
         self.lock = 0
@@ -207,10 +190,8 @@ class Readme:
                    'Until {}, I have solved **{}** / **{}** problems ' \
                    'while **{}** are still locked.' \
                    '\n\nCompletion statistic: ' \
-                   '\n1. JavaScript: {javascript} ' \
+                   '\n1. Markdown: {markdown} ' \
                    '\n2. Python: {python}' \
-                   '\n3. C++: {c++}' \
-                   '\n4. Java: {java}' \
                    '\n\nNote: :lock: means you need to buy a book from LeetCode\n'.format(
                     self.time, self.solved, self.total, self.locked, **self.others)
 
@@ -227,7 +208,7 @@ class Readme:
 
         with open(file_path, 'a') as f:
             f.write('## LeetCode Solution Table\n')
-            f.write('| ID | Title | Difficulty | JavaScript | Python | C++ | Java |\n')
+            f.write('| ID | Title | Difficulty | Markdown | Python |\n')
             f.write('|:---:' * 7 + '|\n')
             table, table_item = table_instance
             # print(table)
@@ -244,12 +225,10 @@ class Readme:
                     'id': item.id_,
                     'title': '[{}]({}) {}'.format(item.title, item.url, _lock),
                     'difficulty': item.difficulty,
-                    'js': item.javascript if item.javascript else 'To Do',
-                    'python': item.python if item.python else 'To Do',
-                    'c++': item.c_plus_plus if item.c_plus_plus else 'To Do',
-                    'java': item.java if item.java else 'To Do'
+                    'md': item.markdown if item.markdown else 'To Do',
+                    'python': item.python if item.python else 'To Do'
                 }
-                line = '|{id}|{title}|{difficulty}|{js}|{python}|{c++}|{java}|\n'.format(**data)
+                line = '|{id}|{title}|{difficulty}|{md}|{python}|\n'.format(**data)
                 f.write(line)
             print('README.md was created.....')
 
