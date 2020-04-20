@@ -98,7 +98,7 @@ class TableInform:
             question_folder_name = oj_algorithms + '/' + item.id_ + '. ' + item.title
             if os.name != 'posix':
                 # 如果不是linux，那么就要吧后面的问号去掉
-                question_folder_name = question_folder_name[:-1]
+                question_folder_name = question_folder_name.replace("?","")
             if not os.path.exists(question_folder_name):
                 print(question_folder_name + 'is not exits, create it now....')
                 os.mkdir(question_folder_name)
