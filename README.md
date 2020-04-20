@@ -1,14 +1,11 @@
-# Keep thinking, keep alive
-Until 2020-04-20 15:14:50, I have solved **38** / **1301** problems while **208** are still locked.
+# 每日一题活动！冲啊！
+截止到 2020-04-20 15:28:30, 我已经完成了 **38** / **1301** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
 
-Completion statistic: 
+完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
 1. Markdown: 38 
 2. Python: 0
-
-Note: :lock: means you need to buy a book from LeetCode
-
 ----------------
-## LeetCode Solution Table
+## LeetCode题解
 | ID | Title | Difficulty | Markdown | Python |
 |:---:|:---:|:---:|:---:|:---:|
 |001|[Two Sum](https://leetcode.com/problems/two-sum/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/001.%20Two%20Sum/0001.md)|To Do|

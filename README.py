@@ -186,13 +186,12 @@ class Readme:
         self.others = others
         self.locked = locked
         self.time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        self.msg = '# Keep thinking, keep alive\n' \
-                   'Until {}, I have solved **{}** / **{}** problems ' \
-                   'while **{}** are still locked.' \
-                   '\n\nCompletion statistic: ' \
+        self.msg = '# 每日一题活动！冲啊！\n' \
+                   '截止到 {}, 我已经完成了 **{}** / **{}** 的题目， ' \
+                   '还有 **{}** 道题目未解锁:lock:（就是没买）.' \
+                   '\n\n完成情况统计（我都是用Python写的，思路记录在了Markdown里）: ' \
                    '\n1. Markdown: {markdown} ' \
-                   '\n2. Python: {python}' \
-                   '\n\nNote: :lock: means you need to buy a book from LeetCode\n'.format(
+                   '\n2. Python: {python}'.format(
                     self.time, self.solved, self.total, self.locked, **self.others)
 
     def create_leetcode_readme(self, table_instance):
@@ -207,7 +206,7 @@ class Readme:
             f.write('\n----------------\n')
 
         with open(file_path, 'a') as f:
-            f.write('## LeetCode Solution Table\n')
+            f.write('## LeetCode题解\n')
             f.write('| ID | Title | Difficulty | Markdown | Python |\n')
             f.write('|:---:' * 5 + '|\n')
             table, table_item = table_instance
