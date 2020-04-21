@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-04-20 15:28:30, 我已经完成了 **38** / **1301** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
+截止到 2020-04-21 09:29:48, 我已经完成了 **39** / **1301** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 38 
+1. Markdown: 39 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -221,7 +221,7 @@
 |227|[Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/description/) |Medium|To Do|To Do|
 |228|[Summary Ranges](https://leetcode.com/problems/summary-ranges/description/) |Medium|To Do|To Do|
 |229|[Majority Element II](https://leetcode.com/problems/majority-element-ii/description/) |Medium|To Do|To Do|
-|230|[Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/) |Medium|To Do|To Do|
+|230|[Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/230.%20Kth%20Smallest%20Element%20in%20a%20BST/0230.md)|To Do|
 |231|[Power of Two](https://leetcode.com/problems/power-of-two/description/) |Easy|To Do|To Do|
 |232|[Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/232.%20Implement%20Queue%20using%20Stacks/0232.md)|To Do|
 |233|[Number of Digit One](https://leetcode.com/problems/number-of-digit-one/description/) |Hard|To Do|To Do|
