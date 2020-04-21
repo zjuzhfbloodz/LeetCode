@@ -54,7 +54,7 @@ class TableInform:
         # this is the element of question
         self.table_item = {}
         self.locked = 0
-
+    #爬取题目
     def get_leetcode_problems(self):
         """
         used to get leetcode inform
