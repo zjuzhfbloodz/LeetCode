@@ -36,7 +36,7 @@ class Markdown:
         
         with open(file_path, 'w') as f:
             f.write('## [{}]({})\n'.format(self.question,self.url))
-            f.write('### 日期:\n' + '>{}{}\n'.format(self.time, self.words))
+            f.write('### 日期:\n' + '>{} {}\n'.format(self.time, self.words))
             f.write('### 题目:\n' + self.pic + '\n')
             f.write('### 思路:\n' + '>{}\n'.format(self.idea))
             f.write('### 代码:\n' + self.code + '\n')
@@ -47,43 +47,44 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 174
-    word = '尝试一下新技术！'
-    idea = '这个题目应该这么解'
+    id = 538
+    word = '他们说新加坡不开学了改上网课，我心态爆炸'
+    idea = 'BST采取右-根-左的中序遍历就是从大到小，然后用bigger累加比当前结点大的，加到当前结点即可'
     code = '''
-> 第一种思路
+> 按上述自己的想法
 ```python
 class Solution:
-    def kthSmallest(self, root: TreeNode, k: int) -> int:
+    def convertBST(self, root: TreeNode) -> TreeNode:
         if not root: return
-        #中序遍历,二叉搜索树BST的中序遍历是有序的，从小到大
-        stack,node,count = [],root,0
+        #右-根-左的中序遍历
+        stack,node,bigger = [],root,0
         while stack or node:
             while node:
                 stack.append(node)
-                node = node.left
+                node = node.right
             node = stack.pop()
-            count += 1
-            if count == k: return node.val
-            node = node.right
+            node.val += bigger #每次加bigger
+            bigger = node.val #更新bigger
+            node = node.left
+        return root
 ```
-> 第二种思路
+> 递归的方法，思路和上述一致，只是写起来简单但是复杂度高一些
 ```python
 class Solution:
-    def kthSmallest(self, root: TreeNode, k: int) -> int:
-        if not root: return
-        #中序遍历,二叉搜索树BST的中序遍历是有序的，从小到大
-        stack,node,count = [],root,0
-        while stack or node:
-            while node:
-                stack.append(node)
-                node = node.left
-            node = stack.pop()
-            count += 1
-            if count == k: return node.val
-            node = node.right
+    def convertBST(self, root: TreeNode) -> TreeNode:
+        self.num = 0
+        def depthfirstsearch(root):
+            if root is None:
+                return 
+            else:
+                depthfirstsearch(root.right)
+                self.num = self.num + root.val
+                root.val = self.num
+                depthfirstsearch(root.left)
+                return root
+        return depthfirstsearch(root)
 ```
     '''
-    thoughts = '今天还不错！'
+    thoughts = '中序遍历的确可以解决很多BST的问题！希望NUS按时开学啊！！！不要延后好不好，心态炸了！！！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
