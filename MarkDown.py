@@ -47,44 +47,37 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 538
-    word = '他们说新加坡不开学了改上网课，我心态爆炸'
-    idea = 'BST采取右-根-左的中序遍历就是从大到小，然后用bigger累加比当前结点大的，加到当前结点即可'
+    id = 235
+    word = '面试了观远数据，感觉公司很不错，但是自己似乎说错话了，心态爆炸'
+    idea = '自己的做法是对的，层序遍历但是没搞懂为啥，很迷啊，看看大家的思路吧！明白了！两结点必定位于*最近公共祖先的左右子树*上！这点很关键，那么层次遍历第一次满足的结点就是最近公共结点了！因为如果放弃了这一结点，之后的结点都无法满足这个条件了！'
     code = '''
 > 按上述自己的想法
 ```python
 class Solution:
-    def convertBST(self, root: TreeNode) -> TreeNode:
-        if not root: return
-        #右-根-左的中序遍历
-        stack,node,bigger = [],root,0
-        while stack or node:
-            while node:
-                stack.append(node)
-                node = node.right
-            node = stack.pop()
-            node.val += bigger #每次加bigger
-            bigger = node.val #更新bigger
-            node = node.left
-        return root
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        #层序遍历可以做
+        if not root: return root
+        if p.val > q.val: p,q = q,p
+        queue = [root]
+        while queue:
+            node = queue.pop(0)
+            if node.left: queue.append(node.left)
+            if node.right: queue.append(node.right)
+            if node.val<=q.val and node.val>=p.val:
+                return node
 ```
-> 递归的方法，思路和上述一致，只是写起来简单但是复杂度高一些
+> 递归的方法，思路更简单，从根结点开始，当前结点位于两结点中，则直接输出；否则，若当前结点小，说明两个结点在右子树上，大同理
 ```python
 class Solution:
-    def convertBST(self, root: TreeNode) -> TreeNode:
-        self.num = 0
-        def depthfirstsearch(root):
-            if root is None:
-                return 
-            else:
-                depthfirstsearch(root.right)
-                self.num = self.num + root.val
-                root.val = self.num
-                depthfirstsearch(root.left)
-                return root
-        return depthfirstsearch(root)
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        #迭代
+        if not root: return root
+        if p.val > q.val: p,q = q,p
+        if root.val>=p.val and root.val<=q.val: return root
+        if root.val>q.val: return self.lowestCommonAncestor(root.left,p,q)
+        if root.val<p.val: return self.lowestCommonAncestor(root.right,p,q)
 ```
     '''
-    thoughts = '中序遍历的确可以解决很多BST的问题！希望NUS按时开学啊！！！不要延后好不好，心态炸了！！！'
+    thoughts = '希望接下来的面试顺利吧！！！二叉搜索树还要多思考！！！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
