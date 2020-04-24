@@ -47,37 +47,63 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 235
-    word = '面试了观远数据，感觉公司很不错，但是自己似乎说错话了，心态爆炸'
-    idea = '自己的做法是对的，层序遍历但是没搞懂为啥，很迷啊，看看大家的思路吧！明白了！两结点必定位于*最近公共祖先的左右子树*上！这点很关键，那么层次遍历第一次满足的结点就是最近公共结点了！因为如果放弃了这一结点，之后的结点都无法满足这个条件了！'
+    id = 236
+    word = '今天大学习才知道中国是世界唯一拥有全工业部门的国家，厉害！坦然面对面试结果！总是有收获的！'
+    idea = '**最近公共祖先**一个很重要的思路是：两结点必定位于该祖先的左右子树，这是一个结论性的东西。'
     code = '''
-> 按上述自己的想法
+> 自己的想法，有些愚蠢，层序遍历记录所有结点到根结点的path，然后找到p和q的从根结点开始对比，直到最后一个相同即为结果
 ```python
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        #层序遍历可以做
         if not root: return root
-        if p.val > q.val: p,q = q,p
-        queue = [root]
+        queue,pp,pq = [(root,[root])],[],[]
+        while queue:
+            node,path = queue.pop(0)
+            if node.left: queue.append((node.left,path+[node.left]))
+            if node.right: queue.append((node.right,path+[node.right]))
+            if node == p: pp = path
+            if node == q: pq = path
+            if pp and pq: break
+        minlen = min(len(pp),len(pq))
+        for i in range(minlen):
+            if pp[i].val != pq[i].val:
+                return pp[i-1]
+        else: return pp[i]
+```
+> 更巧妙的方法，只记录每个结点的父结点，然后当成链表一样逐层回溯，题目转化为160相交链表的操作，将两个链表合并（此时长度相同，如果后端有相同必然在最后一致）找到第一个相同点即可
+```python
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        dic,queue = {root:None},[root]
         while queue:
             node = queue.pop(0)
-            if node.left: queue.append(node.left)
-            if node.right: queue.append(node.right)
-            if node.val<=q.val and node.val>=p.val:
-                return node
+            if node.left:
+                dic[node.left] = node
+                queue.append(node.left)
+            if node.right:
+                dic[node.right] = node
+                queue.append(node.right)
+        l1,l2 = p,q
+        while l1 != l2:
+            l1 = dic.get(l1,q) #参考160相交链表
+            l2 = dic.get(l2,p)
+        return l1
 ```
-> 递归的方法，思路更简单，从根结点开始，当前结点位于两结点中，则直接输出；否则，若当前结点小，说明两个结点在右子树上，大同理
+> 递归，如果当前结点是p或q，返回当前结点就是结果；否则去左右子树找，利用**两结点必定位于最近祖先的左右**的特点，如果在左右子树找到则返回根结点，否则返回找到的left或right
 ```python
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        #迭代
-        if not root: return root
-        if p.val > q.val: p,q = q,p
-        if root.val>=p.val and root.val<=q.val: return root
-        if root.val>q.val: return self.lowestCommonAncestor(root.left,p,q)
-        if root.val<p.val: return self.lowestCommonAncestor(root.right,p,q)
+        if not root:
+            return None
+        if root == p or root == q:
+            return root
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        if left and right:
+            return root
+        return left if left else right
 ```
     '''
-    thoughts = '希望接下来的面试顺利吧！！！二叉搜索树还要多思考！！！'
+    thoughts = '这个题目第一次看到没什么思路，面试应该问的比较多，理解并牢记！但行善事，莫问前程！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
