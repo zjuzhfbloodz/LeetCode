@@ -47,63 +47,24 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 236
-    word = '今天大学习才知道中国是世界唯一拥有全工业部门的国家，厉害！坦然面对面试结果！总是有收获的！'
-    idea = '**最近公共祖先**一个很重要的思路是：两结点必定位于该祖先的左右子树，这是一个结论性的东西。'
+    id = 108
+    word = '希望可以拿到实习机会！'
+    idea = '感觉这个题目是用来练手的，对**平衡**的处理比想的要简单，因为是有序数组的缘故吧'
     code = '''
-> 自己的想法，有些愚蠢，层序遍历记录所有结点到根结点的path，然后找到p和q的从根结点开始对比，直到最后一个相同即为结果
+> 每次找中点作为根节点，这样可以保证左右子树的结点数相同，到只有两个叶结点的子树就必定满足**平衡**，以此类推均满足
 ```python
 class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        if not root: return root
-        queue,pp,pq = [(root,[root])],[],[]
-        while queue:
-            node,path = queue.pop(0)
-            if node.left: queue.append((node.left,path+[node.left]))
-            if node.right: queue.append((node.right,path+[node.right]))
-            if node == p: pp = path
-            if node == q: pq = path
-            if pp and pq: break
-        minlen = min(len(pp),len(pq))
-        for i in range(minlen):
-            if pp[i].val != pq[i].val:
-                return pp[i-1]
-        else: return pp[i]
-```
-> 更巧妙的方法，只记录每个结点的父结点，然后当成链表一样逐层回溯，题目转化为160相交链表的操作，将两个链表合并（此时长度相同，如果后端有相同必然在最后一致）找到第一个相同点即可
-```python
-class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        dic,queue = {root:None},[root]
-        while queue:
-            node = queue.pop(0)
-            if node.left:
-                dic[node.left] = node
-                queue.append(node.left)
-            if node.right:
-                dic[node.right] = node
-                queue.append(node.right)
-        l1,l2 = p,q
-        while l1 != l2:
-            l1 = dic.get(l1,q) #参考160相交链表
-            l2 = dic.get(l2,p)
-        return l1
-```
-> 递归，如果当前结点是p或q，返回当前结点就是结果；否则去左右子树找，利用**两结点必定位于最近祖先的左右**的特点，如果在左右子树找到则返回根结点，否则返回找到的left或right
-```python
-class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        if not root:
-            return None
-        if root == p or root == q:
-            return root
-        left = self.lowestCommonAncestor(root.left, p, q)
-        right = self.lowestCommonAncestor(root.right, p, q)
-        if left and right:
-            return root
-        return left if left else right
+    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        if not nums: return
+        left,right = 0,len(nums)-1
+        mid = (left+right)//2
+        root = TreeNode(nums[mid])
+        #递归做下去，一定满足平衡
+        root.left = self.sortedArrayToBST(nums[0:mid])
+        root.right = self.sortedArrayToBST(nums[mid+1:])
+        return root
 ```
     '''
-    thoughts = '这个题目第一次看到没什么思路，面试应该问的比较多，理解并牢记！但行善事，莫问前程！'
+    thoughts = '这个题目在这种情况下不难，明天是链表，感觉难度有所提升！加油！但行善事！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

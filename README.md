@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-04-24 09:58:51, 我已经完成了 **42** / **1301** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
+截止到 2020-04-25 09:03:59, 我已经完成了 **43** / **1301** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 42 
+1. Markdown: 43 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -115,7 +115,7 @@
 |105|[Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/) |Medium|To Do|To Do|
 |106|[Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/) |Medium|To Do|To Do|
 |107|[Binary Tree Level Order Traversal II](https://leetcode.com/problems/binary-tree-level-order-traversal-ii/description/) |Easy|To Do|To Do|
-|108|[Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/) |Easy|To Do|To Do|
+|108|[Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/108.%20Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree/0108.md)|To Do|
 |109|[Convert Sorted List to Binary Search Tree](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/description/) |Medium|To Do|To Do|
 |110|[Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/110.%20Balanced%20Binary%20Tree/0110.md)|To Do|
 |111|[Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/111.%20Minimum%20Depth%20of%20Binary%20Tree/0111.md)|To Do|
