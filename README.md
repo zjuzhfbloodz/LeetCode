@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-04-25 09:03:59, 我已经完成了 **43** / **1301** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
+截止到 2020-04-26 17:17:32, 我已经完成了 **44** / **1305** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 43 
+1. Markdown: 44 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -116,7 +116,7 @@
 |106|[Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/) |Medium|To Do|To Do|
 |107|[Binary Tree Level Order Traversal II](https://leetcode.com/problems/binary-tree-level-order-traversal-ii/description/) |Easy|To Do|To Do|
 |108|[Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/108.%20Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree/0108.md)|To Do|
-|109|[Convert Sorted List to Binary Search Tree](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/description/) |Medium|To Do|To Do|
+|109|[Convert Sorted List to Binary Search Tree](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/109.%20Convert%20Sorted%20List%20to%20Binary%20Search%20Tree/0109.md)|To Do|
 |110|[Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/110.%20Balanced%20Binary%20Tree/0110.md)|To Do|
 |111|[Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/111.%20Minimum%20Depth%20of%20Binary%20Tree/0111.md)|To Do|
 |112|[Path Sum](https://leetcode.com/problems/path-sum/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/112.%20Path%20Sum/0112.md)|To Do|
@@ -1156,6 +1156,7 @@
 |1178|[Number of Valid Words for Each Puzzle](https://leetcode.com/problems/number-of-valid-words-for-each-puzzle/description/) |Hard|To Do|To Do|
 |1390|[Four Divisors](https://leetcode.com/problems/four-divisors/description/) |Medium|To Do|To Do|
 |1382|[Balance a Binary Search Tree](https://leetcode.com/problems/balance-a-binary-search-tree/description/) |Medium|To Do|To Do|
+|1425|[Constrained Subset Sum](https://leetcode.com/problems/constrained-subset-sum/description/) |Hard|To Do|To Do|
 |1184|[Distance Between Bus Stops](https://leetcode.com/problems/distance-between-bus-stops/description/) |Easy|To Do|To Do|
 |1186|[Maximum Subarray Sum with One Deletion](https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/description/) |Medium|To Do|To Do|
 |1185|[Day of the Week](https://leetcode.com/problems/day-of-the-week/description/) |Easy|To Do|To Do|
@@ -1309,3 +1310,6 @@
 |1418|[Display Table of Food Orders in a Restaurant](https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/description/) |Medium|To Do|To Do|
 |1419|[Minimum Number of Frogs Croaking](https://leetcode.com/problems/minimum-number-of-frogs-croaking/description/) |Medium|To Do|To Do|
 |1420|[Build Array Where You Can Find The Maximum Exactly K Comparisons](https://leetcode.com/problems/build-array-where-you-can-find-the-maximum-exactly-k-comparisons/description/) |Hard|To Do|To Do|
+|1422|[Maximum Score After Splitting a String](https://leetcode.com/problems/maximum-score-after-splitting-a-string/description/) |Easy|To Do|To Do|
+|1423|[Maximum Points You Can Obtain from Cards](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/description/) |Medium|To Do|To Do|
+|1424|[Diagonal Traverse II](https://leetcode.com/problems/diagonal-traverse-ii/description/) |Medium|To Do|To Do|
