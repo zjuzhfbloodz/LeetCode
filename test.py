@@ -1,3 +1,3 @@
-a = '123?'
-a = a.replace("?", "")
-print(a)
+a = [1, 2, 3]
+if 1 in a:
+    print(10)
