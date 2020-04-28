@@ -47,52 +47,26 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 653
-    word = '屁股总是疼，昨天回忆了申请的过程，很受用，加油！'
-    idea = '自己想的方法没用到BST的特点，第二种方法用到了，但是感觉似乎复杂度差不多？'
+    id = 783
+    word = '毕业论文初稿5.17交，做起来！交上去压力就给老师了！昨天学了SVM第一节，感觉不错！继续加油！'
+    idea = '利用二叉搜索树中序遍历有序的特点，差的绝对值最小只有可能在中序遍历**相邻两元素间**产生'
     code = '''
-> BFS层次遍历，累次记录下当前结点前的所有结点值，遍历到当前结点时只需看k-node.val在不在集合中即可，复杂度O(N)，一次遍历完事儿
+> 上述想法，中序遍历的过程中两两做差和min比较即可，最后输出最小值
 ```python
 class Solution:
-    def findTarget(self, root: TreeNode, k: int) -> bool:
-        if not root: return False
-        queue,vals = [root],[]
-        while queue:
-            node = queue.pop(0)
-            #看看当前集合中有没有能和当前结点和为k的，有就终止，没有继续
-            if k-node.val in vals: return True
-            if node.left: queue.append(node.left)
-            if node.right: queue.append(node.right)
-            #将当前结点值加入集合
-            vals.append(node.val)
-        return False   
-```
-> BST中序遍历有序，初始两个点为头结点l和末端结点r，比k大则r-1（因为l一开始是最小不能再减小了，而l变大只有在l+r大于k时，所以此后l都不可能减小了），比k小则l+1，直到l+r==k为止，否则输出False
-```python
-class Solution:
-    def findTarget(self, root: TreeNode, k: int) -> bool:
-        if not root: return False
-        nodelist = self.inorder(root)
-        l,r = 0,len(nodelist)-1
-        while l < r:
-            if nodelist[l] + nodelist[r] > k: r -= 1
-            elif nodelist[l] + nodelist[r] < k: l += 1
-            else: return True
-        return False
-    #BFS中序遍历
-    def inorder(self,root):
-        l = []
-        stack,node = [],root
-        while stack or node:
+    def getMinimumDifference(self, root: TreeNode) -> int:
+        stack,out,node,last = [],float('inf'),root,-float('inf')
+        while stack or node: #中序遍历
             while node:
                 stack.append(node)
                 node = node.left
             node = stack.pop()
-            l.append(node.val)
-            node = node.right
-        return l
+            if node.val - last < out: #last表示上一个node的值，用当前node-last为相邻两结点差，和out比较即可
+                out = node.val - last
+            node,last = node.right,node.val
+        return out  
 ```
     '''
-    thoughts = '题目不难，几种方法的复杂度也都大同小异，当然是利用了BST特点的比较巧妙！加油！但行善事！'
+    thoughts = '能想到BST的中序遍历有序这个题目就不难，但行善事！加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
