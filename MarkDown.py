@@ -47,26 +47,32 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 783
-    word = '毕业论文初稿5.17交，做起来！交上去压力就给老师了！昨天学了SVM第一节，感觉不错！继续加油！'
-    idea = '利用二叉搜索树中序遍历有序的特点，差的绝对值最小只有可能在中序遍历**相邻两元素间**产生'
+    id = 501
+    word = '昨天学习了线性SVM（软），感觉不错；今天研究研究潜变量构造！加油！'
+    idea = '利用二叉搜索树中序遍历有序的特点，在遍历的过程中比较不断更新count的max；这个题目不难，但是要**不使用额外空间**还是要我想的这种比较巧妙'
     code = '''
-> 上述想法，中序遍历的过程中两两做差和min比较即可，最后输出最小值
+> 上述想法，如果与max的count相同就append，否则就更新max_count和输出out
 ```python
 class Solution:
-    def getMinimumDifference(self, root: TreeNode) -> int:
-        stack,out,node,last = [],float('inf'),root,-float('inf')
-        while stack or node: #中序遍历
+    def findMode(self, root: TreeNode) -> List[int]:
+        #DFS中序遍历
+        if not root: return []
+        stack,node,out,outcount,this,thiscount = [],root,[],0,0,0
+        while stack or node:
             while node:
                 stack.append(node)
                 node = node.left
             node = stack.pop()
-            if node.val - last < out: #last表示上一个node的值，用当前node-last为相邻两结点差，和out比较即可
-                out = node.val - last
-            node,last = node.right,node.val
-        return out  
+            if node.val != this: #和当前值不同就更新，意味着走完了上一个数
+                this = node.val
+                thiscount = 0
+            if node.val == this: thiscount += 1 #相同就count++
+            if thiscount == outcount: out.append(this) #和max_count相同就out加上新元素
+            if thiscount > outcount: out,outcount = [this],thiscount #否则舍弃之前的所有out，更新
+            node = node.right
+        return out
 ```
     '''
-    thoughts = '能想到BST的中序遍历有序这个题目就不难，但行善事！加油！'
+    thoughts = '昨天练了羽毛球感觉还是有很多不足，多练习吧！！！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

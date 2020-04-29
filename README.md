@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-04-28 08:12:28, 我已经完成了 **47** / **1305** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
+截止到 2020-04-29 09:11:54, 我已经完成了 **48** / **1305** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 47 
+1. Markdown: 48 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -481,7 +481,7 @@
 |498|[Diagonal Traverse](https://leetcode.com/problems/diagonal-traverse/description/) |Medium|To Do|To Do|
 |499|[The Maze III](https://leetcode.com/problems/the-maze-iii/description/) :lock:|Hard|To Do|To Do|
 |500|[Keyboard Row](https://leetcode.com/problems/keyboard-row/description/) |Easy|To Do|To Do|
-|501|[Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/description/) |Easy|To Do|To Do|
+|501|[Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/501.%20Find%20Mode%20in%20Binary%20Search%20Tree/0501.md)|To Do|
 |502|[IPO](https://leetcode.com/problems/ipo/description/) |Hard|To Do|To Do|
 |503|[Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/503.%20Next%20Greater%20Element%20II/0503.md)|To Do|
 |504|[Base 7](https://leetcode.com/problems/base-7/description/) |Easy|To Do|To Do|
