@@ -47,32 +47,22 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 501
-    word = '昨天学习了线性SVM（软），感觉不错；今天研究研究潜变量构造！加油！'
-    idea = '利用二叉搜索树中序遍历有序的特点，在遍历的过程中比较不断更新count的max；这个题目不难，但是要**不使用额外空间**还是要我想的这种比较巧妙'
+    id = 167
+    word = '构造完了潜变量笔记本跑不动，哭了！今天面试出结果了，但是不要气馁！明天去动物园玩，今天这个是替明天做的！'
+    idea = '进入**双指针**部分，这个题目用双指针做很简单，之前树里面做个一个类似的题目，两数之和的'
     code = '''
-> 上述想法，如果与max的count相同就append，否则就更新max_count和输出out
+> 上述想法，思路很简单
 ```python
 class Solution:
-    def findMode(self, root: TreeNode) -> List[int]:
-        #DFS中序遍历
-        if not root: return []
-        stack,node,out,outcount,this,thiscount = [],root,[],0,0,0
-        while stack or node:
-            while node:
-                stack.append(node)
-                node = node.left
-            node = stack.pop()
-            if node.val != this: #和当前值不同就更新，意味着走完了上一个数
-                this = node.val
-                thiscount = 0
-            if node.val == this: thiscount += 1 #相同就count++
-            if thiscount == outcount: out.append(this) #和max_count相同就out加上新元素
-            if thiscount > outcount: out,outcount = [this],thiscount #否则舍弃之前的所有out，更新
-            node = node.right
-        return out
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        l,r = 0,len(numbers) - 1
+        while l < r:
+            if numbers[l] + numbers[r] > target: r -= 1
+            elif numbers[l] + numbers[r] < target: l += 1
+            else: break
+        return [l+1,r+1]
 ```
     '''
-    thoughts = '昨天练了羽毛球感觉还是有很多不足，多练习吧！！！'
+    thoughts = '还可以用二分查找改变l和r的+-1去优化搜索的过程，之后可以试试！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
