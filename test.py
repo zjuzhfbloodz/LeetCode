@@ -1,1 +1,3 @@
-print(9**0.5)
+a = [3, 2, 1]
+a = sorted(a)
+print(a)

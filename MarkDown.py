@@ -47,36 +47,32 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 345
-    word = '昨天去动物园玩了很开心，希望大家都有个好的未来吧！'
-    idea = '逆序的题目可以用双指针去做，也可以用栈实现逆序'
+    id = 141
+    word = '这两天太热了，心态也很浮躁，明天去采摘，后天几个家庭聚餐，希望过后可以踏下心来！'
+    idea = '可以利用列表（哈希表）去存储，如果遇到相同的元素则有环；如果空间O(1)的话快慢指针很棒，想法也很巧妙'
     code = '''
-> 双指针的思路，一次遍历，应该是最优解
+> 上述思路，利用哈希表
 ```python
 class Solution:
-    def reverseVowels(self, s: str) -> str:
-        l,r,vowel,s = 0,len(s)-1,'AEIOUaeiou',list(s)
-        while True:
-            while l < r and s[l] not in vowel: l += 1 #先找左边第一个元音字母
-            if l >= r: break
-            while s[r] not in vowel: r -= 1 #找右边的，然后交换顺序，之后记得l往后，r往前
-            s[l], s[r] = s[r], s[l]
-            l,r = l+1,r-1
-        return ''.join(s)
+    def hasCycle(self, head: ListNode) -> bool:
+        nodedict,node = [],head
+        while node:
+            if node in nodedict: return True
+            nodedict.append(node)
+            node = node.next
+        return False
 ```
-> 栈的思路，更简单明了一些，复杂度相对高一些
+> 快慢指针，两指针在环中的移动就好像两个人在跑圈，快的总会追上慢的，故当slow==fast时即有环，否则当快的到终点就是无环，很巧妙
 ```python
 class Solution:
-    def reverseVowels(self, s: str) -> str:
-        x= 'aeiouAEIOU'
-        res=[]
-        ls=[i for i in s if i in x] #用栈来存放元音字母    
-        for k in s:
-            if k not in x: res.append(k)
-            else: res.append(ls.pop()) #是元音字母则用栈来逆序      
-        return ''.join(res)
+    def hasCycle(self, head: ListNode) -> bool:
+        fast,slow = head,head
+        while fast and fast.next:
+            fast,slow = fast.next.next,slow.next
+            if fast == slow: return True
+        return False
 ```
     '''
-    thoughts = '双指针可以用于逆序！又收获一种方法！'
+    thoughts = '快慢指针是双指针很经典的思想！继续学习！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
