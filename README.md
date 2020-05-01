@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-04-29 18:51:54, 我已经完成了 **49** / **1305** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-01 09:24:34, 我已经完成了 **50** / **1305** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 49 
+1. Markdown: 50 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -573,7 +573,7 @@
 |630|[Course Schedule III](https://leetcode.com/problems/course-schedule-iii/description/) |Hard|To Do|To Do|
 |631|[Design Excel Sum Formula](https://leetcode.com/problems/design-excel-sum-formula/description/) :lock:|Hard|To Do|To Do|
 |632|[Smallest Range Covering Elements from K Lists](https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/description/) |Hard|To Do|To Do|
-|633|[Sum of Square Numbers](https://leetcode.com/problems/sum-of-square-numbers/description/) |Easy|To Do|To Do|
+|633|[Sum of Square Numbers](https://leetcode.com/problems/sum-of-square-numbers/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/633.%20Sum%20of%20Square%20Numbers/0633.md)|To Do|
 |634|[Find the Derangement of An Array](https://leetcode.com/problems/find-the-derangement-of-an-array/description/) :lock:|Medium|To Do|To Do|
 |635|[Design Log Storage System](https://leetcode.com/problems/design-log-storage-system/description/) :lock:|Medium|To Do|To Do|
 |636|[Exclusive Time of Functions](https://leetcode.com/problems/exclusive-time-of-functions/description/) |Medium|To Do|To Do|
@@ -1156,7 +1156,7 @@
 |1178|[Number of Valid Words for Each Puzzle](https://leetcode.com/problems/number-of-valid-words-for-each-puzzle/description/) |Hard|To Do|To Do|
 |1390|[Four Divisors](https://leetcode.com/problems/four-divisors/description/) |Medium|To Do|To Do|
 |1382|[Balance a Binary Search Tree](https://leetcode.com/problems/balance-a-binary-search-tree/description/) |Medium|To Do|To Do|
-|1425|[Constrained Subset Sum](https://leetcode.com/problems/constrained-subset-sum/description/) |Hard|To Do|To Do|
+|1425|[Constrained Subsequence Sum](https://leetcode.com/problems/constrained-subsequence-sum/description/) |Hard|To Do|To Do|
 |1184|[Distance Between Bus Stops](https://leetcode.com/problems/distance-between-bus-stops/description/) |Easy|To Do|To Do|
 |1186|[Maximum Subarray Sum with One Deletion](https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/description/) |Medium|To Do|To Do|
 |1185|[Day of the Week](https://leetcode.com/problems/day-of-the-week/description/) |Easy|To Do|To Do|

@@ -47,22 +47,22 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 167
-    word = '构造完了潜变量笔记本跑不动，哭了！今天面试出结果了，但是不要气馁！明天去动物园玩，今天这个是替明天做的！'
-    idea = '进入**双指针**部分，这个题目用双指针做很简单，之前树里面做个一个类似的题目，两数之和的'
+    id = 633
+    word = '昨天去动物园玩了很开心，希望大家都有个好的未来吧！'
+    idea = '这个题目依然双指针可以做，也可以用[费马定理](https://wstein.org/edu/124/lectures/lecture21/lecture21/node2.html)做'
     code = '''
 > 上述想法，思路很简单
 ```python
 class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        l,r = 0,len(numbers) - 1
-        while l < r:
-            if numbers[l] + numbers[r] > target: r -= 1
-            elif numbers[l] + numbers[r] < target: l += 1
-            else: break
-        return [l+1,r+1]
+    def judgeSquareSum(self, c: int) -> bool:
+        l,r = 0,int(c**0.5)+1
+        while l <= r:
+            if l**2 + r**2 > c: r -= 1
+            elif l**2 + r**2 < c: l += 1
+            else: return True
+        return False
 ```
     '''
-    thoughts = '还可以用二分查找改变l和r的+-1去优化搜索的过程，之后可以试试！'
+    thoughts = '目前做到的双指针题目还不是很难，多思考吧！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
