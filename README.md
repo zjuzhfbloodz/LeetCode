@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-01 09:24:34, 我已经完成了 **50** / **1305** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-01 10:16:46, 我已经完成了 **51** / **1305** 的题目， 还有 **208** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 50 
+1. Markdown: 51 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -335,7 +335,7 @@
 |342|[Power of Four](https://leetcode.com/problems/power-of-four/description/) |Easy|To Do|To Do|
 |343|[Integer Break](https://leetcode.com/problems/integer-break/description/) |Medium|To Do|To Do|
 |344|[Reverse String](https://leetcode.com/problems/reverse-string/description/) |Easy|To Do|To Do|
-|345|[Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string/description/) |Easy|To Do|To Do|
+|345|[Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/345.%20Reverse%20Vowels%20of%20a%20String/0345.md)|To Do|
 |346|[Moving Average from Data Stream](https://leetcode.com/problems/moving-average-from-data-stream/description/) :lock:|Easy|To Do|To Do|
 |347|[Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/description/) |Medium|To Do|To Do|
 |348|[Design Tic-Tac-Toe](https://leetcode.com/problems/design-tic-tac-toe/description/) :lock:|Medium|To Do|To Do|

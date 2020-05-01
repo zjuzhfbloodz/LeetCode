@@ -47,22 +47,36 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 633
+    id = 345
     word = '昨天去动物园玩了很开心，希望大家都有个好的未来吧！'
-    idea = '这个题目依然双指针可以做，也可以用[费马定理](https://wstein.org/edu/124/lectures/lecture21/lecture21/node2.html)做'
+    idea = '逆序的题目可以用双指针去做，也可以用栈实现逆序'
     code = '''
-> 上述想法，思路很简单
+> 双指针的思路，一次遍历，应该是最优解
 ```python
 class Solution:
-    def judgeSquareSum(self, c: int) -> bool:
-        l,r = 0,int(c**0.5)+1
-        while l <= r:
-            if l**2 + r**2 > c: r -= 1
-            elif l**2 + r**2 < c: l += 1
-            else: return True
-        return False
+    def reverseVowels(self, s: str) -> str:
+        l,r,vowel,s = 0,len(s)-1,'AEIOUaeiou',list(s)
+        while True:
+            while l < r and s[l] not in vowel: l += 1 #先找左边第一个元音字母
+            if l >= r: break
+            while s[r] not in vowel: r -= 1 #找右边的，然后交换顺序，之后记得l往后，r往前
+            s[l], s[r] = s[r], s[l]
+            l,r = l+1,r-1
+        return ''.join(s)
+```
+> 栈的思路，更简单明了一些，复杂度相对高一些
+```python
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        x= 'aeiouAEIOU'
+        res=[]
+        ls=[i for i in s if i in x] #用栈来存放元音字母    
+        for k in s:
+            if k not in x: res.append(k)
+            else: res.append(ls.pop()) #是元音字母则用栈来逆序      
+        return ''.join(res)
 ```
     '''
-    thoughts = '目前做到的双指针题目还不是很难，多思考吧！'
+    thoughts = '双指针可以用于逆序！又收获一种方法！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
