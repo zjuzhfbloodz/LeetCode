@@ -47,71 +47,28 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 524
-    word = '今天陪爷爷出去玩，到了梁庄，买了柿桃，中午吃了饸烙和驴肉火烧，下午去采摘了草莓！爷爷很开心，我也很高兴！计划去草原玩！'
-    idea = '双指针做很简单，分别判断d中的每个word是否是s的子序列，然后输出长度最长and字典序最小的一个'
+    id = 485
+    word = '今晚和lili出去吃饭！毕业论文要搞起来了！'
+    idea = '这个题目也没什么难度，我是按统计0的个数做的'
     code = '''
-> 上述思路，自己的想法
+> 自己的想法，正常来做，但是要注意开头和结尾的特殊情况
 ```python
 class Solution:
-    def hasCycle(self, head: ListNode) -> bool:
-        nodedict,node = [],head
-        while node:
-            if node in nodedict: return True
-            nodedict.append(node)
-            node = node.next
-        return False
-```
-> 快慢指针，两指针在环中的移动就好像两个人在跑圈，快的总会追上慢的，故当slow==fast时即有环，否则当快的到终点就是无环，很巧妙
-```python
-class Solution:
-    def findLongestWord(self, s: str, d: List[str]) -> str:
-        out = '' #定义输出，初始化为字符串
-        for word in d:
-            l,r = 0,0
-            #先判断当前单词是否符合覆盖out的条件，满足再判断是否在s中
-            flag = True if len(word) > len(out) or len(word) == len(out) and word < out else False
-            #判断是否在s中，若是lr均+1，否则只有l+1
-            while  flag and l < len(s) and r < len(word) and word[r] in s:
-                if s[l] == word[r]: r += 1
-                l += 1
-            #只有r==len(word)时才确定word在s中，替代
-            if r == len(word): out = word
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        l,r,out = -1,-1,0 #初始设为-1规避开头的特殊情况1110这种
+        for i in range(len(nums)):
+            if nums[i] == 0: l,r = r,i
+            if r - l - 1 > out: out = r - l -1
+        if i - r > out: out = i - r #规避最后的特殊，1101111这种
         return out
 ```
-> 先用sort函数分别按照字符串长度和字典序方向排序，之后再做，遇到匹配的直接输出就行，复杂度差不多
+> 官方题解，很简洁，利用split函数将0删除并区分开所有字符
 ```python
 class Solution:
-    def findLongestWord(self, s: str, d: List[str]) -> str:
-        #先sort排序，将lambda函数定义为字符串长度和字典序，速度差不多
-        d.sort(key = lambda x: [-len(x), x])
-        for word in d:
-            a,b = 0,0
-            while a < len(s) and b < len(word):
-                if s[a] == word[b]: b += 1
-                a += 1
-            if len(word) == b: return word
-        return ''
-```
-> 这个dalao用的find函数，速度快的飞起，每次查到word中的每个字母在s中的位置为k，更新为k+1继续查找即可，遇到查不到的就不匹配
-```python
-class Solution:
-    def findLongestWord(self, s: str, d: List[str]) -> str:
-        d.sort(key = lambda x: [-len(x), x])#对字典d进行排序，第一关键字是长度升序，第二关键字是字符串本身字典序
-        def f(c):                   #匹配函数
-            i = 0
-            for j in c:             #遍历单词里的字母
-                k = s.find(j, i)    #查找函数，后一个参数是查找起点
-                if k == -1:
-                    return False    #查找失败就返回错误
-                i = k + 1           #查找成功就更新查找起点
-            return True
-        for c in d:                 #遍历有序字典里的单词
-            if f(c):                #如果匹配就返回单词
-                return c
-        return ''
+    def findMaxConsecutiveOnes(self, nums):
+        return max(map(len, ''.join(map(str, nums)).split('0')))
 ```
     '''
-    thoughts = '双指针思想解决很多问题很棒，今天很累，但是很开心！'
+    thoughts = '但行善事！加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
