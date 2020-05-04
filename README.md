@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-03 10:12:11, 我已经完成了 **58** / **1314** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-04 10:58:33, 我已经完成了 **59** / **1318** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 58 
+1. Markdown: 59 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -231,7 +231,7 @@
 |237|[Delete Node in a Linked List](https://leetcode.com/problems/delete-node-in-a-linked-list/description/) |Easy|To Do|To Do|
 |238|[Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/description/) |Medium|To Do|To Do|
 |239|[Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/description/) |Hard|To Do|To Do|
-|240|[Search a 2D Matrix II](https://leetcode.com/problems/search-a-2d-matrix-ii/description/) |Medium|To Do|To Do|
+|240|[Search a 2D Matrix II](https://leetcode.com/problems/search-a-2d-matrix-ii/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/240.%20Search%20a%202D%20Matrix%20II/0240.md)|To Do|
 |241|[Different Ways to Add Parentheses](https://leetcode.com/problems/different-ways-to-add-parentheses/description/) |Medium|To Do|To Do|
 |242|[Valid Anagram](https://leetcode.com/problems/valid-anagram/description/) |Easy|To Do|To Do|
 |243|[Shortest Word Distance](https://leetcode.com/problems/shortest-word-distance/description/) :lock:|Easy|To Do|To Do|
@@ -1322,3 +1322,7 @@
 |1422|[Maximum Score After Splitting a String](https://leetcode.com/problems/maximum-score-after-splitting-a-string/description/) |Easy|To Do|To Do|
 |1423|[Maximum Points You Can Obtain from Cards](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/description/) |Medium|To Do|To Do|
 |1424|[Diagonal Traverse II](https://leetcode.com/problems/diagonal-traverse-ii/description/) |Medium|To Do|To Do|
+|1436|[Destination City](https://leetcode.com/problems/destination-city/description/) |Easy|To Do|To Do|
+|1437|[Check If All 1's Are at Least Length K Places Away](https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/description/) |Medium|To Do|To Do|
+|1438|[Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/description/) |Medium|To Do|To Do|
+|1439|[Find the Kth Smallest Sum of a Matrix With Sorted Rows](https://leetcode.com/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/description/) |Hard|To Do|To Do|
