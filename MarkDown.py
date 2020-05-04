@@ -47,26 +47,45 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 485
-    word = '今晚和lili出去吃饭！毕业论文要搞起来了！'
-    idea = '这个题目也没什么难度，我是按统计0的个数做的'
+    id = 240
+    word = '下雨了很凉快，即将返校！'
+    idea = '这个题目想做很简单，高效的方法不好想，要学会利用这个矩阵升序的特点'
     code = '''
-> 自己的想法，正常来做，但是要注意开头和结尾的特殊情况
+> 自己的想法，递归，先找到第0列中第一个比target大的元素outi，因为第0列是行中最小元素，所以outi之后的所有行都比target大，剪枝；之后找outi-1行（最后一个比target小的行）第一个比target大的元素列outj，由于outj是最右下角元素为子矩阵最大，故(outi，outj)内的元素都比target小，剪枝；递归的继续做即可
 ```python
 class Solution:
-    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
-        l,r,out = -1,-1,0 #初始设为-1规避开头的特殊情况1110这种
-        for i in range(len(nums)):
-            if nums[i] == 0: l,r = r,i
-            if r - l - 1 > out: out = r - l -1
-        if i - r > out: out = i - r #规避最后的特殊，1101111这种
-        return out
+    def searchMatrix(self, matrix, target):
+        if not matrix or not matrix[0]: return False
+        #先找第一列，找到最合适的行，删去大于它的行
+        outi = len(matrix) - 1
+        for i in range(len(matrix)):
+            if matrix[i][0] > target:
+                outi = i - 1
+                break  
+        if outi == -1: return False 
+        #再找outi行第一个大的元素outj
+        for j in range(len(matrix[outi])):
+            if matrix[outi][j] >= target:
+                outj = j
+                break
+        else: return False
+        if matrix[outi][outj] == target: return True
+        #递归
+        return self.searchMatrix([x[outj:] for x in matrix[:outi+1]],target)
 ```
-> 官方题解，很简洁，利用split函数将0删除并区分开所有字符
+> 官方题解，思路很简洁，但是只能找左下角和右上角，因为左上角和右下角是min和max，无法移动
 ```python
 class Solution:
-    def findMaxConsecutiveOnes(self, nums):
-        return max(map(len, ''.join(map(str, nums)).split('0')))
+    def searchMatrix(self, matrix, target):
+        #找左下角和右上角，左上角和右下角不行，是min和max
+        if not matrix: return False
+        m, n = len(matrix), len(matrix[0])
+        i, j = 0, n-1
+        while i < m and j >= 0:
+            if target > matrix[i][j]: i += 1
+            elif target < matrix[i][j]: j -= 1
+            else: return True
+        return False
 ```
     '''
     thoughts = '但行善事！加油！'
