@@ -47,47 +47,35 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 240
-    word = '下雨了很凉快，即将返校！'
-    idea = '这个题目想做很简单，高效的方法不好想，要学会利用这个矩阵升序的特点'
+    id = 3
+    word = '持续凉快中，今天中午和姥爷去吃自助餐烤肉！说实话有些吃吐了要，这个寒假回来吃了4次了'
+    idea = '滑动窗口的题目，感觉和双指针有些像'
     code = '''
-> 自己的想法，递归，先找到第0列中第一个比target大的元素outi，因为第0列是行中最小元素，所以outi之后的所有行都比target大，剪枝；之后找outi-1行（最后一个比target小的行）第一个比target大的元素列outj，由于outj是最右下角元素为子矩阵最大，故(outi，outj)内的元素都比target小，剪枝；递归的继续做即可
+> 自己的想法，重复后两个指针都移动到前面字符串重复的元素之后一个的位置，因为那个位置是最开始不重复的，r可以往后走，但是这种方法很慢不知为何，感觉是切片慢？
 ```python
 class Solution:
-    def searchMatrix(self, matrix, target):
-        if not matrix or not matrix[0]: return False
-        #先找第一列，找到最合适的行，删去大于它的行
-        outi = len(matrix) - 1
-        for i in range(len(matrix)):
-            if matrix[i][0] > target:
-                outi = i - 1
-                break  
-        if outi == -1: return False 
-        #再找outi行第一个大的元素outj
-        for j in range(len(matrix[outi])):
-            if matrix[outi][j] >= target:
-                outj = j
-                break
-        else: return False
-        if matrix[outi][outj] == target: return True
-        #递归
-        return self.searchMatrix([x[outj:] for x in matrix[:outi+1]],target)
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l,r,out = 0,0,0
+        while r < len(s):
+            while r < len(s)-1 and s[r+1] not in s[l:r+1]:
+                r += 1
+            if out < r - l + 1: out = r - l + 1
+            new = s[l:r+1].find(s[r+1]) + l + 1 if r < len(s) - 1 else r+1
+            l = r = new
+        return out
 ```
-> 官方题解，思路很简洁，但是只能找左下角和右上角，因为左上角和右下角是min和max，无法移动
+> 更改思路后，转变为滑动窗口，不管l是否是最优，每次+1，肯定能找到所有不重复的子串，输出最大长度即可。
 ```python
 class Solution:
-    def searchMatrix(self, matrix, target):
-        #找左下角和右上角，左上角和右下角不行，是min和max
-        if not matrix: return False
-        m, n = len(matrix), len(matrix[0])
-        i, j = 0, n-1
-        while i < m and j >= 0:
-            if target > matrix[i][j]: i += 1
-            elif target < matrix[i][j]: j -= 1
-            else: return True
-        return False
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l,r,out,n = 0,0,0,len(s)
+        while l < n and r < n:
+            while r+1 < n and s[r+1] not in s[l:r+1]: r += 1
+            if out < r - l + 1: out = r - l + 1
+            l += 1 #不管怎么样每次都+1
+        return out
 ```
     '''
-    thoughts = '但行善事！加油！'
+    thoughts = '似乎可以用列表或集合hashmap来优化，试了试提升不大。但行善事！加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-04 10:58:33, 我已经完成了 **59** / **1318** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-05 10:20:27, 我已经完成了 **60** / **1318** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 59 
+1. Markdown: 60 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -10,7 +10,7 @@
 |:---:|:---:|:---:|:---:|:---:|
 |001|[Two Sum](https://leetcode.com/problems/two-sum/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/001.%20Two%20Sum/0001.md)|To Do|
 |002|[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/002.%20Add%20Two%20Numbers/0002.md)|To Do|
-|003|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) |Medium|To Do|To Do|
+|003|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/003.%20Longest%20Substring%20Without%20Repeating%20Characters/0003.md)|To Do|
 |004|[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/description/) |Hard|To Do|To Do|
 |005|[Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/description/) |Medium|To Do|To Do|
 |006|[ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/description/) |Medium|To Do|To Do|
