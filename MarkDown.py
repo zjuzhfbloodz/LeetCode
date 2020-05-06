@@ -47,35 +47,62 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 3
-    word = '持续凉快中，今天中午和姥爷去吃自助餐烤肉！说实话有些吃吐了要，这个寒假回来吃了4次了'
-    idea = '滑动窗口的题目，感觉和双指针有些像'
+    id = 147
+    word = '昨天羽毛球最后一次课，要实战训练！今天进入搜索排序算法部分，加油！'
+    idea = '链表的dummyhead还不是很熟，插入排序的方法思想比较简单'
     code = '''
-> 自己的想法，重复后两个指针都移动到前面字符串重复的元素之后一个的位置，因为那个位置是最开始不重复的，r可以往后走，但是这种方法很慢不知为何，感觉是切片慢？
+> 好理解的想法，用一个极小值inf来作为dummyhead创建空链表，然后不断的往dummyhead这个链表里按照插入排序添加元素即可，这样排序到最后dummy.next就是头结点
 ```python
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        l,r,out = 0,0,0
-        while r < len(s):
-            while r < len(s)-1 and s[r+1] not in s[l:r+1]:
-                r += 1
-            if out < r - l + 1: out = r - l + 1
-            new = s[l:r+1].find(s[r+1]) + l + 1 if r < len(s) - 1 else r+1
-            l = r = new
-        return out
+    def insertionSortList(self, head: ListNode) -> ListNode:
+     	# 找个排头
+        dummy = ListNode(float("-inf"))
+        pre = dummy
+        # 依次拿head节点
+        cur = head
+        while cur:
+        	# 把下一次节点保持下来
+            tmp = cur.next
+            # 找到插入的位置
+            while pre.next and pre.next.val < cur.val:
+                pre = pre.next
+            # 进行插入操作
+            cur.next = pre.next
+            pre.next = cur
+            pre= dummy
+            cur = tmp
+        return dummy.next
 ```
-> 更改思路后，转变为滑动窗口，不管l是否是最优，每次+1，肯定能找到所有不重复的子串，输出最大长度即可。
+> 加了一个tail，这个是取巧的方法，tail来记录dummy新链表的最后一个元素，如果新结点cur比他大直接就放在后面了，不用从dummy头结点开始比起
 ```python
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        l,r,out,n = 0,0,0,len(s)
-        while l < n and r < n:
-            while r+1 < n and s[r+1] not in s[l:r+1]: r += 1
-            if out < r - l + 1: out = r - l + 1
-            l += 1 #不管怎么样每次都+1
-        return out
+    def insertionSortList(self, head: ListNode) -> ListNode:
+        # 找个排头
+        dummy = ListNode(float("-inf"))
+        pre = dummy
+        tail = dummy
+        # 依次拿head节点
+        cur = head
+        while cur:
+            if tail.val < cur.val:
+                tail.next = cur
+                tail = cur
+                cur = cur.next
+            else:
+                # 把下一次节点保持下来
+                tmp = cur.next
+                tail.next = tmp
+                # 找到插入的位置
+                while pre.next and pre.next.val < cur.val:
+                    pre = pre.next
+                # 进行插入操作
+                cur.next = pre.next
+                pre.next = cur
+                pre= dummy
+                cur = tmp
+        return dummy.next
 ```
     '''
-    thoughts = '似乎可以用列表或集合hashmap来优化，试了试提升不大。但行善事！加油！'
+    thoughts = '排序搜索是个大头！冲！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

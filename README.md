@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-05 10:20:27, 我已经完成了 **60** / **1318** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-06 12:03:09, 我已经完成了 **61** / **1318** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 60 
+1. Markdown: 61 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -154,7 +154,7 @@
 |144|[Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/144.%20Binary%20Tree%20Preorder%20Traversal/0144.md)|To Do|
 |145|[Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/description/) |Hard|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/145.%20Binary%20Tree%20Postorder%20Traversal/0145.md)|To Do|
 |146|[LRU Cache](https://leetcode.com/problems/lru-cache/description/) |Medium|To Do|To Do|
-|147|[Insertion Sort List](https://leetcode.com/problems/insertion-sort-list/description/) |Medium|To Do|To Do|
+|147|[Insertion Sort List](https://leetcode.com/problems/insertion-sort-list/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/147.%20Insertion%20Sort%20List/0147.md)|To Do|
 |148|[Sort List](https://leetcode.com/problems/sort-list/description/) |Medium|To Do|To Do|
 |149|[Max Points on a Line](https://leetcode.com/problems/max-points-on-a-line/description/) |Hard|To Do|To Do|
 |150|[Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/description/) |Medium|To Do|To Do|
