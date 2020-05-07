@@ -47,62 +47,40 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 147
-    word = '昨天羽毛球最后一次课，要实战训练！今天进入搜索排序算法部分，加油！'
-    idea = '链表的dummyhead还不是很熟，插入排序的方法思想比较简单'
+    id = 56
+    word = '昨天和妈妈实战一场球，还是很多不足，继续努力！今天去超市买回校的东西'
+    idea = '这个题目涉及到排序的算法不多，就是针对题目的思考，先按左区间排序，然后分几种情况合并即可'
     code = '''
-> 好理解的想法，用一个极小值inf来作为dummyhead创建空链表，然后不断的往dummyhead这个链表里按照插入排序添加元素即可，这样排序到最后dummy.next就是头结点
+> 自己的想法，直接操作intervals而不创建新的，比较前后两个区间，若后区间和前区间不重合则不动，指针cur+1；反之合并为最大的区间
 ```python
 class Solution:
-    def insertionSortList(self, head: ListNode) -> ListNode:
-     	# 找个排头
-        dummy = ListNode(float("-inf"))
-        pre = dummy
-        # 依次拿head节点
-        cur = head
-        while cur:
-        	# 把下一次节点保持下来
-            tmp = cur.next
-            # 找到插入的位置
-            while pre.next and pre.next.val < cur.val:
-                pre = pre.next
-            # 进行插入操作
-            cur.next = pre.next
-            pre.next = cur
-            pre= dummy
-            cur = tmp
-        return dummy.next
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals = sorted(intervals,key = lambda x:x[0])
+        cur = 0
+        while cur+1 < len(intervals):
+            if intervals[cur][1] < intervals[cur+1][0]: #不重合不动
+                cur += 1
+            else: #反之重合为最大区间
+              intervals[cur] = [intervals[cur][0],max(intervals[cur][1],intervals[cur+1][1])]
+              del intervals[cur+1]
+        return intervals
 ```
-> 加了一个tail，这个是取巧的方法，tail来记录dummy新链表的最后一个元素，如果新结点cur比他大直接就放在后面了，不用从dummy头结点开始比起
+> 用一个新列表去承载元素，如果有重合直接改res的最后一个元素即可
 ```python
 class Solution:
-    def insertionSortList(self, head: ListNode) -> ListNode:
-        # 找个排头
-        dummy = ListNode(float("-inf"))
-        pre = dummy
-        tail = dummy
-        # 依次拿head节点
-        cur = head
-        while cur:
-            if tail.val < cur.val:
-                tail.next = cur
-                tail = cur
-                cur = cur.next
-            else:
-                # 把下一次节点保持下来
-                tmp = cur.next
-                tail.next = tmp
-                # 找到插入的位置
-                while pre.next and pre.next.val < cur.val:
-                    pre = pre.next
-                # 进行插入操作
-                cur.next = pre.next
-                pre.next = cur
-                pre= dummy
-                cur = tmp
-        return dummy.next
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        if len(intervals) == 0:
+            return []
+        res = []
+        intervals.sort(key=lambda x: x[0])  # 先按区间左边界值由小到大排序
+        for inter in intervals:
+            if len(res) == 0 or res[-1][1] < inter[0]:  # 如果结果集最后一个元素的右边界比新加入区间的左边界小，直接加入结果集
+                res.append(inter)
+            else:  # 否则，说明新加入的和结果集最后一个区间有重合，更新区间右边界即可
+                res[-1][1] = max(res[-1][1], inter[1])
+        return res
 ```
     '''
-    thoughts = '排序搜索是个大头！冲！'
+    thoughts = '但行善事，冲！下午去陪妈妈值班！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
