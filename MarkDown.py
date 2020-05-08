@@ -47,32 +47,23 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 56
-    word = '昨天和妈妈实战一场球，还是很多不足，继续努力！今天去超市买回校的东西'
-    idea = '这个题目涉及到排序的算法不多，就是针对题目的思考，先按左区间排序，然后分几种情况合并即可'
+    id = 57
+    word = '今天理发购物和妈妈打球！明天回校！'
+    idea = '纯粹是对题目的思考，和排序算法没啥关系，以后这种题先跳过吧，还是优先学习算法'
     code = '''
-> 自己的想法，直接操作intervals而不创建新的，比较前后两个区间，若后区间和前区间不重合则不动，指针cur+1；反之合并为最大的区间
+> 自己的想法，直接把区间insert进去，然后利用56的合并区间做
 ```python
 class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        for i in range(len(intervals)):
+            if intervals[i][0] >= newInterval[0]:
+                intervals.insert(i,newInterval)
+                break
+        else: intervals.append(newInterval)
+        return self.merge(intervals)
+
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals = sorted(intervals,key = lambda x:x[0])
-        cur = 0
-        while cur+1 < len(intervals):
-            if intervals[cur][1] < intervals[cur+1][0]: #不重合不动
-                cur += 1
-            else: #反之重合为最大区间
-              intervals[cur] = [intervals[cur][0],max(intervals[cur][1],intervals[cur+1][1])]
-              del intervals[cur+1]
-        return intervals
-```
-> 用一个新列表去承载元素，如果有重合直接改res的最后一个元素即可
-```python
-class Solution:
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        if len(intervals) == 0:
-            return []
         res = []
-        intervals.sort(key=lambda x: x[0])  # 先按区间左边界值由小到大排序
         for inter in intervals:
             if len(res) == 0 or res[-1][1] < inter[0]:  # 如果结果集最后一个元素的右边界比新加入区间的左边界小，直接加入结果集
                 res.append(inter)
@@ -80,7 +71,28 @@ class Solution:
                 res[-1][1] = max(res[-1][1], inter[1])
         return res
 ```
+> 找到右区间第一个比左区间大的，找到左区间最后一个比右区间小的，这是新区间的重合区间，然后合并，之前的不管，之后的也不管，注意三种特殊情况即可
+```python
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        #三种特殊情况
+        if not intervals: return [newInterval]
+        if newInterval[1] < intervals[0][0]: return [newInterval] + intervals
+        if newInterval[0] > intervals[-1][1]: return intervals + [newInterval]
+        i,n = 0,len(intervals)
+        #找左端第一个融合的
+        while i < n and newInterval[0] > intervals[i][1]: i += 1
+        #记录下左边最小和左边的坐标
+        left,tmp = min(intervals[i][0], newInterval[0]),i
+        #如果没有重合区间，直接insert然后输出
+        if intervals[i][0] > newInterval[1]: return intervals[:tmp] + [newInterval] + intervals[tmp:]
+        #找右端第一个融合的
+        while i < n and newInterval[1] >= intervals[i][0]: i += 1
+        #记录下右边最小
+        right = max(newInterval[1], intervals[i-1][1])
+        return intervals[:tmp] + [[left, right]] + intervals[i:]
+```
     '''
-    thoughts = '但行善事，冲！下午去陪妈妈值班！'
+    thoughts = '这种题目锻炼思维，对算法模型的构建意义不大，继续加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

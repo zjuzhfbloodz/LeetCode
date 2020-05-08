@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-07 11:25:20, 我已经完成了 **62** / **1318** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-08 11:50:41, 我已经完成了 **63** / **1318** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 62 
+1. Markdown: 63 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -64,7 +64,7 @@
 |054|[Spiral Matrix](https://leetcode.com/problems/spiral-matrix/description/) |Medium|To Do|To Do|
 |055|[Jump Game](https://leetcode.com/problems/jump-game/description/) |Medium|To Do|To Do|
 |056|[Merge Intervals](https://leetcode.com/problems/merge-intervals/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/056.%20Merge%20Intervals/0056.md)|To Do|
-|057|[Insert Interval](https://leetcode.com/problems/insert-interval/description/) |Hard|To Do|To Do|
+|057|[Insert Interval](https://leetcode.com/problems/insert-interval/description/) |Hard|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/057.%20Insert%20Interval/0057.md)|To Do|
 |058|[Length of Last Word](https://leetcode.com/problems/length-of-last-word/description/) |Easy|To Do|To Do|
 |059|[Spiral Matrix II](https://leetcode.com/problems/spiral-matrix-ii/description/) |Medium|To Do|To Do|
 |060|[Permutation Sequence](https://leetcode.com/problems/permutation-sequence/description/) |Medium|To Do|To Do|
