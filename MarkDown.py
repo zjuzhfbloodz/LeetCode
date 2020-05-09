@@ -47,52 +47,34 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 57
-    word = '今天理发购物和妈妈打球！明天回校！'
-    idea = '纯粹是对题目的思考，和排序算法没啥关系，以后这种题先跳过吧，还是优先学习算法'
+    id = 70
+    word = '今天回校！看到同学们都很棒，自己也要加油！'
+    idea = '今天进入动态规划问题，斐波那契数列是一个开始！今天这个爬楼梯就是一个斐波那契，DP就是用空间换时间，避免子问题重复运算，看了labuladong感觉蛮有收获'
     code = '''
-> 自己的想法，直接把区间insert进去，然后利用56的合并区间做
+> 自己的想法，给定n阶楼梯f(n)可分为两种情况，先爬2阶然后有f(n-2)或者先爬1阶然后f(n-1)，然后迭代去做；可以优化，就是每次只记录前两次的步数，因为计算n时只需要n-1和n-2
 ```python
 class Solution:
-    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        for i in range(len(intervals)):
-            if intervals[i][0] >= newInterval[0]:
-                intervals.insert(i,newInterval)
-                break
-        else: intervals.append(newInterval)
-        return self.merge(intervals)
-
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        res = []
-        for inter in intervals:
-            if len(res) == 0 or res[-1][1] < inter[0]:  # 如果结果集最后一个元素的右边界比新加入区间的左边界小，直接加入结果集
-                res.append(inter)
-            else:  # 否则，说明新加入的和结果集最后一个区间有重合，更新区间右边界即可
-                res[-1][1] = max(res[-1][1], inter[1])
-        return res
+    def __init__(self,):
+        self.result = [1,2]  
+    def g(self, n):
+        lenth = len(self.result)
+        if n > lenth:
+            for i in range(n - lenth):
+                self.result.append(self.result[-1]+self.result[-2])
+        return self.result[n - 1]
 ```
-> 找到右区间第一个比左区间大的，找到左区间最后一个比右区间小的，这是新区间的重合区间，然后合并，之前的不管，之后的也不管，注意三种特殊情况即可
+> 递归也可以做，同理
 ```python
 class Solution:
-    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        #三种特殊情况
-        if not intervals: return [newInterval]
-        if newInterval[1] < intervals[0][0]: return [newInterval] + intervals
-        if newInterval[0] > intervals[-1][1]: return intervals + [newInterval]
-        i,n = 0,len(intervals)
-        #找左端第一个融合的
-        while i < n and newInterval[0] > intervals[i][1]: i += 1
-        #记录下左边最小和左边的坐标
-        left,tmp = min(intervals[i][0], newInterval[0]),i
-        #如果没有重合区间，直接insert然后输出
-        if intervals[i][0] > newInterval[1]: return intervals[:tmp] + [newInterval] + intervals[tmp:]
-        #找右端第一个融合的
-        while i < n and newInterval[1] >= intervals[i][0]: i += 1
-        #记录下右边最小
-        right = max(newInterval[1], intervals[i-1][1])
-        return intervals[:tmp] + [[left, right]] + intervals[i:]
+    def __init__(self,):
+        self.result = [1,2] 
+    def climbStairs(self, n: int) -> int:
+        lenth = len(self.result)
+        if n <= lenth: return self.result[n - 1]
+        self.result.append(self.climbStairs(n - 1) + self.climbStairs(n - 2))
+        return self.result[n - 1]
 ```
     '''
-    thoughts = '这种题目锻炼思维，对算法模型的构建意义不大，继续加油！'
+    thoughts = '和zmt打了球，宝子技术还不行，打着玩吧！DP问题很需要动脑子思考，加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
