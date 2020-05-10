@@ -47,34 +47,39 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 70
-    word = '今天回校！看到同学们都很棒，自己也要加油！'
-    idea = '今天进入动态规划问题，斐波那契数列是一个开始！今天这个爬楼梯就是一个斐波那契，DP就是用空间换时间，避免子问题重复运算，看了labuladong感觉蛮有收获'
+    id = 189
+    word = '今天和朋哥畅聊了很久，受益匪浅，想着Data Scientist的目标进发！'
+    idea = '今天是简单版强盗抢劫，感觉DP的思想还是不那么容易掌握，递归会写但是记录值不太会'
     code = '''
-> 自己的想法，给定n阶楼梯f(n)可分为两种情况，先爬2阶然后有f(n-2)或者先爬1阶然后f(n-1)，然后迭代去做；可以优化，就是每次只记录前两次的步数，因为计算n时只需要n-1和n-2
+> 递归记录子问题的值，递推关系是当前这次抢不抢的max
 ```python
 class Solution:
-    def __init__(self,):
-        self.result = [1,2]  
-    def g(self, n):
-        lenth = len(self.result)
-        if n > lenth:
-            for i in range(n - lenth):
-                self.result.append(self.result[-1]+self.result[-2])
-        return self.result[n - 1]
+    def rob(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+        N = len(nums)
+        dp = [0] * (N+1)
+        dp[0] = 0
+        dp[1] = nums[0]
+        for k in range(2, N+1):
+            dp[k] = max(dp[k-1], nums[k-1] + dp[k-2])
+        return dp[N]
 ```
-> 递归也可以做，同理
+> 从递推关系可以看出，只需要k-1和k-2两个的f，故优化空间
 ```python
 class Solution:
-    def __init__(self,):
-        self.result = [1,2] 
-    def climbStairs(self, n: int) -> int:
-        lenth = len(self.result)
-        if n <= lenth: return self.result[n - 1]
-        self.result.append(self.climbStairs(n - 1) + self.climbStairs(n - 2))
-        return self.result[n - 1]
+    def rob(self, nums: List[int]) -> int:
+        prev = 0
+        curr = 0  
+        # 每次循环，计算“偷到当前房子为止的最大金额”
+        for i in nums:
+            # 循环开始时，curr 表示 dp[k-1]，prev 表示 dp[k-2]
+            # dp[k] = max{ dp[k-1], dp[k-2] + i }
+            prev, curr = curr, max(curr, prev + i)
+            # 循环结束时，curr 表示 dp[k]，prev 表示 dp[k-1]
+        return curr
 ```
-    '''
-    thoughts = '和zmt打了球，宝子技术还不行，打着玩吧！DP问题很需要动脑子思考，加油！'
+'''
+    thoughts = '这两天要加油做毕设啊！冲！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
