@@ -47,39 +47,37 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 189
-    word = '今天和朋哥畅聊了很久，受益匪浅，想着Data Scientist的目标进发！'
-    idea = '今天是简单版强盗抢劫，感觉DP的思想还是不那么容易掌握，递归会写但是记录值不太会'
+    id = 213
+    word = '今天写完了毕设的第一章，第二章开了个头，对算法的想法有了一些新的感悟，明天把程序写完，后天希望可以和朋哥聊一聊！加油！'
+    idea = '加强版抢劫，最后一个房子和第一个连起来了，只能偷其中1个或者两个都不偷'
     code = '''
-> 递归记录子问题的值，递推关系是当前这次抢不抢的max
+> 自己的想法，分成正常和不能偷第1家两种情况，更新还是抢劫的原理，取偷当前+f(n-2)和f(n-1)的max
 ```python
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        if len(nums) == 0:
-            return 0
-        N = len(nums)
-        dp = [0] * (N+1)
-        dp[0] = 0
-        dp[1] = nums[0]
-        for k in range(2, N+1):
-            dp[k] = max(dp[k-1], nums[k-1] + dp[k-2])
-        return dp[N]
+        #同时记录正常和不偷1的最大值
+        if not nums: return 0
+        if len(nums) == 1: return nums[0]
+        f1 = (nums[0],0) #从第一家开始，正常情况max是偷第一家，第二维是不能偷第一家的max
+        f2 = (max(nums[0],nums[1]),nums[1]) #第二家正常是max（0,1）在第一维，第二维不能偷第一家那么max是第二家的
+        for i in range(2,len(nums)-1):
+            normal = max(f2[0],f1[0]+nums[i]) #后续的更新二者就一样了，因为已经在第一家和第二家定义了不偷第1家
+            nots1 = max(f2[1],f1[1]+nums[i])
+            f1,f2 = f2,(normal,nots1)
+        return max(f2[0],nums[-1]+f1[1])
 ```
-> 从递推关系可以看出，只需要k-1和k-2两个的f，故优化空间
+> 这个解法也不错，要遍历两次，所以时间复杂度高，但是空间复杂度低一些。原理是所有情况可以分解为：不抢1和不抢最后一间的两种情况（其实和我的想法是一样的，只不过实现层面不一样），故分别做[1:]和[:-1]即可，[参考](https://leetcode-cn.com/problems/house-robber-ii/solution/213-da-jia-jie-she-iidong-tai-gui-hua-jie-gou-hua-/)
 ```python
 class Solution:
-    def rob(self, nums: List[int]) -> int:
-        prev = 0
-        curr = 0  
-        # 每次循环，计算“偷到当前房子为止的最大金额”
-        for i in nums:
-            # 循环开始时，curr 表示 dp[k-1]，prev 表示 dp[k-2]
-            # dp[k] = max{ dp[k-1], dp[k-2] + i }
-            prev, curr = curr, max(curr, prev + i)
-            # 循环结束时，curr 表示 dp[k]，prev 表示 dp[k-1]
-        return curr
+    def rob(self, nums: [int]) -> int:
+        def my_rob(nums):
+            cur, pre = 0, 0
+            for num in nums:
+                cur, pre = max(pre + num, cur), cur
+            return cur
+        return max(my_rob(nums[:-1]),my_rob(nums[1:])) if len(nums) != 1 else nums[0]
 ```
 '''
-    thoughts = '这两天要加油做毕设啊！冲！'
+    thoughts = '明天写实验部分剩下的代码，希望顺利！！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
