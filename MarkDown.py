@@ -47,37 +47,36 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 213
-    word = '今天写完了毕设的第一章，第二章开了个头，对算法的想法有了一些新的感悟，明天把程序写完，后天希望可以和朋哥聊一聊！加油！'
-    idea = '加强版抢劫，最后一个房子和第一个连起来了，只能偷其中1个或者两个都不偷'
+    id = 64
+    word = '今天写完了毕设第二章的一部分，将对算法的理解用代码实现了，效果不错！明天继续写论文，后天和朋哥交流一下！加油！'
+    idea = 'DP动态规划，思考好状态转移方程即可'
     code = '''
-> 自己的想法，分成正常和不能偷第1家两种情况，更新还是抢劫的原理，取偷当前+f(n-2)和f(n-1)的max
+> 自己的想法，从矩阵左上角走到矩阵任意元素$(p,q)$的距离为$f(p,q) = min(f(p-1,q),f(p,q-1))+grid(p,q)$，上述即转移方程，但是需要注意第一行和列是特殊的要单独计算
 ```python
 class Solution:
-    def rob(self, nums: List[int]) -> int:
-        #同时记录正常和不偷1的最大值
-        if not nums: return 0
-        if len(nums) == 1: return nums[0]
-        f1 = (nums[0],0) #从第一家开始，正常情况max是偷第一家，第二维是不能偷第一家的max
-        f2 = (max(nums[0],nums[1]),nums[1]) #第二家正常是max（0,1）在第一维，第二维不能偷第一家那么max是第二家的
-        for i in range(2,len(nums)-1):
-            normal = max(f2[0],f1[0]+nums[i]) #后续的更新二者就一样了，因为已经在第一家和第二家定义了不偷第1家
-            nots1 = max(f2[1],f1[1]+nums[i])
-            f1,f2 = f2,(normal,nots1)
-        return max(f2[0],nums[-1]+f1[1])
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        m,n = len(grid[0]),len(grid) #m为列，n为行
+        path = [[0 for i in range(m)] for j in range(n)]
+        for i in range(m): path[0][i] = sum(grid[0][:i+1])
+        for j in range(1,n): path[j][0] =  sum([grid[x][0] for x in range(j+1)])
+        for p in range(1,n):
+            for q in range(1,m):
+                path[p][q] = min(path[p-1][q],path[p][q-1]) + grid[p][q]
+        return path[n-1][m-1]
 ```
-> 这个解法也不错，要遍历两次，所以时间复杂度高，但是空间复杂度低一些。原理是所有情况可以分解为：不抢1和不抢最后一间的两种情况（其实和我的想法是一样的，只不过实现层面不一样），故分别做[1:]和[:-1]即可，[参考](https://leetcode-cn.com/problems/house-robber-ii/solution/213-da-jia-jie-she-iidong-tai-gui-hua-jie-gou-hua-/)
+> 改进后的算法，不需要额外的矩阵空间，直接在grid上操作就行
 ```python
 class Solution:
-    def rob(self, nums: [int]) -> int:
-        def my_rob(nums):
-            cur, pre = 0, 0
-            for num in nums:
-                cur, pre = max(pre + num, cur), cur
-            return cur
-        return max(my_rob(nums[:-1]),my_rob(nums[1:])) if len(nums) != 1 else nums[0]
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        m,n = len(grid[0]),len(grid) #m为列，n为行
+        for i in range(1,m): grid[0][i] += grid[0][i-1]
+        for j in range(1,n): grid[j][0] += grid[j-1][0]
+        for p in range(1,n):
+            for q in range(1,m):
+                grid[p][q] = min(grid[p-1][q],grid[p][q-1]) + grid[p][q]
+        return grid[n-1][m-1]
 ```
 '''
-    thoughts = '明天写实验部分剩下的代码，希望顺利！！'
+    thoughts = '继续完成毕业论文！加油！DP问题想法也更多了！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
