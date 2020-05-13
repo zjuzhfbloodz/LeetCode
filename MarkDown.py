@@ -47,34 +47,38 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 64
-    word = '今天是大地震12周年，缅怀过去，拼搏未来！写完了毕设第二章的一部分，将对算法的理解用代码实现了，效果不错！明天继续写论文，后天和朋哥交流一下！加油！'
-    idea = 'DP动态规划，思考好状态转移方程即可'
+    id = 62
+    word = '论文只剩实验部分，明天和朋哥交流一下，加油！就要有结果了！'
+    idea = 'DP动态规划，思考好状态转移方程即可，和64题类似，比其简单'
     code = '''
-> 自己的想法，从矩阵左上角走到矩阵任意元素$(p,q)$的距离为$f(p,q) = min(f(p-1,q),f(p,q-1))+grid(p,q)$，上述即转移方程，但是需要注意第一行和列是特殊的要单独计算
+> 自己的想法，从矩阵左上角走到矩阵任意元素$(p,q)$的路径为$f(p,q) = f(p-1,q),f(p,q-1)$，上述即转移方程，但是需要注意第一行和列都是1
 ```python
 class Solution:
-    def minPathSum(self, grid: List[List[int]]) -> int:
-        m,n = len(grid[0]),len(grid) #m为列，n为行
-        path = [[0 for i in range(m)] for j in range(n)]
-        for i in range(m): path[0][i] = sum(grid[0][:i+1])
-        for j in range(1,n): path[j][0] =  sum([grid[x][0] for x in range(j+1)])
-        for p in range(1,n):
-            for q in range(1,m):
-                path[p][q] = min(path[p-1][q],path[p][q-1]) + grid[p][q]
-        return path[n-1][m-1]
+    def uniquePaths(self, m: int, n: int) -> int:
+        #m列n行
+        pathnum = [[1 for i in range(m)] for j in range(n)] #第一行和第一列都是1，那就都初始化为1，改剩下的
+        for i in range(1,n):
+            for j in range(1,m):
+                pathnum[i][j] = pathnum[i-1][j] + pathnum[i][j-1]
+        return pathnum[n-1][m-1]
 ```
-> 改进后的算法，不需要额外的矩阵空间，直接在grid上操作就行
+> 优化操作，在一维数组也就是上述矩阵的列上操作，每次更新；感觉这个想法有一些反人类，目前还不知道为啥，但是明白是可以的
 ```python
 class Solution:
-    def minPathSum(self, grid: List[List[int]]) -> int:
-        m,n = len(grid[0]),len(grid) #m为列，n为行
-        for i in range(1,m): grid[0][i] += grid[0][i-1]
-        for j in range(1,n): grid[j][0] += grid[j-1][0]
-        for p in range(1,n):
-            for q in range(1,m):
-                grid[p][q] = min(grid[p-1][q],grid[p][q-1]) + grid[p][q]
-        return grid[n-1][m-1]
+    def uniquePaths(self, m: int, n: int) -> int:
+        """优化空间复杂度为O(n)"""
+        # 对二维矩阵进行压缩成一位数组,将最新生成的值覆盖掉旧的值,逐行求解当前位置的最新路径条数！
+        # 实质：在于动态计算并替换当前位置下的路径数最新值
+        # 状态转移公式变成：f[i] = f[i-1]+f[i]
+        # 初始值： f = [1]*m,取横轴
+        # f[-1]表示可能路径的总数
+        # 空间复杂度：O(n),时间复杂度:O(m*n)
+
+        cur = [1] * n
+        for i in range(1, m):
+            for j in range(1, n):
+                cur[j] += cur[j-1]
+        return cur[-1]
 ```
 '''
     thoughts = '继续完成毕业论文！加油！DP问题想法也更多了！'
