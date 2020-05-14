@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-14 00:14:09, 我已经完成了 **68** / **1322** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-14 21:44:11, 我已经完成了 **69** / **1322** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 68 
+1. Markdown: 69 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -293,7 +293,7 @@
 |300|[Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/description/) |Medium|To Do|To Do|
 |301|[Remove Invalid Parentheses](https://leetcode.com/problems/remove-invalid-parentheses/description/) |Hard|To Do|To Do|
 |302|[Smallest Rectangle Enclosing Black Pixels](https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels/description/) :lock:|Hard|To Do|To Do|
-|303|[Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/description/) |Easy|To Do|To Do|
+|303|[Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/303.%20Range%20Sum%20Query%20-%20Immutable/0303.md)|To Do|
 |304|[Range Sum Query 2D - Immutable](https://leetcode.com/problems/range-sum-query-2d-immutable/description/) |Medium|To Do|To Do|
 |305|[Number of Islands II](https://leetcode.com/problems/number-of-islands-ii/description/) :lock:|Hard|To Do|To Do|
 |306|[Additive Number](https://leetcode.com/problems/additive-number/description/) |Medium|To Do|To Do|

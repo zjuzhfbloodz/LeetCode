@@ -47,40 +47,26 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 62
-    word = '论文只剩实验部分，明天和朋哥交流一下，加油！就要有结果了！'
-    idea = 'DP动态规划，思考好状态转移方程即可，和64题类似，比其简单'
+    id = 303
+    word = '和朋哥交流过感觉发文章好难，需要做的事情很多，今天论文写的很消极；还是要努力向前！做到问心无愧！'
+    idea = 'DP动态规划，思考好状态转移方程即可，这个题目不难'
     code = '''
-> 自己的想法，从矩阵左上角走到矩阵任意元素$(p,q)$的路径为$f(p,q) = f(p-1,q),f(p,q-1)$，上述即转移方程，但是需要注意第一行和列都是1
+> 自己的想法，计算所有从起点到i和j的点的和，i和j之间的就是两者差；这个计算需要用到动态转移方程就是f(n) = f(n-1) + nums[n]；另外，像这样有顺序的可以用数组去承接，不一定要用字典，字典会慢很多
 ```python
-class Solution:
-    def uniquePaths(self, m: int, n: int) -> int:
-        #m列n行
-        pathnum = [[1 for i in range(m)] for j in range(n)] #第一行和第一列都是1，那就都初始化为1，改剩下的
-        for i in range(1,n):
-            for j in range(1,m):
-                pathnum[i][j] = pathnum[i-1][j] + pathnum[i][j-1]
-        return pathnum[n-1][m-1]
-```
-> 优化操作，在一维数组也就是上述矩阵的列上操作，每次更新；感觉这个想法有一些反人类，目前还不知道为啥，但是明白是可以的
-```python
-class Solution:
-    def uniquePaths(self, m: int, n: int) -> int:
-        """优化空间复杂度为O(n)"""
-        # 对二维矩阵进行压缩成一位数组,将最新生成的值覆盖掉旧的值,逐行求解当前位置的最新路径条数！
-        # 实质：在于动态计算并替换当前位置下的路径数最新值
-        # 状态转移公式变成：f[i] = f[i-1]+f[i]
-        # 初始值： f = [1]*m,取横轴
-        # f[-1]表示可能路径的总数
-        # 空间复杂度：O(n),时间复杂度:O(m*n)
+class NumArray:
 
-        cur = [1] * n
-        for i in range(1, m):
-            for j in range(1, n):
-                cur[j] += cur[j-1]
-        return cur[-1]
+    def __init__(self, nums: List[int]):
+        if not nums: return
+        self.nums = nums
+        self.sumdict = [nums[0]]
+
+    def sumRange(self, i: int, j: int) -> int:
+        k = len(self.sumdict)
+        for x in range(k,j+1): self.sumdict.append(self.sumdict[-1] + self.nums[x]) #动态转移方程
+        if i == 0: return self.sumdict[j]
+        return self.sumdict[j]-self.sumdict[i-1]
 ```
 '''
-    thoughts = '继续完成毕业论文！加油！DP问题想法也更多了！'
+    thoughts = '相信自己，切勿妄自菲薄，做到问心无愧！明天继续完成毕业论文！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
