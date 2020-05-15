@@ -47,26 +47,64 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 303
-    word = '和朋哥交流过感觉发文章好难，需要做的事情很多，今天论文写的很消极；还是要努力向前！做到问心无愧！'
-    idea = 'DP动态规划，思考好状态转移方程即可，这个题目不难'
+    id = 413
+    word = '今天重新对数据操作进行了思考，最后的结果还不错，明天写完总结就gaisu！'
+    idea = 'DP动态规划，思考好状态转移方程；这个题目可以用数学方法去做，见下面我自己的想法'
     code = '''
-> 自己的想法，计算所有从起点到i和j的点的和，i和j之间的就是两者差；这个计算需要用到动态转移方程就是f(n) = f(n-1) + nums[n]；另外，像这样有顺序的可以用数组去承接，不一定要用字典，字典会慢很多
+> 自己的想法，利用数学思想，找到3个数的等差数列后就往后延长直到不再是等差数列，之后从该等差数列后的第一个数继续开始；如果当前3个数不是等差数列就往后走一个数。其中leng=序列长度-2，和等差数列个数的关系是count = leng*(leng+1)/2
 ```python
-class NumArray:
+class Solution:
+    def numberOfArithmeticSlices(self, A: List[int]) -> int:
+        a1,count = 0,0
+        while a1 < len(A)-2:
+            leng = 0
+            if 2 * A[a1+1] == A[a1] + A[a1+2]: #如果找到，开始往后延长
+                leng,d = leng+1,A[a1+1]-A[a1]
+                a1 += 3
+                while a1 < len(A):
+                    if A[a1] - A[a1-1] == d:
+                        leng += 1
+                        a1 += 1
+                    else: break
+            else: a1 += 1 #如果没找到，下标加1，继续循环
+            count += int(leng*(leng+1)/2) #count和序列长度的关系
+        return count
+```
+> 双指针的方法，思路和自己的想法一样，但是是直接加count的，没用leng这一说
+```python
+class Solution:
+    def numberOfArithmeticSlices(self, A: List[int]) -> int:
+        if len(A) < 3:
+            return 0
+        else:
+            first = 0
+            last = 2
+            res = 0
+            while last < len(A):
+                if A[last] - A[last-1] == A[first+1] - A[first]:
+                    res += last - first -1 
+                    last += 1
+                else:
+                    first = last -1
+                    last = first +2
+        return res
+```
+> 动态规划的方法，思路见[这里](https://leetcode-cn.com/problems/arithmetic-slices/solution/chang-yong-tao-lu-jie-jue-dong-tai-gui-hua-by-lu-c/)
+```python
+class Solution:
+    def numberOfArithmeticSlices(self, A: List[int]) -> int:
+        if len(A) < 3: return 0
+        dif = [0]*(len(A)-1)
+        dif[0] = A[1] - A[0]
+        dp = [0]*len(A)
+        for i in range(2, len(A)):
+            dif[i-1] = A[i] - A[i-1]
+            if dif[i-1] == dif[i-2]:
+                dp[i] = dp[i-1] + 1
+        return sum(dp)
 
-    def __init__(self, nums: List[int]):
-        if not nums: return
-        self.nums = nums
-        self.sumdict = [nums[0]]
-
-    def sumRange(self, i: int, j: int) -> int:
-        k = len(self.sumdict)
-        for x in range(k,j+1): self.sumdict.append(self.sumdict[-1] + self.nums[x]) #动态转移方程
-        if i == 0: return self.sumdict[j]
-        return self.sumdict[j]-self.sumdict[i-1]
 ```
 '''
-    thoughts = '相信自己，切勿妄自菲薄，做到问心无愧！明天继续完成毕业论文！'
+    thoughts = '明天继续完成毕业论文！加油！但行善事！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

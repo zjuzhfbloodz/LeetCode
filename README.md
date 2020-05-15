@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-14 21:44:11, 我已经完成了 **69** / **1322** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-16 00:04:49, 我已经完成了 **70** / **1322** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 69 
+1. Markdown: 70 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -403,7 +403,7 @@
 |410|[Split Array Largest Sum](https://leetcode.com/problems/split-array-largest-sum/description/) |Hard|To Do|To Do|
 |411|[Minimum Unique Word Abbreviation](https://leetcode.com/problems/minimum-unique-word-abbreviation/description/) :lock:|Hard|To Do|To Do|
 |412|[Fizz Buzz](https://leetcode.com/problems/fizz-buzz/description/) |Easy|To Do|To Do|
-|413|[Arithmetic Slices](https://leetcode.com/problems/arithmetic-slices/description/) |Medium|To Do|To Do|
+|413|[Arithmetic Slices](https://leetcode.com/problems/arithmetic-slices/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/413.%20Arithmetic%20Slices/0413.md)|To Do|
 |414|[Third Maximum Number](https://leetcode.com/problems/third-maximum-number/description/) |Easy|To Do|To Do|
 |415|[Add Strings](https://leetcode.com/problems/add-strings/description/) |Easy|To Do|To Do|
 |416|[Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/description/) |Medium|To Do|To Do|
