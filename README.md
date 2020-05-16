@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-16 00:04:49, 我已经完成了 **70** / **1322** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-17 00:04:43, 我已经完成了 **71** / **1322** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 70 
+1. Markdown: 71 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -333,7 +333,7 @@
 |340|[Longest Substring with At Most K Distinct Characters](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/description/) :lock:|Hard|To Do|To Do|
 |341|[Flatten Nested List Iterator](https://leetcode.com/problems/flatten-nested-list-iterator/description/) |Medium|To Do|To Do|
 |342|[Power of Four](https://leetcode.com/problems/power-of-four/description/) |Easy|To Do|To Do|
-|343|[Integer Break](https://leetcode.com/problems/integer-break/description/) |Medium|To Do|To Do|
+|343|[Integer Break](https://leetcode.com/problems/integer-break/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/343.%20Integer%20Break/0343.md)|To Do|
 |344|[Reverse String](https://leetcode.com/problems/reverse-string/description/) |Easy|To Do|To Do|
 |345|[Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/345.%20Reverse%20Vowels%20of%20a%20String/0345.md)|To Do|
 |346|[Moving Average from Data Stream](https://leetcode.com/problems/moving-average-from-data-stream/description/) :lock:|Easy|To Do|To Do|

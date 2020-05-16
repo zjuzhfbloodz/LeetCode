@@ -47,64 +47,36 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 413
-    word = '今天重新对数据操作进行了思考，最后的结果还不错，明天写完总结就gaisu！'
-    idea = 'DP动态规划，思考好状态转移方程；这个题目可以用数学方法去做，见下面我自己的想法'
+    id = 343
+    word = '今天完成了毕业论文初稿，但是其实还有许多需要思考的地方，希望可以思考的全面一些吧！加油！'
+    idea = 'DP动态规划，思考好状态转移方程，即f(n)=max(f(i)*(n-i))'
     code = '''
-> 自己的想法，利用数学思想，找到3个数的等差数列后就往后延长直到不再是等差数列，之后从该等差数列后的第一个数继续开始；如果当前3个数不是等差数列就往后走一个数。其中leng=序列长度-2，和等差数列个数的关系是count = leng*(leng+1)/2
+> 自己的想法，利用上述状态转移方程
 ```python
 class Solution:
-    def numberOfArithmeticSlices(self, A: List[int]) -> int:
-        a1,count = 0,0
-        while a1 < len(A)-2:
-            leng = 0
-            if 2 * A[a1+1] == A[a1] + A[a1+2]: #如果找到，开始往后延长
-                leng,d = leng+1,A[a1+1]-A[a1]
-                a1 += 3
-                while a1 < len(A):
-                    if A[a1] - A[a1-1] == d:
-                        leng += 1
-                        a1 += 1
-                    else: break
-            else: a1 += 1 #如果没找到，下标加1，继续循环
-            count += int(leng*(leng+1)/2) #count和序列长度的关系
-        return count
+    def integerBreak(self, n: int) -> int:
+        if n<=1: return 0
+        if n==2: return 1
+        if n==3: return 2 #2和3的时候特殊，他们当时的max不能被后面的利用，因为他们的本身大于两数乘积的max，2>1且3>2
+        maxmul = [2,3]
+        for i in range(4,n+1):
+            thismax = 0
+            for j in range(2,i):  
+                thismax = max(thismax,(i-j)*maxmul[j-2])
+            maxmul.append(thismax)
+        return maxmul[n - 2]
 ```
-> 双指针的方法，思路和自己的想法一样，但是是直接加count的，没用leng这一说
+> 数学方法，值得思考，感觉是数论，比上述算法快，因为DP问题说白了还是穷举，见[这里](https://leetcode-cn.com/problems/integer-break/solution/343-zheng-shu-chai-fen-tan-xin-by-jyd/)
 ```python
 class Solution:
-    def numberOfArithmeticSlices(self, A: List[int]) -> int:
-        if len(A) < 3:
-            return 0
-        else:
-            first = 0
-            last = 2
-            res = 0
-            while last < len(A):
-                if A[last] - A[last-1] == A[first+1] - A[first]:
-                    res += last - first -1 
-                    last += 1
-                else:
-                    first = last -1
-                    last = first +2
-        return res
-```
-> 动态规划的方法，思路见[这里](https://leetcode-cn.com/problems/arithmetic-slices/solution/chang-yong-tao-lu-jie-jue-dong-tai-gui-hua-by-lu-c/)
-```python
-class Solution:
-    def numberOfArithmeticSlices(self, A: List[int]) -> int:
-        if len(A) < 3: return 0
-        dif = [0]*(len(A)-1)
-        dif[0] = A[1] - A[0]
-        dp = [0]*len(A)
-        for i in range(2, len(A)):
-            dif[i-1] = A[i] - A[i-1]
-            if dif[i-1] == dif[i-2]:
-                dp[i] = dp[i-1] + 1
-        return sum(dp)
-
+    def integerBreak(self, n: int) -> int:
+        if n <= 3: return n - 1
+        a, b = n // 3, n % 3
+        if b == 0: return int(math.pow(3, a))
+        if b == 1: return int(math.pow(3, a - 1) * 4)
+        return int(math.pow(3, a) * 2)
 ```
 '''
-    thoughts = '明天继续完成毕业论文！加油！但行善事！'
+    thoughts = '毕业论文初稿完成，但是思考不能停止！加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
