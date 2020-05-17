@@ -1,15 +1,13 @@
 class Solution:
-    def integerBreak(self, n: int) -> int:
-        if n<=1: return 0
-        if n==2: return 1
-        if n==3: return 2
-        maxmul = [2,3]
-        for i in range(4,n+1):
-            thismax = 0
-            for j in range(2,i):
-                thismax = max(thismax,(i-j)*maxmul[j-2])
-            maxmul.append(thismax)
-        return maxmul[n - 2]
-        
+    def numSquares(self, n: int) -> int:
+        result = [0,1,2]
+        for i in range(3,n+1):
+            square_root, minss = int(i ** 0.5), n
+            for j in range(1, square_root + 1):
+                #print(j,i)
+                minss = min(1+result[i-j**2],minss)
+            result.append(minss)
+        return result[n]
+
 s = Solution()
-print(s.integerBreak(10))
+print(s.numSquares(4586))

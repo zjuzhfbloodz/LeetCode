@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-17 00:04:43, 我已经完成了 **71** / **1322** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-17 21:06:36, 我已经完成了 **72** / **1330** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 71 
+1. Markdown: 72 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -269,7 +269,7 @@
 |276|[Paint Fence](https://leetcode.com/problems/paint-fence/description/) :lock:|Easy|To Do|To Do|
 |277|[Find the Celebrity](https://leetcode.com/problems/find-the-celebrity/description/) :lock:|Medium|To Do|To Do|
 |278|[First Bad Version](https://leetcode.com/problems/first-bad-version/description/) |Easy|To Do|To Do|
-|279|[Perfect Squares](https://leetcode.com/problems/perfect-squares/description/) |Medium|To Do|To Do|
+|279|[Perfect Squares](https://leetcode.com/problems/perfect-squares/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/279.%20Perfect%20Squares/0279.md)|To Do|
 |280|[Wiggle Sort](https://leetcode.com/problems/wiggle-sort/description/) :lock:|Medium|To Do|To Do|
 |281|[Zigzag Iterator](https://leetcode.com/problems/zigzag-iterator/description/) :lock:|Medium|To Do|To Do|
 |282|[Expression Add Operators](https://leetcode.com/problems/expression-add-operators/description/) |Hard|To Do|To Do|
@@ -1322,6 +1322,10 @@
 |1422|[Maximum Score After Splitting a String](https://leetcode.com/problems/maximum-score-after-splitting-a-string/description/) |Easy|To Do|To Do|
 |1423|[Maximum Points You Can Obtain from Cards](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/description/) |Medium|To Do|To Do|
 |1424|[Diagonal Traverse II](https://leetcode.com/problems/diagonal-traverse-ii/description/) |Medium|To Do|To Do|
+|1446|[Consecutive Characters](https://leetcode.com/problems/consecutive-characters/description/) |Easy|To Do|To Do|
+|1447|[Simplified Fractions](https://leetcode.com/problems/simplified-fractions/description/) |Medium|To Do|To Do|
+|1448|[Count Good Nodes in Binary Tree](https://leetcode.com/problems/count-good-nodes-in-binary-tree/description/) |Medium|To Do|To Do|
+|1449|[Form Largest Integer With Digits That Add up to Target](https://leetcode.com/problems/form-largest-integer-with-digits-that-add-up-to-target/description/) |Hard|To Do|To Do|
 |1436|[Destination City](https://leetcode.com/problems/destination-city/description/) |Easy|To Do|To Do|
 |1437|[Check If All 1's Are at Least Length K Places Away](https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/description/) |Medium|To Do|To Do|
 |1438|[Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/description/) |Medium|To Do|To Do|
@@ -1330,3 +1334,7 @@
 |1442|[Count Triplets That Can Form Two Arrays of Equal XOR](https://leetcode.com/problems/count-triplets-that-can-form-two-arrays-of-equal-xor/description/) |Medium|To Do|To Do|
 |1443|[Minimum Time to Collect All Apples in a Tree](https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/description/) |Medium|To Do|To Do|
 |1444|[Number of Ways of Cutting a Pizza](https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/description/) |Hard|To Do|To Do|
+|1450|[Number of Students Doing Homework at a Given Time](https://leetcode.com/problems/number-of-students-doing-homework-at-a-given-time/description/) |Easy|To Do|To Do|
+|1451|[Rearrange Words in a Sentence](https://leetcode.com/problems/rearrange-words-in-a-sentence/description/) |Medium|To Do|To Do|
+|1452|[People Whose List of Favorite Companies Is Not a Subset of Another List](https://leetcode.com/problems/people-whose-list-of-favorite-companies-is-not-a-subset-of-another-list/description/) |Medium|To Do|To Do|
+|1453|[Maximum Number of Darts Inside of a Circular Dartboard](https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/description/) |Hard|To Do|To Do|
