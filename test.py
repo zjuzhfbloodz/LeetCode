@@ -1,13 +1,30 @@
 class Solution:
-    def numSquares(self, n: int) -> int:
-        result = [0,1,2]
-        for i in range(3,n+1):
-            square_root, minss = int(i ** 0.5), n
-            for j in range(1, square_root + 1):
-                #print(j,i)
-                minss = min(1+result[i-j**2],minss)
-            result.append(minss)
-        return result[n]
+    def numDecodings(self, s: str) -> int:
+        if s[0] == '0': return 0
+        result,n = [1],len(s)
+        for i in range(1,n):
+            if int(s[i-1:i+1]) <= 26 and int(s[i-1:i+1])>=10: 
+                if s[i] != '0': result.append(result[i-2]+result[i-1])
+                else: result.append(result[i-2])
+            else: 
+                if s[i] != '0': result.append(result[i-1])
+                else: return 0
+        print(result)
+        return result[n-1]
+
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        if s[0] == '0': return 0
+        l1,l2,n = 1,1,len(s)
+        for i in range(1,n):
+            if int(s[i-1:i+1]) <= 26 and int(s[i-1:i+1])>=10: 
+                if s[i] != '0': new = l1+l2
+                else: new = l1
+            else: 
+                if s[i] != '0': new = l2
+                else: return 0
+            l1,l2 = l2,new
+        return l2
 
 s = Solution()
-print(s.numSquares(4586))
+print(s.numDecodings('226'))

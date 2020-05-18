@@ -47,42 +47,42 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 279
-    word = '终于提交了初稿，明天开始学习！加油！'
-    idea = 'DP动态规划，思考好状态转移方程，但是这个题单独用动态规划速度很慢'
+    id = 91
+    word = '今天简单了解了一下提升方法boosting，继续学习！'
+    idea = 'DP动态规划，思考好状态转移方程即可，这个题目自己的想法和标答一样，感觉不错'
     code = '''
-> 自己的想法，DP动态规划，简化成了3行，原理是找1-（n-1）所有的最小数量组合，然后n就是减i平方+1的最小值
+> 自己的想法，DP动态规划，状态转移方程：首先新加入字符s[i]自己肯定可以看成一种划分，故f(n)+=f(n-1)；再看s[i]是否能和s[i-1]组成10-26之间的数，可以的话就把这两个数字当成一个，f(n)+=f(n-2)；要注意0是特殊情况
 ```python
 class Solution:
-    def numSquares(self, n: int) -> int:
-        result = [0,1]
-        for i in range(2,n+1): result.append(min([1+result[i-j**2] for j in range(1, int(i ** 0.5) + 1)]))
-        return result[n]
+    def numDecodings(self, s: str) -> int:
+        if s[0] == '0': return 0
+        result,n = [1],len(s)
+        for i in range(1,n):
+            if int(s[i-1:i+1]) <= 26 and int(s[i-1:i+1])>=10:  #判断能否组成两位数，如果可以判断是否为0
+                if s[i] != '0': result.append(result[i-2]+result[i-1])
+                else: result.append(result[i-2])
+            else:  #否则若是0则违反规则输出0
+                if s[i] != '0': result.append(result[i-1])
+                else: return 0
+        return result[n-1]
 ```
-> 数学方法，拉格朗日提出来的，比上述算法快太多，降维打击，因为DP问题说白了还是穷举，见[这里]最后一种方法(https://leetcode-cn.com/problems/perfect-squares/solution/wan-quan-ping-fang-shu-by-leetcode/）
+> 经过上述转移方程可以看出只需要f(n-1)和f(n-2)的值，故减少空间利用如下
 ```python
 class Solution:
-    def isSquare(self, n: int) -> bool:
-        sq = int(math.sqrt(n))
-        return sq*sq == n
-
-    def numSquares(self, n: int) -> int:
-        # four-square and three-square theorems
-        while (n & 3) == 0:
-            n >>= 2      # reducing the 4^k factor from number
-        if (n & 7) == 7: # mod 8
-            return 4
-
-        if self.isSquare(n):
-            return 1
-        # check if the number can be decomposed into sum of two squares
-        for i in range(1, int(n**(0.5)) + 1):
-            if self.isSquare(n - i*i):
-                return 2
-        # bottom case from the three-square theorem
-        return 3
+    def numDecodings(self, s: str) -> int:
+        if s[0] == '0': return 0
+        l1,l2,n = 1,1,len(s)
+        for i in range(1,n):
+            if int(s[i-1:i+1]) <= 26 and int(s[i-1:i+1])>=10: 
+                if s[i] != '0': new = l1+l2
+                else: new = l1
+            else: 
+                if s[i] != '0': new = l2
+                else: return 0
+            l1,l2 = l2,new
+        return l2
 ```
 '''
-    thoughts = '这个题目还可以通过贪心算法求解，还需学习！'
+    thoughts = '动态规划问题只要思考好转移方程剩下的就比较好解决，继续加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

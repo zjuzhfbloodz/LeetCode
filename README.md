@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-17 21:06:36, 我已经完成了 **72** / **1330** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-18 16:30:24, 我已经完成了 **73** / **1330** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 72 
+1. Markdown: 73 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -98,7 +98,7 @@
 |088|[Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/088.%20Merge%20Sorted%20Array/0088.md)|To Do|
 |089|[Gray Code](https://leetcode.com/problems/gray-code/description/) |Medium|To Do|To Do|
 |090|[Subsets II](https://leetcode.com/problems/subsets-ii/description/) |Medium|To Do|To Do|
-|091|[Decode Ways](https://leetcode.com/problems/decode-ways/description/) |Medium|To Do|To Do|
+|091|[Decode Ways](https://leetcode.com/problems/decode-ways/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/091.%20Decode%20Ways/0091.md)|To Do|
 |092|[Reverse Linked List II](https://leetcode.com/problems/reverse-linked-list-ii/description/) |Medium|To Do|To Do|
 |093|[Restore IP Addresses](https://leetcode.com/problems/restore-ip-addresses/description/) |Medium|To Do|To Do|
 |094|[Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/094.%20Binary%20Tree%20Inorder%20Traversal/0094.md)|To Do|
