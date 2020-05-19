@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-18 16:30:24, 我已经完成了 **73** / **1330** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-19 16:46:30, 我已经完成了 **74** / **1330** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 73 
+1. Markdown: 74 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -290,7 +290,7 @@
 |297|[Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/) |Hard|To Do|To Do|
 |298|[Binary Tree Longest Consecutive Sequence](https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/description/) :lock:|Medium|To Do|To Do|
 |299|[Bulls and Cows](https://leetcode.com/problems/bulls-and-cows/description/) |Easy|To Do|To Do|
-|300|[Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/description/) |Medium|To Do|To Do|
+|300|[Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/300.%20Longest%20Increasing%20Subsequence/0300.md)|To Do|
 |301|[Remove Invalid Parentheses](https://leetcode.com/problems/remove-invalid-parentheses/description/) |Hard|To Do|To Do|
 |302|[Smallest Rectangle Enclosing Black Pixels](https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels/description/) :lock:|Hard|To Do|To Do|
 |303|[Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/303.%20Range%20Sum%20Query%20-%20Immutable/0303.md)|To Do|

@@ -47,42 +47,46 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 91
-    word = '今天简单了解了一下提升方法boosting，继续学习！'
-    idea = 'DP动态规划，思考好状态转移方程即可，这个题目自己的想法和标答一样，感觉不错'
+    id = 300
+    word = '昨天组队想去打比赛，希望可以有所收获！'
+    idea = 'DP动态规划，思考好状态转移方程即可，这个题目没想出转移方程，很难受'
     code = '''
-> 自己的想法，DP动态规划，状态转移方程：首先新加入字符s[i]自己肯定可以看成一种划分，故f(n)+=f(n-1)；再看s[i]是否能和s[i-1]组成10-26之间的数，可以的话就把这两个数字当成一个，f(n)+=f(n-2)；要注意0是特殊情况
+> 动态规划，状态转移方程是dp[i]=max(dp[j])+1,0<=j<i且nums[j]<nums[i]；如果nums[i]<=nums[j]说明构不成递增矩阵，大于则可以并找到最大可以的赋值即可
 ```python
 class Solution:
-    def numDecodings(self, s: str) -> int:
-        if s[0] == '0': return 0
-        result,n = [1],len(s)
-        for i in range(1,n):
-            if int(s[i-1:i+1]) <= 26 and int(s[i-1:i+1])>=10:  #判断能否组成两位数，如果可以判断是否为0
-                if s[i] != '0': result.append(result[i-2]+result[i-1])
-                else: result.append(result[i-2])
-            else:  #否则若是0则违反规则输出0
-                if s[i] != '0': result.append(result[i-1])
-                else: return 0
-        return result[n-1]
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        dp = []
+        for i in range(len(nums)):
+            dp.append(1)
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+        return max(dp)
 ```
-> 经过上述转移方程可以看出只需要f(n-1)和f(n-2)的值，故减少空间利用如下
+> 贪心算法+二分查找，这个真的需要动动脑子了，[思路](https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/yi-bu-yi-bu-tui-dao-chu-guan-fang-zui-you-jie-fa-x/)
 ```python
 class Solution:
-    def numDecodings(self, s: str) -> int:
-        if s[0] == '0': return 0
-        l1,l2,n = 1,1,len(s)
-        for i in range(1,n):
-            if int(s[i-1:i+1]) <= 26 and int(s[i-1:i+1])>=10: 
-                if s[i] != '0': new = l1+l2
-                else: new = l1
-            else: 
-                if s[i] != '0': new = l2
-                else: return 0
-            l1,l2 = l2,new
-        return l2
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        d = []
+        for n in nums:
+            if not d or n > d[-1]:
+                d.append(n)
+            else:
+                l, r = 0, len(d) - 1
+                loc = r
+                while l <= r:
+                    mid = (l + r) // 2
+                    if d[mid] >= n:
+                        loc = mid
+                        r = mid - 1
+                    else:
+                        l = mid + 1
+                d[loc] = n
+        return len(d)
 ```
 '''
-    thoughts = '动态规划问题只要思考好转移方程剩下的就比较好解决，继续加油！'
+    thoughts = '这个题目有些难度，记录一下，下次继续思考！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
