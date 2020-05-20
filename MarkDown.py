@@ -47,46 +47,39 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 300
-    word = '昨天组队想去打比赛，希望可以有所收获！'
-    idea = 'DP动态规划，思考好状态转移方程即可，这个题目没想出转移方程，很难受'
+    id = 646
+    word = '今天初步入门了Pytorch，继续加油！'
+    idea = 'DP动态规划，思考好状态转移方程即可，这个题目没想出转移方程，和昨天的300很像啊，很难受；这个题提前排序很重要！'
     code = '''
-> 动态规划，状态转移方程是dp[i]=max(dp[j])+1,0<=j<i且nums[j]<nums[i]；如果nums[i]<=nums[j]说明构不成递增矩阵，大于则可以并找到最大可以的赋值即可
+> 动态规划，f(n)是以当前区间为结尾的最长长度，状态转移方程是如果满足添加条件，则+1，遍历找max；记得先排序啊！
 ```python
-class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
-        if not nums:
-            return 0
-        dp = []
-        for i in range(len(nums)):
-            dp.append(1)
-            for j in range(i):
-                if nums[i] > nums[j]:
-                    dp[i] = max(dp[i], dp[j] + 1)
+class Solution(object): #Time Limit Exceeded
+    def findLongestChain(self, pairs):
+        pairs.sort() #先排序
+        dp = [1] * len(pairs)
+
+        for j in range(len(pairs)):
+            for i in range(j):
+                if pairs[i][1] < pairs[j][0]:
+                    dp[j] = max(dp[j], dp[i] + 1)
+
         return max(dp)
 ```
-> 贪心算法+二分查找，这个真的需要动动脑子了，[思路](https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/yi-bu-yi-bu-tui-dao-chu-guan-fang-zui-you-jie-fa-x/)
+> 贪心算法，按区间的第二个数排序，这样如果某区间的第一个数比链条的末尾区间第二个值大，那么他一定能并入，res+=1然后改变最大值即可，这个思路很清奇！理解了！
 ```python
 class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
-        d = []
-        for n in nums:
-            if not d or n > d[-1]:
-                d.append(n)
-            else:
-                l, r = 0, len(d) - 1
-                loc = r
-                while l <= r:
-                    mid = (l + r) // 2
-                    if d[mid] >= n:
-                        loc = mid
-                        r = mid - 1
-                    else:
-                        l = mid + 1
-                d[loc] = n
-        return len(d)
+    def findLongestChain(self, pairs: List[List[int]]) -> int:
+        pairs.sort(key=lambda x:x[1])
+        res=1
+        cur=pairs[0][1]
+        for i in range(1,len(pairs)):
+            if pairs[i][0]>cur:
+                res+=1
+                cur=pairs[i][1]
+        return res
+
 ```
 '''
-    thoughts = '这个题目有些难度，记录一下，下次继续思考！'
+    thoughts = '这个题目有些难度，和300类似，两个题目都没想出来了！要加油啊！！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
