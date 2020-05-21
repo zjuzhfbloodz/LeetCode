@@ -47,39 +47,46 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 646
-    word = '今天初步入门了Pytorch，继续加油！'
-    idea = 'DP动态规划，思考好状态转移方程即可，这个题目没想出转移方程，和昨天的300很像啊，很难受；这个题提前排序很重要！'
+    id = 376
+    word = '今天熟悉了CNN，吃了夜宵小龙虾，明天学习RNN！加油！'
+    idea = 'DP动态规划，思考好状态转移方程即可，依然是最长子序列问题，今天这个题目自己想出来啦！就是复杂了一些...'
     code = '''
-> 动态规划，f(n)是以当前区间为结尾的最长长度，状态转移方程是如果满足添加条件，则+1，遍历找max；记得先排序啊！
-```python
-class Solution(object): #Time Limit Exceeded
-    def findLongestChain(self, pairs):
-        pairs.sort() #先排序
-        dp = [1] * len(pairs)
-
-        for j in range(len(pairs)):
-            for i in range(j):
-                if pairs[i][1] < pairs[j][0]:
-                    dp[j] = max(dp[j], dp[i] + 1)
-
-        return max(dp)
-```
-> 贪心算法，按区间的第二个数排序，这样如果某区间的第一个数比链条的末尾区间第二个值大，那么他一定能并入，res+=1然后改变最大值即可，这个思路很清奇！理解了！
+> 动态规划，maxls记录以i元素结尾的最长子序列长度，sign记录i和i-1是升序还是降序，用来加入新值时的判断，然后一步步进行，sign满足就+1看看是不是max，要注意diff=0的情况
 ```python
 class Solution:
-    def findLongestChain(self, pairs: List[List[int]]) -> int:
-        pairs.sort(key=lambda x:x[1])
-        res=1
-        cur=pairs[0][1]
-        for i in range(1,len(pairs)):
-            if pairs[i][0]>cur:
-                res+=1
-                cur=pairs[i][1]
-        return res
+    def wiggleMaxLength(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n < 2: return n
+        maxls,sign = [1],[0]
+        for i in range(1,n):
+            maxl,s = 0,0
+            for j in range(0,i):
+                diff = nums[i] - nums[j]
+                if diff == 0: #相等了，一般来说就continue就行，但是需要考虑极端情况[1,1,1,1]这样的
+                    if maxl < 1:
+                        maxl,s = 1,0
+                elif diff * sign[j] <= 0 and maxl < maxls[j] + 1: #满足条件且maxl小于当前值+1就更新
+                    maxl = maxls[j] + 1
+                    s = 1 if diff > 0 else -1
+            maxls.append(maxl)
+            sign.append(s)
+        return max(maxls)
+```
+> 贪心算法，思路清奇，心态爆炸，很快
+```python
+class Solution:
+    def wiggleMaxLength(self, nums: List[int]) -> int:
+        if len(nums) < 2: return len(nums)
+        up = down = 1
+        for i in range(1, len(nums)):
+            if nums[i] > nums[i-1]: # 当出现升序时, 和**有效**的降序数量上加1
+                up = down + 1
+            elif nums[i] < nums[i-1]:
+                down = up + 1
+        return max(down, up)
 
 ```
 '''
-    thoughts = '这个题目有些难度，和300类似，两个题目都没想出来了！要加油啊！！'
+    thoughts = '最长子序列问题有些眉目了，今天感悟：递归 < DP < 贪心，同样需要思考的东西也更多，加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
