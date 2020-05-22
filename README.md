@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-21 22:17:54, 我已经完成了 **76** / **1330** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-22 22:15:03, 我已经完成了 **77** / **1330** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 76 
+1. Markdown: 77 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -121,7 +121,7 @@
 |111|[Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/111.%20Minimum%20Depth%20of%20Binary%20Tree/0111.md)|To Do|
 |112|[Path Sum](https://leetcode.com/problems/path-sum/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/112.%20Path%20Sum/0112.md)|To Do|
 |113|[Path Sum II](https://leetcode.com/problems/path-sum-ii/description/) |Medium|To Do|To Do|
-|114|[Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/) |Medium|To Do|To Do|
+|114|[Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/1143.%20Longest%20Common%20Subsequence/1143.md)|To Do|
 |115|[Distinct Subsequences](https://leetcode.com/problems/distinct-subsequences/description/) |Hard|To Do|To Do|
 |116|[Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/) |Medium|To Do|To Do|
 |117|[Populating Next Right Pointers in Each Node II](https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/description/) |Medium|To Do|To Do|

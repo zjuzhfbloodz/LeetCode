@@ -47,46 +47,28 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 376
-    word = '今天熟悉了CNN，吃了夜宵小龙虾，明天学习RNN！加油！'
-    idea = 'DP动态规划，思考好状态转移方程即可，依然是最长子序列问题，今天这个题目自己想出来啦！就是复杂了一些...'
+    id = 1143
+    word = '开始学习李宏毅老师的deeplearning，纠结要不要把电脑卖了，有些难sou'
+    idea = 'DP动态规划，思考好状态转移方程即可，这个题目又没想出来！！！自己是从前往后想的，没想到这个题是从后往前想，佛了！'
     code = '''
-> 动态规划，maxls记录以i元素结尾的最长子序列长度，sign记录i和i-1是升序还是降序，用来加入新值时的判断，然后一步步进行，sign满足就+1看看是不是max，要注意diff=0的情况
+> DP，从后往前想，dp[i][j]代表text1的前i个和text2的前j个的最大公共；分为t1[i] == t2[j]和不等于两种情况，分别往前推，见[解答](https://leetcode-cn.com/problems/longest-common-subsequence/solution/dong-tai-gui-hua-zhi-zui-chang-gong-gong-zi-xu-lie/)
 ```python
 class Solution:
-    def wiggleMaxLength(self, nums: List[int]) -> int:
-        n = len(nums)
-        if n < 2: return n
-        maxls,sign = [1],[0]
-        for i in range(1,n):
-            maxl,s = 0,0
-            for j in range(0,i):
-                diff = nums[i] - nums[j]
-                if diff == 0: #相等了，一般来说就continue就行，但是需要考虑极端情况[1,1,1,1]这样的
-                    if maxl < 1:
-                        maxl,s = 1,0
-                elif diff * sign[j] <= 0 and maxl < maxls[j] + 1: #满足条件且maxl小于当前值+1就更新
-                    maxl = maxls[j] + 1
-                    s = 1 if diff > 0 else -1
-            maxls.append(maxl)
-            sign.append(s)
-        return max(maxls)
-```
-> 贪心算法，思路清奇，心态爆炸，很快
-```python
-class Solution:
-    def wiggleMaxLength(self, nums: List[int]) -> int:
-        if len(nums) < 2: return len(nums)
-        up = down = 1
-        for i in range(1, len(nums)):
-            if nums[i] > nums[i-1]: # 当出现升序时, 和**有效**的降序数量上加1
-                up = down + 1
-            elif nums[i] < nums[i-1]:
-                down = up + 1
-        return max(down, up)
-
+    def longestCommonSubsequence(self,str1, str2) -> int:
+        m, n = len(str1), len(str2)
+        # 构建 DP table 和 base case
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        # 进行状态转移
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if str1[i - 1] == str2[j - 1]:
+                    # 找到一个 lcs 中的字符
+                    dp[i][j] = 1 + dp[i-1][j-1]
+                else:
+                    dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+        return dp[-1][-1]
 ```
 '''
-    thoughts = '最长子序列问题有些眉目了，今天感悟：递归 < DP < 贪心，同样需要思考的东西也更多，加油！'
+    thoughts = '这个题反其道而行之，难sou难sou！！！思考！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
