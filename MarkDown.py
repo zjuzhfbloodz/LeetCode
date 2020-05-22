@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
     id = 1143
     word = '开始学习李宏毅老师的deeplearning，纠结要不要把电脑卖了，有些难sou'
-    idea = 'DP动态规划，思考好状态转移方程即可，这个题目又没想出来！！！自己是从前往后想的，没想到这个题是从后往前想，佛了！'
+    idea = 'DP动态规划，思考好状态转移方程即可，这个题目又没想出来！！！自己是从前往后想的，没想到这个题是从后往前想（这是这个题目的重点），佛了！'
     code = '''
 > DP，从后往前想，dp[i][j]代表text1的前i个和text2的前j个的最大公共；分为t1[i] == t2[j]和不等于两种情况，分别往前推，见[解答](https://leetcode-cn.com/problems/longest-common-subsequence/solution/dong-tai-gui-hua-zhi-zui-chang-gong-gong-zi-xu-lie/)
 ```python
