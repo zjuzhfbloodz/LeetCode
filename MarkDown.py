@@ -47,28 +47,32 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 1143
-    word = '开始学习李宏毅老师的deeplearning，纠结要不要把电脑卖了，有些难sou'
-    idea = 'DP动态规划，思考好状态转移方程即可，这个题目又没想出来！！！自己是从前往后想的，没想到这个题是从后往前想（这是这个题目的重点），佛了！'
+    id = 416
+    word = '电脑不知道能卖多少钱，今天学了word embedding一开始一头雾水，后来似乎有些理解，继续加油！'
+    idea = 'DP动态规划，思考好状态转移方程即可，今天进入0-1背包问题，这个题目没太懂，看了解答懂了一些，加油！'
     code = '''
-> DP，从后往前想，dp[i][j]代表text1的前i个和text2的前j个的最大公共；分为t1[i] == t2[j]和不等于两种情况，分别往前推，见[解答](https://leetcode-cn.com/problems/longest-common-subsequence/solution/dong-tai-gui-hua-zhi-zui-chang-gong-gong-zi-xu-lie/)
+> DP，见[解答](https://leetcode-cn.com/problems/longest-common-subsequence/solution/dong-tai-gui-hua-zhi-zui-chang-gong-gong-zi-xu-lie/)
 ```python
-class Solution:
-    def longestCommonSubsequence(self,str1, str2) -> int:
-        m, n = len(str1), len(str2)
-        # 构建 DP table 和 base case
-        dp = [[0] * (n + 1) for _ in range(m + 1)]
-        # 进行状态转移
-        for i in range(1, m + 1):
-            for j in range(1, n + 1):
-                if str1[i - 1] == str2[j - 1]:
-                    # 找到一个 lcs 中的字符
-                    dp[i][j] = 1 + dp[i-1][j-1]
+class Solution(object):
+    def canPartition(self, nums):
+        all_sum, N = sum(nums), len(nums)
+        if all_sum % 2 == 1:
+            return False
+        half_sum = all_sum // 2
+        # flag[i][j]: 表示nums数组前i个元素是否可以表示和为j的状态True or False
+        flag = [[False]*(half_sum+1) for _ in range(N)]
+        # 只要nums中的元素可以组合成和为half_sum即可。同时也规定了元素不可以扩充使用，
+        # 这一点和0-1背包问题不同，所以第一层遍历就是遍历nums数组，避免重复
+        for i in range(N):
+            for j in range(nums[i], half_sum+1):
+                # 此状态说明当前元素恰好为j，直接返回True
+                if j == nums[i]:
+                    flag[i][j] = True
                 else:
-                    dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-        return dp[-1][-1]
+                    flag[i][j] = flag[i-1][j] or flag[i-1][j-nums[i]]
+        return flag[-1][-1]
 ```
 '''
-    thoughts = '这个题反其道而行之，难sou难sou！！！思考！'
+    thoughts = '明天记得数据结构考试！！！有空就做了吧'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
