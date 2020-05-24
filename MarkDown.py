@@ -47,32 +47,44 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 416
-    word = '电脑不知道能卖多少钱，今天学了word embedding一开始一头雾水，后来似乎有些理解，继续加油！'
-    idea = 'DP动态规划，思考好状态转移方程即可，今天进入0-1背包问题，这个题目没太懂，看了解答懂了一些，加油！'
+    id = 494
+    word = '毕业论文查重似乎有很多bug，今天搞了搞google的colab，还用了用mistgpu，感觉都不错，云可以搞起来！'
+    idea = 'DP动态规划，思考好状态转移方程即可，进入0-1背包问题，这个题目是自己想的，就是初始选值=0的情况比较特殊，需要分析'
     code = '''
-> DP，见[解答](https://leetcode-cn.com/problems/longest-common-subsequence/solution/dong-tai-gui-hua-zhi-zui-chang-gong-gong-zi-xu-lie/)
+> DP，自己的想法，详细见代码注释
 ```python
-class Solution(object):
-    def canPartition(self, nums):
-        all_sum, N = sum(nums), len(nums)
-        if all_sum % 2 == 1:
-            return False
-        half_sum = all_sum // 2
-        # flag[i][j]: 表示nums数组前i个元素是否可以表示和为j的状态True or False
-        flag = [[False]*(half_sum+1) for _ in range(N)]
-        # 只要nums中的元素可以组合成和为half_sum即可。同时也规定了元素不可以扩充使用，
-        # 这一点和0-1背包问题不同，所以第一层遍历就是遍历nums数组，避免重复
-        for i in range(N):
-            for j in range(nums[i], half_sum+1):
-                # 此状态说明当前元素恰好为j，直接返回True
-                if j == nums[i]:
-                    flag[i][j] = True
+class Solution:
+    def findTargetSumWays(self, nums,S):
+        #转换成任意k个元素相加为(sum-S)/2
+        sn,count,n = sum(nums),0,len(nums)
+        if sn >= S and (sn - S) % 2 == 0: target = (sn - S) // 2
+        else: return 0
+        dp = [[0 for i in range(target + 1)] for j in range(n + 1)]
+        for j in range(0,n+1):                #特殊，第一列的值不是0：如果不存在0，那么全为正号就相当于找到了0，故有1种，如果有0，就是2的0个数次方种
+            if j-1 >= 0 and nums[j-1] == 0:
+                count += 1
+            dp[j][0] = 2 ** count
+        if target == 0: return 1 * 2 ** count #如果S和Sn相等就没必要进入循环了，直接输出
+        for i in range(1,n+1):
+            for j in range(1,target+1):       #剩下的就是背包问题，思路一样，只不过max改为求和
+                if nums[i-1] > j:
+                    dp[i][j] = dp[i-1][j]
                 else:
-                    flag[i][j] = flag[i-1][j] or flag[i-1][j-nums[i]]
-        return flag[-1][-1]
+                    dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]]
+        return dp[-1][-1]
+```
+> DP，dalao的想法，快且少,[思路](https://leetcode-cn.com/problems/target-sum/solution/python-dfs-xiang-jie-by-jimmy00745/)，但是DP[0]的数值存疑(思考了一下似乎没问题，因为只是初始化为1，之后有0还会再做2的次方)
+```python
+class Solution:
+    def findTargetSumWays(self, nums: List[int], S: int) -> int:
+        if sum(nums) < S or (sum(nums) + S) % 2 == 1: return 0
+        P = (sum(nums) + S) // 2
+        dp = [1] + [0 for _ in range(P)]
+        for num in nums:
+            for j in range(P,num-1,-1):dp[j] += dp[j - num]
+        return dp[P]
 ```
 '''
-    thoughts = '明天记得数据结构考试！！！有空就做了吧'
+    thoughts = '背包问题有些眉目，大家推荐看背包九讲，感觉很复杂！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

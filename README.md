@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-23 22:32:57, 我已经完成了 **78** / **1330** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-24 20:23:37, 我已经完成了 **79** / **1334** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 78 
+1. Markdown: 79 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -475,7 +475,7 @@
 |491|[Increasing Subsequences](https://leetcode.com/problems/increasing-subsequences/description/) |Medium|To Do|To Do|
 |492|[Construct the Rectangle](https://leetcode.com/problems/construct-the-rectangle/description/) |Easy|To Do|To Do|
 |493|[Reverse Pairs](https://leetcode.com/problems/reverse-pairs/description/) |Hard|To Do|To Do|
-|494|[Target Sum](https://leetcode.com/problems/target-sum/description/) |Medium|To Do|To Do|
+|494|[Target Sum](https://leetcode.com/problems/target-sum/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/494.%20Target%20Sum/0494.md)|To Do|
 |495|[Teemo Attacking](https://leetcode.com/problems/teemo-attacking/description/) |Medium|To Do|To Do|
 |496|[Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/description/) |Easy|To Do|To Do|
 |498|[Diagonal Traverse](https://leetcode.com/problems/diagonal-traverse/description/) |Medium|To Do|To Do|
@@ -1338,3 +1338,7 @@
 |1451|[Rearrange Words in a Sentence](https://leetcode.com/problems/rearrange-words-in-a-sentence/description/) |Medium|To Do|To Do|
 |1452|[People Whose List of Favorite Companies Is Not a Subset of Another List](https://leetcode.com/problems/people-whose-list-of-favorite-companies-is-not-a-subset-of-another-list/description/) |Medium|To Do|To Do|
 |1453|[Maximum Number of Darts Inside of a Circular Dartboard](https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/description/) |Hard|To Do|To Do|
+|1455|[Check If a Word Occurs As a Prefix of Any Word in a Sentence](https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/description/) |Easy|To Do|To Do|
+|1456|[Maximum Number of Vowels in a Substring of Given Length](https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/description/) |Medium|To Do|To Do|
+|1457|[Pseudo-Palindromic Paths in a Binary Tree](https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/description/) |Medium|To Do|To Do|
+|1458|[Max Dot Product of Two Subsequences](https://leetcode.com/problems/max-dot-product-of-two-subsequences/description/) |Hard|To Do|To Do|
