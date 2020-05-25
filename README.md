@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-24 20:23:37, 我已经完成了 **79** / **1334** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-25 20:53:10, 我已经完成了 **80** / **1334** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 79 
+1. Markdown: 80 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -457,7 +457,7 @@
 |471|[Encode String with Shortest Length](https://leetcode.com/problems/encode-string-with-shortest-length/description/) :lock:|Hard|To Do|To Do|
 |472|[Concatenated Words](https://leetcode.com/problems/concatenated-words/description/) |Hard|To Do|To Do|
 |473|[Matchsticks to Square](https://leetcode.com/problems/matchsticks-to-square/description/) |Medium|To Do|To Do|
-|474|[Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/description/) |Medium|To Do|To Do|
+|474|[Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/474.%20Ones%20and%20Zeroes/0474.md)|To Do|
 |475|[Heaters](https://leetcode.com/problems/heaters/description/) |Easy|To Do|To Do|
 |476|[Number Complement](https://leetcode.com/problems/number-complement/description/) |Easy|To Do|To Do|
 |477|[Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance/description/) |Medium|To Do|To Do|
