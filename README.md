@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-26 19:21:25, 我已经完成了 **81** / **1334** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-27 11:18:12, 我已经完成了 **82** / **1334** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 81 
+1. Markdown: 82 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -496,7 +496,7 @@
 |515|[Find Largest Value in Each Tree Row](https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/) |Medium|To Do|To Do|
 |516|[Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/description/) |Medium|To Do|To Do|
 |517|[Super Washing Machines](https://leetcode.com/problems/super-washing-machines/description/) |Hard|To Do|To Do|
-|518|[Coin Change 2](https://leetcode.com/problems/coin-change-2/description/) |Medium|To Do|To Do|
+|518|[Coin Change 2](https://leetcode.com/problems/coin-change-2/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/518.%20Coin%20Change%202/0518.md)|To Do|
 |520|[Detect Capital](https://leetcode.com/problems/detect-capital/description/) |Easy|To Do|To Do|
 |521|[Longest Uncommon Subsequence I ](https://leetcode.com/problems/longest-uncommon-subsequence-i/description/) |Easy|To Do|To Do|
 |522|[Longest Uncommon Subsequence II](https://leetcode.com/problems/longest-uncommon-subsequence-ii/description/) |Medium|To Do|To Do|
