@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-27 11:18:12, 我已经完成了 **82** / **1334** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-28 17:42:31, 我已经完成了 **83** / **1334** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 82 
+1. Markdown: 83 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -101,7 +101,7 @@
 |091|[Decode Ways](https://leetcode.com/problems/decode-ways/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/091.%20Decode%20Ways/0091.md)|To Do|
 |092|[Reverse Linked List II](https://leetcode.com/problems/reverse-linked-list-ii/description/) |Medium|To Do|To Do|
 |093|[Restore IP Addresses](https://leetcode.com/problems/restore-ip-addresses/description/) |Medium|To Do|To Do|
-|094|[Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/094.%20Binary%20Tree%20Inorder%20Traversal/0094.md)|To Do|
+|094|[Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/) |Hard|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/094.%20Binary%20Tree%20Inorder%20Traversal/0094.md)|To Do|
 |095|[Unique Binary Search Trees II](https://leetcode.com/problems/unique-binary-search-trees-ii/description/) |Medium|To Do|To Do|
 |096|[Unique Binary Search Trees](https://leetcode.com/problems/unique-binary-search-trees/description/) |Medium|To Do|To Do|
 |097|[Interleaving String](https://leetcode.com/problems/interleaving-string/description/) |Hard|To Do|To Do|
@@ -146,7 +146,7 @@
 |136|[Single Number](https://leetcode.com/problems/single-number/description/) |Easy|To Do|To Do|
 |137|[Single Number II](https://leetcode.com/problems/single-number-ii/description/) |Medium|To Do|To Do|
 |138|[Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/description/) |Medium|To Do|To Do|
-|139|[Word Break](https://leetcode.com/problems/word-break/description/) |Medium|To Do|To Do|
+|139|[Word Break](https://leetcode.com/problems/word-break/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/139.%20Word%20Break/0139.md)|To Do|
 |140|[Word Break II](https://leetcode.com/problems/word-break-ii/description/) |Hard|To Do|To Do|
 |141|[Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/141.%20Linked%20List%20Cycle/0141.md)|To Do|
 |142|[Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/description/) |Medium|To Do|To Do|

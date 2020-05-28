@@ -47,23 +47,25 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 518
-    word = '学多了有时总会不知所措，不知道能不能开学，要不要找工作，总之加油吧！给自己打劲儿！'
-    idea = '这个题是完全背包问题，自己的思路想出来的解决方案，昨天看了看labuladong的完全背包，有收获；看[这个](https://leetcode-cn.com/problems/coin-change/solution/yong-bei-bao-wen-ti-si-xiang-lai-li-jie-ying-bi-zh/)，讲得很清楚'
+    id = 139
+    word = '今天完成了毕业论文的修改和查重，重复只有1%，感觉不错！！zmt给我买了个手环，很关键，美滋滋！！用起来！！'
+    idea = '完全背包问题，但是这个题有一些变种，因为单词的缘故所有有顺序了，感觉复杂了一些，自己没想出来'
     code = '''
-> DP，自己的想法，DP[i]代表可以凑成钱数是i的所有方法，递推公式是对于每个coin加上DP[i-coin]；特殊情况是不能凑成，结果输出0
+> DP动态规划，dp[i]是True当且仅当dp[j]是True且s[j:i]这一段在wordDict里面(dp[j]是s的前j个子串能否被表示)，见[这里](https://leetcode-cn.com/problems/word-break/solution/dong-tai-gui-hua-zi-ding-xiang-xia-he-zi-di-xiang-/)
 ```python
 class Solution:
-    def change(self, amount: int, coins: List[int]) -> int:
-        #完全背包问题
-        dp = [0 for i in range(amount+1)]
-        dp[0] = 1
-        for coin in coins:
-            for j in range(coin,len(dp)):
-                dp[j] += dp[j-coin]
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        n = len(s)
+        dp = [False] * (n + 1)
+        dp[0] = True
+        for i in range(1, n + 1):
+            for j in range(i - 1, -1, -1):
+                if dp[j] and s[j:i] in wordDict:
+                    dp[i] = True
+                    break
         return dp[-1]
 ```
 '''
-    thoughts = '背包问题有些理解，前两天复习了二叉树的四种遍历方法，不看就要忘了，加油吧！学习总没错的！'
+    thoughts = '这个题目有些混乱，主要是没有结合题目，光想背包问题了，难受，要具体题目具体分析！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
