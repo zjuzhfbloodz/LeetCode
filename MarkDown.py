@@ -47,25 +47,35 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 139
-    word = '今天完成了毕业论文的修改和查重，重复只有1%，感觉不错！！zmt给我买了个手环，很关键，美滋滋！！用起来！！'
-    idea = '完全背包问题，但是这个题有一些变种，因为单词的缘故所有有顺序了，感觉复杂了一些，自己没想出来'
+    id = 377
+    word = '手环记录昨晚只睡了不到7个小时，感觉不够呀，今晚要早睡！！不知道要不要买电脑，纠结！！'
+    idea = '完全背包问题，这个题目加入了序列顺序，让自己有了新的思考，见下面的对比'
     code = '''
-> DP动态规划，dp[i]是True当且仅当dp[j]是True且s[j:i]这一段在wordDict里面(dp[j]是s的前j个子串能否被表示)，见[这里](https://leetcode-cn.com/problems/word-break/solution/dong-tai-gui-hua-zi-ding-xiang-xia-he-zi-di-xiang-/)
+> DP动态规划，相比传统方法改变了forloop的顺序，使得构成目标和的序列有了顺序，即同时包含2+1+1=4、1+1+2=4和1+2+1=4
 ```python
 class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        n = len(s)
-        dp = [False] * (n + 1)
-        dp[0] = True
-        for i in range(1, n + 1):
-            for j in range(i - 1, -1, -1):
-                if dp[j] and s[j:i] in wordDict:
-                    dp[i] = True
-                    break
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        #完全背包问题
+        dp = [0 for i in range(target+1)]
+        dp[0] = 1
+        for j in range(1,target+1):
+            for num in nums:
+                if j >= num:
+                    dp[j] += dp[j-num]
+        return dp[-1]
+
+#传统方法，这种解法是无顺序的，例如1+1+2=4就只有这一种，因为按照nums的顺序先排1之后才会排2，故序列顺序固定
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        #完全背包问题
+        dp = [0 for i in range(target+1)]
+        dp[0] = 1
+        for num in nums:
+            for j in range(num,target+1):
+                dp[j] += dp[j-num]
         return dp[-1]
 ```
 '''
-    thoughts = '这个题目有些混乱，主要是没有结合题目，光想背包问题了，难受，要具体题目具体分析！'
+    thoughts = '这个题目有些有趣，需要进一步思考，和传统算法不同，加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

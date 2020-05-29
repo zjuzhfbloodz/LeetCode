@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-28 17:42:31, 我已经完成了 **83** / **1334** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-05-29 11:06:33, 我已经完成了 **84** / **1334** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 83 
+1. Markdown: 84 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -367,7 +367,7 @@
 |374|[Guess Number Higher or Lower](https://leetcode.com/problems/guess-number-higher-or-lower/description/) |Easy|To Do|To Do|
 |375|[Guess Number Higher or Lower II](https://leetcode.com/problems/guess-number-higher-or-lower-ii/description/) |Medium|To Do|To Do|
 |376|[Wiggle Subsequence](https://leetcode.com/problems/wiggle-subsequence/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/376.%20Wiggle%20Subsequence/0376.md)|To Do|
-|377|[Combination Sum IV](https://leetcode.com/problems/combination-sum-iv/description/) |Medium|To Do|To Do|
+|377|[Combination Sum IV](https://leetcode.com/problems/combination-sum-iv/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/377.%20Combination%20Sum%20IV/0377.md)|To Do|
 |378|[Kth Smallest Element in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/description/) |Medium|To Do|To Do|
 |379|[Design Phone Directory](https://leetcode.com/problems/design-phone-directory/description/) :lock:|Medium|To Do|To Do|
 |380|[Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/description/) |Medium|To Do|To Do|
