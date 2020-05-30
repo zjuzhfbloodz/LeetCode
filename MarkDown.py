@@ -47,35 +47,42 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 377
-    word = '手环记录昨晚只睡了不到7个小时，感觉不够呀，今晚要早睡！！不知道要不要买电脑，纠结！！'
-    idea = '完全背包问题，这个题目加入了序列顺序，让自己有了新的思考，见下面的对比'
+    id = 121
+    word = '昨天和gsszzr一起去打了球，感觉不错；昨晚睡了8个小时，争取早睡！'
+    idea = 'DP动态规划，今天进入股票问题，这个题目其实也可以用最大子序列和来做'
     code = '''
-> DP动态规划，相比传统方法改变了forloop的顺序，使得构成目标和的序列有了顺序，即同时包含2+1+1=4、1+1+2=4和1+2+1=4
+> 最大子序列和问题，只要当前子序列的和大于0,他就对最大子序列和有贡献故继续走；一旦小于0就放弃之前的重新开始；据说叫[Kadane算法](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/kadanesuan-fa-shi-jian-on-kong-jian-o1-by-chxj1992/)
 ```python
 class Solution:
-    def combinationSum4(self, nums: List[int], target: int) -> int:
-        #完全背包问题
-        dp = [0 for i in range(target+1)]
-        dp[0] = 1
-        for j in range(1,target+1):
-            for num in nums:
-                if j >= num:
-                    dp[j] += dp[j-num]
-        return dp[-1]
-
-#传统方法，这种解法是无顺序的，例如1+1+2=4就只有这一种，因为按照nums的顺序先排1之后才会排2，故序列顺序固定
+    def maxProfit(self, prices: List[int]) -> int:
+        if len(prices) == 0:
+            return 0
+        prev = prices[0]
+        max_profit = 0
+        max_here = 0
+        for t in prices[1:]:
+            x = t - prev
+            prev = t
+            max_here = max_here + x if max_here > 0 else x
+            max_profit = max(max_profit, max_here)
+        return max_profit
+```
+> DP动态规划解法，dp[i]是前i天的最大利润，要有一个记录最小价格的minprice，dp[i] = max(dp[i-1],prices[i]-minprice)。[解析](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/gu-piao-wen-ti-python3-c-by-z1m/)
+```python
 class Solution:
-    def combinationSum4(self, nums: List[int], target: int) -> int:
-        #完全背包问题
-        dp = [0 for i in range(target+1)]
-        dp[0] = 1
-        for num in nums:
-            for j in range(num,target+1):
-                dp[j] += dp[j-num]
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+        if n == 0: return 0 # 边界条件
+        dp = [0] * n
+        minprice = prices[0] 
+
+        for i in range(1, n):
+            minprice = min(minprice, prices[i])
+            dp[i] = max(dp[i - 1], prices[i] - minprice)
+
         return dp[-1]
 ```
 '''
-    thoughts = '这个题目有些有趣，需要进一步思考，和传统算法不同，加油！'
+    thoughts = '进军股票问题，感觉就是时间序列类问题，加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
