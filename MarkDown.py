@@ -47,42 +47,38 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 121
+    id = 122
     word = '昨天和gsszzr一起去打了球，感觉不错；昨晚睡了8个小时，争取早睡！'
-    idea = 'DP动态规划，今天进入股票问题，这个题目其实也可以用最大子序列和来做'
+    idea = 'DP动态规划，今天进入股票问题，这个题目和121类似，可以用最大子序列和来做'
     code = '''
-> 最大子序列和问题，只要当前子序列的和大于0,他就对最大子序列和有贡献故继续走；一旦小于0就放弃之前的重新开始；据说叫[Kadane算法](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/kadanesuan-fa-shi-jian-on-kong-jian-o1-by-chxj1992/)
+> 最大子序列和问题，自己的想法。和题目121相似，天数之间做差，求最大子序列和。但是因为题目不像121那样限制一笔交易（就像最大子列和不要求子列连续一样，那肯定是加所有正数），故可以不要两天价差是负数的情况（一旦出现负数我肯定前一天就卖掉，然后今天再买入），也就是只加价差大于0的情况。其实更简单一些，详细[可见](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/solution/best-time-to-buy-and-sell-stock-ii-zhuan-hua-fa-ji/)
 ```python
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        if len(prices) == 0:
-            return 0
-        prev = prices[0]
-        max_profit = 0
-        max_here = 0
-        for t in prices[1:]:
-            x = t - prev
-            prev = t
-            max_here = max_here + x if max_here > 0 else x
-            max_profit = max(max_profit, max_here)
-        return max_profit
+        output = 0
+        for i in range(1,len(prices)):
+            today = prices[i] - prices[i-1]
+            if today > 0: output += today
+        return output
 ```
-> DP动态规划解法，dp[i]是前i天的最大利润，要有一个记录最小价格的minprice，dp[i] = max(dp[i-1],prices[i]-minprice)。[解析](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/gu-piao-wen-ti-python3-c-by-z1m/)
+> DP动态规划解法，dp[i][0 or 1]代表第i天有没有股票时的最大收益，最后返回dp[-1][0]即可，[详细见](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/solution/gu-piao-jiao-yi-xi-lie-tan-xin-si-xiang-he-dong-2/)
 ```python
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         n = len(prices)
-        if n == 0: return 0 # 边界条件
-        dp = [0] * n
-        minprice = prices[0] 
+        if n<=1: return 0
 
-        for i in range(1, n):
-            minprice = min(minprice, prices[i])
-            dp[i] = max(dp[i - 1], prices[i] - minprice)
+        dp = [[None, None] for _ in range(n)]
+        dp[0][0] = 0
+        dp[0][1] = -prices[0]
 
-        return dp[-1]
+        for i in range(1, n): #今天没有可能是昨天也没有或昨天有但是今天卖了；今天有可能是昨天也有或者昨天没有今天买了，求max
+            dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i])
+            dp[i][1] = max(dp[i-1][1], dp[i-1][0]-prices[i])
+
+        return dp[-1][0]    # 返回最后一天且手上没有股票时的获利情况
 ```
 '''
-    thoughts = '进军股票问题，感觉就是时间序列类问题，加油！'
+    thoughts = '进军股票问题，时间序列类解法和DP动态规划都可以解答，时间序列方法就是需要动脑子思考，DP相对机械一些，加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
