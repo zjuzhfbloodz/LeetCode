@@ -1,11 +1,24 @@
 class Solution:
-    def wordBreak(self, s, wordDict):
-        i,wordDict = 0,sorted(wordDict,key = lambda x:len(x))
-        while i < len(wordDict):
-            if wordDict[i] in s:
-                s = s.replace(wordDict[i],'')
-            i += 1
-        if not s: return True
-        else: return False
+    def maxProfit(self, prices):
+        if not prices: return 0
+        n = len(prices)
+        dp = [[0 for i in range(2)]for j in range(n)]
+        dp[0][1] = -prices[0]
+        flag = True
+        for p in range(1,n):
+            dp[p][1] = dp[p-1][0] - prices[p]
+            if dp[p-1][0] >= dp[p-1][1] + prices[p]: 
+                dp[p][0] = dp[p-1][0]
+                if not flag: 
+                    dp[p][1] = dp[p-1][1]   
+                    flag = True                
+            else: 
+                dp[p][0] = dp[p-1][1] + prices[p]
+                dp[p][1] = dp[p-1][1]
+                flag = False
+            print(flag)
+        print(dp)
+        return dp[-1][0]
+
 s = Solution()
-print(s.wordBreak("cars",["car","ca","rs"]))
+print(s.maxProfit([1,2,3,0,2]))

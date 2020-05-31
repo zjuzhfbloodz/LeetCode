@@ -47,38 +47,63 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 122
-    word = '昨天和gsszzr一起去打了球，感觉不错；昨晚睡了8个小时，争取早睡！'
-    idea = 'DP动态规划，今天进入股票问题，这个题目和121类似，可以用最大子序列和来做'
+    id = 309
+    word = '卖掉了电脑，感觉有些nansou啊'
+    idea = 'DP动态规划，今天进入股票问题，这个题目感觉自己想到死胡同里了，nansou'
     code = '''
-> 最大子序列和问题，自己的想法。和题目121相似，天数之间做差，求最大子序列和。但是因为题目不像121那样限制一笔交易（就像最大子列和不要求子列连续一样，那肯定是加所有正数），故可以不要两天价差是负数的情况（一旦出现负数我肯定前一天就卖掉，然后今天再买入），也就是只加价差大于0的情况。其实更简单一些，详细[可见](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/solution/best-time-to-buy-and-sell-stock-ii-zhuan-hua-fa-ji/)
+> DP动态规划，labuladong写了个[股票问题解答](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/solution/yi-ge-fang-fa-tuan-mie-6-dao-gu-piao-wen-ti-by-lab/)可以看看，但是感觉这个直接从i-2拿有问题
 ```python
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        output = 0
-        for i in range(1,len(prices)):
-            today = prices[i] - prices[i-1]
-            if today > 0: output += today
-        return output
-```
-> DP动态规划解法，dp[i][0 or 1]代表第i天有没有股票时的最大收益，最后返回dp[-1][0]即可，[详细见](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/solution/gu-piao-jiao-yi-xi-lie-tan-xin-si-xiang-he-dong-2/)
-```python
-class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+
         n = len(prices)
-        if n<=1: return 0
+        dp = [[0, 0] for _ in range(n + 1)]
+        prices.insert(0, 0)  # 下标1算第一天, 方便处理
 
-        dp = [[None, None] for _ in range(n)]
-        dp[0][0] = 0
-        dp[0][1] = -prices[0]
+        dp[1][1] = -prices[1]
+        for i in range(2, n + 1):
+            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i])
+            dp[i][1] = max(dp[i - 1][1], dp[i - 2][0] - prices[i])
 
-        for i in range(1, n): #今天没有可能是昨天也没有或昨天有但是今天卖了；今天有可能是昨天也有或者昨天没有今天买了，求max
-            dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i])
-            dp[i][1] = max(dp[i-1][1], dp[i-1][0]-prices[i])
+        return dp[n][0]
+```
+> 这个解法跟自己的思想比较接近，分成三种情况来做即持有，卖了未持有，保持未持有三种状态。个人倾向这种解法
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        # 每天有持有，卖了未持有，保持未持有三种状态，计算出这三种状态下的最大值，就是最终结果
+        # 如果今天持有，那么昨天有两种情况：
+        #       1. 昨天持有，今天没有操作
+        #       2. 昨天保持未持有，今天买了
+        #       不存在昨天卖了未持有，今天买了的情况，因为是冷冻期
+        # 在这两种情况下，取最大值，就是今天持有的最大值
+        #
+        # 如果今天卖了未持有，那么昨天一定是持有状态
+        #
+        # 如果今天保持未持有，那么昨天有两种情况
+        #       1. 昨天卖了未持有，今天没操作
+        #       2. 昨天本来未持有，今天没操作
+        # 在这两种情况下，取最大值，就是今天未持有的最大值
+        # 
+        # 定义变量p1: 昨天持有的最大收益，p2: 昨天卖了未持有获取的最大收益
+        # p3: 昨天保持未持有获得的最大收益
+        # 今天持有的最大收益：p1 = max(p1, p3 - prices[i])
+        # 今天卖了未持有的最大收益：p2 = p1 + prices[i]
+        # 今天保持未持有的最大收益：p3 = max(p2, p3)
+        # 
+        n = len(prices)
+        if n < 2:
+            return 0
 
-        return dp[-1][0]    # 返回最后一天且手上没有股票时的获利情况
+        p1, p2, p3 = -prices[0], 0, 0
+        for i in range(1, n):
+            p1, p2, p3 = max(p1, p3 - prices[i]), p1 + prices[i], max(p2, p3) #这三个状态同时计算
+
+        return max(p1, p2, p3)
 ```
 '''
-    thoughts = '进军股票问题，时间序列类解法和DP动态规划都可以解答，时间序列方法就是需要动脑子思考，DP相对机械一些，加油！'
+    thoughts = '看来这个题目自己的想法没问题，就是实现上有些问题！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
