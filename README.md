@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-05-31 12:07:16, 我已经完成了 **87** / **1342** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-06-01 11:17:15, 我已经完成了 **88** / **1342** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 87 
+1. Markdown: 88 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -642,7 +642,7 @@
 |711|[Number of Distinct Islands II](https://leetcode.com/problems/number-of-distinct-islands-ii/description/) :lock:|Hard|To Do|To Do|
 |712|[Minimum ASCII Delete Sum for Two Strings](https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/description/) |Medium|To Do|To Do|
 |713|[Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/description/) |Medium|To Do|To Do|
-|714|[Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/) |Medium|To Do|To Do|
+|714|[Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/714.%20Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee/0714.md)|To Do|
 |715|[Range Module](https://leetcode.com/problems/range-module/description/) |Hard|To Do|To Do|
 |716|[Max Stack](https://leetcode.com/problems/max-stack/description/) :lock:|Easy|To Do|To Do|
 |717|[1-bit and 2-bit Characters](https://leetcode.com/problems/1-bit-and-2-bit-characters/description/) |Easy|To Do|To Do|

@@ -47,63 +47,34 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 309
-    word = '卖掉了电脑，感觉有些nansou啊'
-    idea = 'DP动态规划，今天进入股票问题，这个题目感觉自己想到死胡同里了，nansou'
+    id = 714
+    word = '小新pro13amd感觉不错，付了定金；molardata回复了，不知如何'
+    idea = 'DP动态规划，今天进入股票问题，利用labuladong翻译的套路感觉不错'
     code = '''
-> DP动态规划，labuladong写了个[股票问题解答](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/solution/yi-ge-fang-fa-tuan-mie-6-dao-gu-piao-wen-ti-by-lab/)可以看看，但是感觉这个直接从i-2拿有问题
+> DP动态规划，只需要在每次卖出或买入时加入fee的因素即可。另，labuladong写了个[股票问题解答](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/solution/yi-ge-fang-fa-tuan-mie-6-dao-gu-piao-wen-ti-by-lab/)可以看看，但是感觉这个直接从i-2拿有问题
 ```python
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        if not prices:
-            return 0
-
+    def maxProfit(self, prices: List[int], fee: int) -> int:
+        if not prices: return 0
         n = len(prices)
-        dp = [[0, 0] for _ in range(n + 1)]
-        prices.insert(0, 0)  # 下标1算第一天, 方便处理
-
-        dp[1][1] = -prices[1]
-        for i in range(2, n + 1):
-            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i])
-            dp[i][1] = max(dp[i - 1][1], dp[i - 2][0] - prices[i])
-
-        return dp[n][0]
+        dp = [[0,0] for i in range(n)]
+        dp[0][1] = -prices[0]
+        for i in range(1,n):
+            dp[i][0] = max(dp[i-1][0],dp[i-1][1] + prices[i] - fee) #fee加在哪儿都行
+            dp[i][1] = max(dp[i-1][1],dp[i-1][0] - prices[i])
+        return dp[-1][0]
 ```
-> 这个解法跟自己的思想比较接近，分成三种情况来做即持有，卖了未持有，保持未持有三种状态。个人倾向这种解法
+> 压缩空间的做法，因为只需要用到i-1时的数据信息
 ```python
-class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        # 每天有持有，卖了未持有，保持未持有三种状态，计算出这三种状态下的最大值，就是最终结果
-        # 如果今天持有，那么昨天有两种情况：
-        #       1. 昨天持有，今天没有操作
-        #       2. 昨天保持未持有，今天买了
-        #       不存在昨天卖了未持有，今天买了的情况，因为是冷冻期
-        # 在这两种情况下，取最大值，就是今天持有的最大值
-        #
-        # 如果今天卖了未持有，那么昨天一定是持有状态
-        #
-        # 如果今天保持未持有，那么昨天有两种情况
-        #       1. 昨天卖了未持有，今天没操作
-        #       2. 昨天本来未持有，今天没操作
-        # 在这两种情况下，取最大值，就是今天未持有的最大值
-        # 
-        # 定义变量p1: 昨天持有的最大收益，p2: 昨天卖了未持有获取的最大收益
-        # p3: 昨天保持未持有获得的最大收益
-        # 今天持有的最大收益：p1 = max(p1, p3 - prices[i])
-        # 今天卖了未持有的最大收益：p2 = p1 + prices[i]
-        # 今天保持未持有的最大收益：p3 = max(p2, p3)
-        # 
-        n = len(prices)
-        if n < 2:
-            return 0
-
-        p1, p2, p3 = -prices[0], 0, 0
-        for i in range(1, n):
-            p1, p2, p3 = max(p1, p3 - prices[i]), p1 + prices[i], max(p2, p3) #这三个状态同时计算
-
-        return max(p1, p2, p3)
+class Solution(object):
+    def maxProfit(self, prices, fee):
+        cash, hold = 0, -prices[0]
+        for i in range(1, len(prices)):
+            cash = max(cash, hold + prices[i] - fee)
+            hold = max(hold, cash - prices[i])
+        return cash
 ```
 '''
-    thoughts = '看来这个题目自己的想法没问题，就是实现上有些问题！'
+    thoughts = '这个题目只要理解了就不难，状态转移方程写出来了就行，加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
