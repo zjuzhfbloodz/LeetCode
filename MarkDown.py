@@ -47,34 +47,39 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 714
-    word = '小新pro13amd感觉不错，付了定金；molardata回复了，不知如何'
-    idea = 'DP动态规划，今天进入股票问题，利用labuladong翻译的套路感觉不错'
+    id = 188
+    word = '今天开始构思毕业答辩的PPT！'
+    idea = 'DP动态规划，股票问题k次交易是最hard的问题，见[解答](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/solution/gu-piao-jiao-yi-xi-lie-cong-tan-xin-dao-dong-tai-g/)'
     code = '''
-> DP动态规划，只需要在每次卖出或买入时加入fee的因素即可。另，labuladong写了个[股票问题解答](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/solution/yi-ge-fang-fa-tuan-mie-6-dao-gu-piao-wen-ti-by-lab/)可以看看，但是感觉这个直接从i-2拿有问题
+> DP动态规划，还是labuladong的方法，如果k>=n//2就相当于是不限制交易次数，其他就和123的k==2一样。见[股票问题解答](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/solution/gu-piao-jiao-yi-xi-lie-tan-xin-si-xiang-he-dong-2/)
 ```python
 class Solution:
-    def maxProfit(self, prices: List[int], fee: int) -> int:
-        if not prices: return 0
+    def maxProfit(self, k: int, prices: List[int]) -> int:
         n = len(prices)
-        dp = [[0,0] for i in range(n)]
-        dp[0][1] = -prices[0]
-        for i in range(1,n):
-            dp[i][0] = max(dp[i-1][0],dp[i-1][1] + prices[i] - fee) #fee加在哪儿都行
-            dp[i][1] = max(dp[i-1][1],dp[i-1][0] - prices[i])
-        return dp[-1][0]
-```
-> 压缩空间的做法，因为只需要用到i-1时的数据信息
-```python
-class Solution(object):
-    def maxProfit(self, prices, fee):
-        cash, hold = 0, -prices[0]
-        for i in range(1, len(prices)):
-            cash = max(cash, hold + prices[i] - fee)
-            hold = max(hold, cash - prices[i])
-        return cash
+        if n <= 1: return 0
+
+        if k >= n//2:   # 退化为不限制交易次数，找正值即可
+            profit = 0
+            for i in range(1, n):
+                if prices[i] > prices[i - 1]:
+                    profit += prices[i] - prices[i - 1]
+            return profit
+
+        else:           # 限制交易次数为k
+            dp = [[[None, None] for _ in range(k+1)] for _ in range(n)]  # (n, k+1, 2)
+            for i in range(n):
+                dp[i][0][0] = 0
+                dp[i][0][1] = -float('inf')
+            for j in range(1, k+1): #这里第一天的时候可以交易k次（同价买卖）是为了取交易1-k次的max，这样最后的max是交易最多k次的max
+                dp[0][j][0] = 0
+                dp[0][j][1] = -prices[0]
+            for i in range(1, n):
+                for j in range(1, k+1):
+                    dp[i][j][0] = max(dp[i-1][j][0], dp[i-1][j][1] + prices[i])
+                    dp[i][j][1] = max(dp[i-1][j][1], dp[i-1][j-1][0] - prices[i])
+            return dp[-1][-1][0]
 ```
 '''
-    thoughts = '这个题目只要理解了就不难，状态转移方程写出来了就行，加油！'
+    thoughts = '个人觉得需要思考的地方还是初始化部分，要理解！！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
