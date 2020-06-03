@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-06-02 10:54:25, 我已经完成了 **90** / **1342** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
+截止到 2020-06-03 11:26:19, 我已经完成了 **91** / **1342** 的题目， 还有 **213** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 90 
+1. Markdown: 91 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -547,7 +547,7 @@
 |576|[Out of Boundary Paths](https://leetcode.com/problems/out-of-boundary-paths/description/) |Medium|To Do|To Do|
 |581|[Shortest Unsorted Continuous Subarray](https://leetcode.com/problems/shortest-unsorted-continuous-subarray/description/) |Easy|To Do|To Do|
 |582|[Kill Process](https://leetcode.com/problems/kill-process/description/) :lock:|Medium|To Do|To Do|
-|583|[Delete Operation for Two Strings](https://leetcode.com/problems/delete-operation-for-two-strings/description/) |Medium|To Do|To Do|
+|583|[Delete Operation for Two Strings](https://leetcode.com/problems/delete-operation-for-two-strings/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/583.%20Delete%20Operation%20for%20Two%20Strings/0583.md)|To Do|
 |587|[Erect the Fence](https://leetcode.com/problems/erect-the-fence/description/) |Hard|To Do|To Do|
 |588|[Design In-Memory File System](https://leetcode.com/problems/design-in-memory-file-system/description/) :lock:|Hard|To Do|To Do|
 |591|[Tag Validator](https://leetcode.com/problems/tag-validator/description/) |Hard|To Do|To Do|

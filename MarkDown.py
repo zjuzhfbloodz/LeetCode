@@ -47,39 +47,25 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 188
-    word = '今天开始构思毕业答辩的PPT！'
-    idea = 'DP动态规划，股票问题k次交易是最hard的问题，见[解答](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/solution/gu-piao-jiao-yi-xi-lie-cong-tan-xin-dao-dong-tai-g/)'
+    id = 583
+    word = '昨天买了U盘和耳机，今天努力继续做PPT！'
+    idea = 'DP动态规划，思路承接1143的最长公共子序列问题，这个题就相当于个变体'
     code = '''
-> DP动态规划，还是labuladong的方法，如果k>=n//2就相当于是不限制交易次数，其他就和123的k==2一样。见[股票问题解答](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/solution/gu-piao-jiao-yi-xi-lie-tan-xin-si-xiang-he-dong-2/)
+> 两个字符串长度为m和n，长度为l的最长公共子序列就是最后能留下的部分，那么删除步数就是m+n-2l，故只需要找到l的长度即可，转化为1143问题，dp[i][j]是字符串长度为i和j时的l，依次类推即可
 ```python
 class Solution:
-    def maxProfit(self, k: int, prices: List[int]) -> int:
-        n = len(prices)
-        if n <= 1: return 0
-
-        if k >= n//2:   # 退化为不限制交易次数，找正值即可
-            profit = 0
-            for i in range(1, n):
-                if prices[i] > prices[i - 1]:
-                    profit += prices[i] - prices[i - 1]
-            return profit
-
-        else:           # 限制交易次数为k
-            dp = [[[None, None] for _ in range(k+1)] for _ in range(n)]  # (n, k+1, 2)
-            for i in range(n):
-                dp[i][0][0] = 0
-                dp[i][0][1] = -float('inf')
-            for j in range(1, k+1): #这里第一天的时候可以交易k次（同价买卖）是为了取交易1-k次的max，这样最后的max是交易最多k次的max
-                dp[0][j][0] = 0
-                dp[0][j][1] = -prices[0]
-            for i in range(1, n):
-                for j in range(1, k+1):
-                    dp[i][j][0] = max(dp[i-1][j][0], dp[i-1][j][1] + prices[i])
-                    dp[i][j][1] = max(dp[i-1][j][1], dp[i-1][j-1][0] - prices[i])
-            return dp[-1][-1][0]
+    def minDistance(self, word1: str, word2: str) -> int:
+        n, m = len(word1),len(word2)
+        dp = [[0 for _ in range(m+1)] for _ in range(n+1)]
+        for i in range(1,n+1):
+            for j in range(1,m+1):
+                if word1[i-1] == word2[j-1]:
+                    dp[i][j] = dp[i-1][j-1] + 1
+                else:
+                    dp[i][j] = max(dp[i-1][j],dp[i][j-1])
+        return n+m-2*dp[n][m]
 ```
 '''
-    thoughts = '个人觉得需要思考的地方还是初始化部分，要理解！！'
+    thoughts = '做完100道题之后翻过来复习两个月，不然不踏实！加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
