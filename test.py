@@ -1,24 +1,34 @@
 class Solution:
-    def maxProfit(self, prices):
-        n = len(prices)
-        if n<=1: return 0
-        dp = [[[None, None] for _ in range(3)] for _ in range(n)]  # (n, k+1, 2)
-        # 买入算一次交易，卖出就不算了  
-        # 边界状态需要考虑：1.j=0时对i穷举; 2.i=0时对有效的j穷举(j=1,2)
-        for i in range(n):
-            dp[i][0][0] = 0
-            dp[i][0][1] = -prices[i]
-        for j in range(1, 3):
-            dp[0][j][0] = -float('inf')
-            dp[0][j][1] = -float('inf') #这里存疑
-        
-        # 状态转移
-        for i in range(1, n):
-            for j in range(1, 3):
-                dp[i][j][0] = max(dp[i-1][j][0], dp[i-1][j-1][1]+prices[i])
-                dp[i][j][1] = max(dp[i-1][j][1], dp[i-1][j][0]-prices[i])
-        
-        return dp[-1][-1][0]
+    def minDistance(self, word1: str, word2: str) -> int:
+        #找到两个字符串的公共子串
+        def findMaxSame(w1,w2):
+            n,m = len(w1),len(w2)
+            dp = [[0 for i in range(m+1)] for j in range(n+1)]
+            lengths = [[[] for i in range(m+1)] for j in range(n+1)]
+            for i in range(1,n+1):
+                for j in range(1,m+1):
+                    if w1[i-1] == w2[j-1]:
+                        dp[i][j] = dp[i - 1][j - 1] + 1
+                        temp = lengths[i - 1][j - 1]
+                        temp.append((i,j))
+                        lengths[i][j] = temp
+                    else:
+                        if dp[i-1][j]>=dp[i][j-1]:
+                            dp[i][j] = dp[i - 1][j]
+                            lengths[i][j] = lengths[i - 1][j]
+                        else:
+                            dp[i][j] = dp[i][j-1]
+                            lengths[i][j] = lengths[i][j - 1]
+            print(dp[-1][-1])
+            return lengths[-1][-1],n,m,0
+        ls, n, m, output = findMaxSame(word1, word2)
+        print(ls)
+        ls.insert(0, (0, 0))
+        ls.append((n+1, m+1))
+        for i in range(len(ls) - 1):
+            output += max(ls[i+1][0]-ls[i][0],ls[i+1][1]-ls[i][1]) - 1
+        print(ls)
+        return output
 
 s = Solution()
-print(s.maxProfit([2,1,4,5,2,9,7]))
+print(s.minDistance("mart","karma"))

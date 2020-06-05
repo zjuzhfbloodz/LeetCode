@@ -47,25 +47,33 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 583
-    word = '昨天买了U盘和耳机，今天努力继续做PPT！'
-    idea = 'DP动态规划，思路承接1143的最长公共子序列问题，这个题就相当于个变体'
+    id = 72
+    word = '毕业答辩完成，表现得一般吧！但是终于算是完成了一个任务，明天休息一下！出去玩耍！'
+    idea = 'DP动态规划，类似583但是更加复杂，因为不止是删除字符了，还加入了替换和插入操作'
     code = '''
-> 两个字符串长度为m和n，长度为l的最长公共子序列就是最后能留下的部分，那么删除步数就是m+n-2l，故只需要找到l的长度即可，转化为1143问题，dp[i][j]是字符串长度为i和j时的l，依次类推即可
+> 删除、替换和插入三个操作分别对应代码min中的三种情况，第一行第一列是特殊的需要单独列出来，其他递推即可
 ```python
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
-        n, m = len(word1),len(word2)
-        dp = [[0 for _ in range(m+1)] for _ in range(n+1)]
-        for i in range(1,n+1):
-            for j in range(1,m+1):
+        n1 = len(word1)
+        n2 = len(word2)
+        dp = [[0] * (n2 + 1) for _ in range(n1 + 1)]
+        # 第一行
+        for j in range(1, n2 + 1):
+            dp[0][j] = dp[0][j-1] + 1
+        # 第一列
+        for i in range(1, n1 + 1):
+            dp[i][0] = dp[i-1][0] + 1
+        for i in range(1, n1 + 1):
+            for j in range(1, n2 + 1):
                 if word1[i-1] == word2[j-1]:
-                    dp[i][j] = dp[i-1][j-1] + 1
+                    dp[i][j] = dp[i-1][j-1]
                 else:
-                    dp[i][j] = max(dp[i-1][j],dp[i][j-1])
-        return n+m-2*dp[n][m]
+                    dp[i][j] = min(dp[i][j-1], dp[i-1][j], dp[i-1][j-1] ) + 1
+        #print(dp)      
+        return dp[-1][-1]
 ```
 '''
-    thoughts = '做完100道题之后翻过来复习两个月，不然不踏实！加油！'
+    thoughts = '这个题目情况复杂，需要仔细思考！第一次没想出来！加油啊！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
