@@ -47,33 +47,24 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 72
-    word = '毕业答辩完成，表现得一般吧！但是终于算是完成了一个任务，明天休息一下！出去玩耍！'
-    idea = 'DP动态规划，类似583但是更加复杂，因为不止是删除字符了，还加入了替换和插入操作'
+    id = 650
+    word = '终于出去玩了一天，感觉不错！要继续努力了！'
+    idea = 'DP动态规划，这个题目还可以用质因数分解的方法来做，动态规划的方法类似但是相对比较复杂'
     code = '''
-> 删除、替换和插入三个操作分别对应代码min中的三种情况，第一行第一列是特殊的需要单独列出来，其他递推即可
-```python
-class Solution:
-    def minDistance(self, word1: str, word2: str) -> int:
-        n1 = len(word1)
-        n2 = len(word2)
-        dp = [[0] * (n2 + 1) for _ in range(n1 + 1)]
-        # 第一行
-        for j in range(1, n2 + 1):
-            dp[0][j] = dp[0][j-1] + 1
-        # 第一列
-        for i in range(1, n1 + 1):
-            dp[i][0] = dp[i-1][0] + 1
-        for i in range(1, n1 + 1):
-            for j in range(1, n2 + 1):
-                if word1[i-1] == word2[j-1]:
-                    dp[i][j] = dp[i-1][j-1]
-                else:
-                    dp[i][j] = min(dp[i][j-1], dp[i-1][j], dp[i-1][j-1] ) + 1
-        #print(dp)      
-        return dp[-1][-1]
+> 如果n是素数，那么只能使用复制1的方式达到n；如果n是合数，要想生成n，必须通过n的质因子来合成，因为其他的都无法生成n，例如n=p*q，p和q都是质数，那么只需要p步生成p然后copy+(q-1)paste生成q个p即n，即输出为p+q。故输出就是n的质因子的和
+class Solution(object):
+    def minSteps(self, n):
+        #这个题目就是求n的所有素因子之和
+        ans = 0
+        d = 2
+        while n > 1:
+            while n % d == 0:
+                ans += d
+                n /= d
+            d += 1
+        return ans
 ```
 '''
-    thoughts = '这个题目情况复杂，需要仔细思考！第一次没想出来！加油啊！'
+    thoughts = '这个题目看似复杂，实则是数学问题，想清楚了就没问题！加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

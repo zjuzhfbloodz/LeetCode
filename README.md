@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-06-06 00:13:25, 我已经完成了 **92** / **1343** 的题目， 还有 **214** 道题目未解锁:lock:（就是没买）.
+截止到 2020-06-06 23:02:09, 我已经完成了 **93** / **1343** 的题目， 还有 **214** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 92 
+1. Markdown: 93 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -589,7 +589,7 @@
 |647|[Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/description/) |Medium|To Do|To Do|
 |648|[Replace Words](https://leetcode.com/problems/replace-words/description/) |Medium|To Do|To Do|
 |649|[Dota2 Senate](https://leetcode.com/problems/dota2-senate/description/) |Medium|To Do|To Do|
-|650|[2 Keys Keyboard](https://leetcode.com/problems/2-keys-keyboard/description/) |Medium|To Do|To Do|
+|650|[2 Keys Keyboard](https://leetcode.com/problems/2-keys-keyboard/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/650.%202%20Keys%20Keyboard/0650.md)|To Do|
 |651|[4 Keys Keyboard](https://leetcode.com/problems/4-keys-keyboard/description/) :lock:|Medium|To Do|To Do|
 |652|[Find Duplicate Subtrees](https://leetcode.com/problems/find-duplicate-subtrees/description/) |Medium|To Do|To Do|
 |653|[Two Sum IV - Input is a BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/653.%20Two%20Sum%20IV%20-%20Input%20is%20a%20BST/0653.md)|To Do|
@@ -1350,4 +1350,4 @@
 |1465|[Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts](https://leetcode.com/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/description/) |Medium|To Do|To Do|
 |1466|[Reorder Routes to Make All Paths Lead to the City Zero](https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/description/) |Medium|To Do|To Do|
 |1467|[Probability of a Two Boxes Having The Same Number of Distinct Balls](https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/description/) |Hard|To Do|To Do|
-|1469|[Find All the Lonely Nodes](https://leetcode.com/problems/find-all-the-lonely-nodes/description/) :lock:|Easy|To Do|To Do|
+|1469|[Find All The Lonely Nodes](https://leetcode.com/problems/find-all-the-lonely-nodes/description/) :lock:|Easy|To Do|To Do|
