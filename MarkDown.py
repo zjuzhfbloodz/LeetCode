@@ -47,24 +47,34 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 650
-    word = '终于出去玩了一天，感觉不错！要继续努力了！'
-    idea = 'DP动态规划，这个题目还可以用质因数分解的方法来做，动态规划的方法类似但是相对比较复杂'
+    id = 69
+    word = '不要熬夜了！今天睡了一天就因为晚上睡得晚！'
+    idea = '进入二分查找部分，求平方根也可以用牛顿迭代'
     code = '''
-> 如果n是素数，那么只能使用复制1的方式达到n；如果n是合数，要想生成n，必须通过n的质因子来合成，因为其他的都无法生成n，例如n=p*q，p和q都是质数，那么只需要p步生成p然后copy+(q-1)paste生成q个p即n，即输出为p+q。故输出就是n的质因子的和
-class Solution(object):
-    def minSteps(self, n):
-        #这个题目就是求n的所有素因子之和
-        ans = 0
-        d = 2
-        while n > 1:
-            while n % d == 0:
-                ans += d
-                n /= d
-            d += 1
-        return ans
+> 简单的二分查找，复杂度O(log(N))，注意求中点时候的方法是l+(r-l)//2，这样防止l+r溢出内存空间
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        if x < 2: return x
+        l,r = 1,x
+        while l <= r:
+            mid = l+(r-l)//2
+            if mid*mid > x:
+                r = mid-1
+            elif mid*mid < x:
+                l = mid+1
+            else: return mid
+        return r
+```
+> 牛顿迭代求根，写过很多遍，这个题目没有精度要求，故简单一些
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        #y = 2*x0(x-x0) + x0^2 - c
+        #y == 0 -> x = 0.5*(c-x0^2)/x0 + x0
+        x0 = x
+        while x0**2 > x: x0 = int(0.5*(x-x0**2)/x0 + x0)
+        return x0
 ```
 '''
-    thoughts = '这个题目看似复杂，实则是数学问题，想清楚了就没问题！加油！'
+    thoughts = '进入二分查找问题！做完之后复习一遍！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
