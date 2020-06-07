@@ -52,6 +52,7 @@ if __name__ == "__main__":
     idea = '进入二分查找部分，求平方根也可以用牛顿迭代'
     code = '''
 > 简单的二分查找，复杂度O(log(N))，注意求中点时候的方法是l+(r-l)//2，这样防止l+r溢出内存空间
+```python
 class Solution:
     def mySqrt(self, x: int) -> int:
         if x < 2: return x
@@ -66,6 +67,7 @@ class Solution:
         return r
 ```
 > 牛顿迭代求根，写过很多遍，这个题目没有精度要求，故简单一些
+```python
 class Solution:
     def mySqrt(self, x: int) -> int:
         #y = 2*x0(x-x0) + x0^2 - c
