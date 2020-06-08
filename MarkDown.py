@@ -47,35 +47,25 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 69
-    word = '不要熬夜了！今天睡了一天就因为晚上睡得晚！'
-    idea = '进入二分查找部分，求平方根也可以用牛顿迭代'
+    id = 744
+    word = '早睡，早睡，早睡！重要的事情说三遍，明天去医院体检查查身体！'
+    idea = '进入二分查找部分，这个题目就是单纯搜索问题，用二分最简单'
     code = '''
-> 简单的二分查找，复杂度O(log(N))，注意求中点时候的方法是l+(r-l)//2，这样防止l+r溢出内存空间
+> 简单的二分查找，复杂度O(log(N))，因为这次是求大于的最小值，故等于的时候l依然要往mid的右边挪一位；另外，由于字符是循环的(a>z)，故一开始判断特殊情况。
 ```python
 class Solution:
-    def mySqrt(self, x: int) -> int:
-        if x < 2: return x
-        l,r = 1,x
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        if target >= letters[-1] or target < letters[0]: return letters[0]
+        l,r = 0,len(letters)-1
         while l <= r:
-            mid = l+(r-l)//2
-            if mid*mid > x:
+            mid = l + (r-l)//2
+            if target < letters[mid]:
                 r = mid-1
-            elif mid*mid < x:
+            elif target >= letters[mid]: #等于l也要+1
                 l = mid+1
-            else: return mid
-        return r
+        return letters[l]
 ```
-> 牛顿迭代求根，写过很多遍，这个题目没有精度要求，故简单一些
-```python
-class Solution:
-    def mySqrt(self, x: int) -> int:
-        #y = 2*x0(x-x0) + x0^2 - c
-        #y == 0 -> x = 0.5*(c-x0^2)/x0 + x0
-        x0 = x
-        while x0**2 > x: x0 = int(0.5*(x-x0**2)/x0 + x0)
-        return x0
-```
+
 '''
     thoughts = '进入二分查找问题！做完之后复习一遍！'
     mk = Markdown(id,word,idea,code,thoughts)

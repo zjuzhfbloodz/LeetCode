@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-06-07 21:08:42, 我已经完成了 **94** / **1347** 的题目， 还有 **214** 道题目未解锁:lock:（就是没买）.
+截止到 2020-06-08 14:36:14, 我已经完成了 **95** / **1347** 的题目， 还有 **214** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 94 
+1. Markdown: 95 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -673,7 +673,7 @@
 |709|[To Lower Case](https://leetcode.com/problems/to-lower-case/description/) |Easy|To Do|To Do|
 |742|[Closest Leaf in a Binary Tree](https://leetcode.com/problems/closest-leaf-in-a-binary-tree/description/) :lock:|Medium|To Do|To Do|
 |743|[Network Delay Time](https://leetcode.com/problems/network-delay-time/description/) |Medium|To Do|To Do|
-|744|[Find Smallest Letter Greater Than Target](https://leetcode.com/problems/find-smallest-letter-greater-than-target/description/) |Easy|To Do|To Do|
+|744|[Find Smallest Letter Greater Than Target](https://leetcode.com/problems/find-smallest-letter-greater-than-target/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/744.%20Find%20Smallest%20Letter%20Greater%20Than%20Target/0744.md)|To Do|
 |745|[Prefix and Suffix Search](https://leetcode.com/problems/prefix-and-suffix-search/description/) |Hard|To Do|To Do|
 |746|[Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/description/) |Easy|To Do|To Do|
 |747|[Largest Number At Least Twice of Others](https://leetcode.com/problems/largest-number-at-least-twice-of-others/description/) |Easy|To Do|To Do|

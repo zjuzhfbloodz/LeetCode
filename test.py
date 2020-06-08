@@ -1,24 +1,18 @@
 class Solution:
-    def mySqrt(self, x: int) -> int:
-        # if x < 2: return x
-        # l,r = 1,x
-        # while l <= r:
-        #     mid = l+(r-l)//2
-        #     if mid*mid > x:
-        #         r = mid-1
-        #     elif mid*mid < x:
-        #         l = mid+1
-        #     else: return mid
-        # return r
-
-        #y = 2*x0(x-x0) + x0^2 - c
-        #y == 0 -> x = 0.5*(c-x0^2)/x0 + x0
-        x0 = x
-        while x0**2 > x:
-            temp = int(0.5 * (x - x0 ** 2) / x0 + x0)
-            x0 = temp
-            print(x0)
-        return x0
+    def nextGreatestLetter(self, letters, target: str) -> str:
+        if target >= letters[-1] or target < letters[0]: return letters[0]
+        l,r = 0,len(letters)
+        while l <= r:
+            mid = l + (r-l)//2
+            if target < letters[mid]:
+                r = mid-1
+            elif target > letters[mid]:
+                l = mid+1
+            else:
+                while letters[mid] == target: mid += 1
+                return letters[mid]
+        print(l,r)
+        return letters[l]
 
 s = Solution()
-print(s.mySqrt(8))
+print(s.nextGreatestLetter(["e","e","e","k","q","q","q","v","v","y"],"q"))
