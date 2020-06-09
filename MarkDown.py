@@ -47,25 +47,23 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 744
-    word = '早睡，早睡，早睡！重要的事情说三遍，明天去医院体检查查身体！'
-    idea = '进入二分查找部分，这个题目就是单纯搜索问题，用二分最简单'
+    id = 540
+    word = '毕设93分，自己感觉对得起自己了，继续努力！'
+    idea = '进入二分查找部分，这个题目不是单纯的按大小二分查找了，需要思考'
     code = '''
-> 简单的二分查找，复杂度O(log(N))，因为这次是求大于的最小值，故等于的时候l依然要往mid的右边挪一位；另外，由于字符是循环的(a>z)，故一开始判断特殊情况。
+> 对偶数序号的进行二分查找，如果他和后面的元素相等，那么说明单个儿元素在其后，l挪到后面；否则，单个儿元素在其前或在其位，r挪到mid。依次直至剩下一个元素。
 ```python
 class Solution:
-    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
-        if target >= letters[-1] or target < letters[0]: return letters[0]
-        l,r = 0,len(letters)-1
-        while l <= r:
+    def singleNonDuplicate(self, nums: List[int]) -> int:
+        l,r = 0,len(nums)-1
+        if r == 0 : return nums[0]
+        while l < r:
             mid = l + (r-l)//2
-            if target < letters[mid]:
-                r = mid-1
-            elif target >= letters[mid]: #等于l也要+1
-                l = mid+1
-        return letters[l]
+            if mid % 2 != 0: mid -= 1
+            if nums[mid] == nums[mid+1]: l = mid+2
+            else: r = mid
+        return nums[l]
 ```
-
 '''
     thoughts = '进入二分查找问题！做完之后复习一遍！'
     mk = Markdown(id,word,idea,code,thoughts)

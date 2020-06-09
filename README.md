@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-06-08 14:36:14, 我已经完成了 **95** / **1347** 的题目， 还有 **214** 道题目未解锁:lock:（就是没买）.
+截止到 2020-06-09 10:56:31, 我已经完成了 **96** / **1347** 的题目， 还有 **214** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 95 
+1. Markdown: 96 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -515,7 +515,7 @@
 |537|[Complex Number Multiplication](https://leetcode.com/problems/complex-number-multiplication/description/) |Medium|To Do|To Do|
 |538|[Convert BST to Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/538.%20Convert%20BST%20to%20Greater%20Tree/0538.md)|To Do|
 |539|[Minimum Time Difference](https://leetcode.com/problems/minimum-time-difference/description/) |Medium|To Do|To Do|
-|540|[Single Element in a Sorted Array](https://leetcode.com/problems/single-element-in-a-sorted-array/description/) |Medium|To Do|To Do|
+|540|[Single Element in a Sorted Array](https://leetcode.com/problems/single-element-in-a-sorted-array/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/540.%20Single%20Element%20in%20a%20Sorted%20Array/0540.md)|To Do|
 |541|[Reverse String II](https://leetcode.com/problems/reverse-string-ii/description/) |Easy|To Do|To Do|
 |542|[01 Matrix](https://leetcode.com/problems/01-matrix/description/) |Medium|To Do|To Do|
 |543|[Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/543.%20Diameter%20of%20Binary%20Tree/0543.md)|To Do|
