@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-06-09 10:56:31, 我已经完成了 **96** / **1347** 的题目， 还有 **214** 道题目未解锁:lock:（就是没买）.
+截止到 2020-06-10 10:51:16, 我已经完成了 **97** / **1347** 的题目， 还有 **214** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 96 
+1. Markdown: 97 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -268,7 +268,7 @@
 |275|[H-Index II](https://leetcode.com/problems/h-index-ii/description/) |Medium|To Do|To Do|
 |276|[Paint Fence](https://leetcode.com/problems/paint-fence/description/) :lock:|Easy|To Do|To Do|
 |277|[Find the Celebrity](https://leetcode.com/problems/find-the-celebrity/description/) :lock:|Medium|To Do|To Do|
-|278|[First Bad Version](https://leetcode.com/problems/first-bad-version/description/) |Easy|To Do|To Do|
+|278|[First Bad Version](https://leetcode.com/problems/first-bad-version/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/278.%20First%20Bad%20Version/0278.md)|To Do|
 |279|[Perfect Squares](https://leetcode.com/problems/perfect-squares/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/279.%20Perfect%20Squares/0279.md)|To Do|
 |280|[Wiggle Sort](https://leetcode.com/problems/wiggle-sort/description/) :lock:|Medium|To Do|To Do|
 |281|[Zigzag Iterator](https://leetcode.com/problems/zigzag-iterator/description/) :lock:|Medium|To Do|To Do|

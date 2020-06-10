@@ -47,24 +47,31 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 540
-    word = '毕设93分，自己感觉对得起自己了，继续努力！'
-    idea = '进入二分查找部分，这个题目不是单纯的按大小二分查找了，需要思考'
+    id = 278
+    word = '今天把体检和毕设最后要交的部分搞完！加油！'
+    idea = '进入二分查找部分，一个二分查找的应用题，转化后即可'
     code = '''
-> 对偶数序号的进行二分查找，如果他和后面的元素相等，那么说明单个儿元素在其后，l挪到后面；否则，单个儿元素在其前或在其位，r挪到mid。依次直至剩下一个元素。
+> 简单的二分查找
 ```python
+# The isBadVersion API is already defined for you.
+# @param version, an integer
+# @return a bool
+# def isBadVersion(version):
+
 class Solution:
-    def singleNonDuplicate(self, nums: List[int]) -> int:
-        l,r = 0,len(nums)-1
-        if r == 0 : return nums[0]
+    def firstBadVersion(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        l,r = 1,n
         while l < r:
             mid = l + (r-l)//2
-            if mid % 2 != 0: mid -= 1
-            if nums[mid] == nums[mid+1]: l = mid+2
-            else: r = mid
-        return nums[l]
+            if isBadVersion(mid): r = mid
+            else: l = mid + 1
+        return l
 ```
 '''
-    thoughts = '进入二分查找问题！做完之后复习一遍！'
+    thoughts = '[二分查找可行性的证明](http://www.cs.cornell.edu/courses/cs211/2006sp/Lectures/L06-Induction/binary_search.html)，可以看看'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
