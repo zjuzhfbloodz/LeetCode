@@ -47,31 +47,34 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 278
-    word = '今天把体检和毕设最后要交的部分搞完！加油！'
-    idea = '进入二分查找部分，一个二分查找的应用题，转化后即可'
+    id = 153
+    word = '电脑明天到！学校也不知道开不开学，难受！'
+    idea = '进入二分查找部分，这个题目需要转化一下，其实target就是nums[-1]'
     code = '''
-> 简单的二分查找
+> target就是nums[-1]，如果比他大说明是翻转的后半部分l=mid+1，如果小则是前半部分由于mid可能就是最小故r=mid，直到最后只剩一个元素
 ```python
-# The isBadVersion API is already defined for you.
-# @param version, an integer
-# @return a bool
-# def isBadVersion(version):
-
+#自己的想法，复杂一些，思想是一样的
 class Solution:
-    def firstBadVersion(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
-        l,r = 1,n
-        while l < r:
+    def findMin(self, nums: List[int]) -> int:
+        l,r = 0,len(nums)-1
+        if r == 0 or nums[0] < nums[-1]: return nums[0]
+        while True:
             mid = l + (r-l)//2
-            if isBadVersion(mid): r = mid
-            else: l = mid + 1
-        return l
+            if nums[mid] > nums[-1]: l = mid + 1
+            else:
+                if nums[mid-1] > nums[mid]: return nums[mid]
+                else: r = mid - 1
+#改进后的算法
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        l,r = 0,len(nums)-1
+        while l < r: 最后l=r输出
+            mid = l + (r-l)//2
+            if nums[mid] > nums[-1]: l = mid + 1
+            else: r = mid
+        return nums[l]
 ```
 '''
-    thoughts = '[二分查找可行性的证明](http://www.cs.cornell.edu/courses/cs211/2006sp/Lectures/L06-Induction/binary_search.html)，可以看看'
+    thoughts = '毕业论文交完和学校的联系可能就更少了吧！之后的人生路也要努力！！！努力终有结果，加油！！！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

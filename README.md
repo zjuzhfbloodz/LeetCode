@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-06-10 10:51:16, 我已经完成了 **97** / **1347** 的题目， 还有 **214** 道题目未解锁:lock:（就是没买）.
+截止到 2020-06-11 12:29:26, 我已经完成了 **98** / **1348** 的题目， 还有 **215** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 97 
+1. Markdown: 98 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -160,7 +160,7 @@
 |150|[Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/description/) |Medium|To Do|To Do|
 |151|[Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/description/) |Medium|To Do|To Do|
 |152|[Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/description/) |Medium|To Do|To Do|
-|153|[Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/) |Medium|To Do|To Do|
+|153|[Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/153.%20Find%20Minimum%20in%20Rotated%20Sorted%20Array/0153.md)|To Do|
 |154|[Find Minimum in Rotated Sorted Array II](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/description/) |Hard|To Do|To Do|
 |155|[Min Stack](https://leetcode.com/problems/min-stack/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/155.%20Min%20Stack/0155.md)|To Do|
 |156|[Binary Tree Upside Down](https://leetcode.com/problems/binary-tree-upside-down/description/) :lock:|Medium|To Do|To Do|
@@ -1355,3 +1355,4 @@
 |1472|[Design Browser History](https://leetcode.com/problems/design-browser-history/description/) |Medium|To Do|To Do|
 |1473|[Paint House III](https://leetcode.com/problems/paint-house-iii/description/) |Hard|To Do|To Do|
 |1469|[Find All The Lonely Nodes](https://leetcode.com/problems/find-all-the-lonely-nodes/description/) :lock:|Easy|To Do|To Do|
+|1474|[Delete N Nodes After M Nodes of a Linked List](https://leetcode.com/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/description/) :lock:|Easy|To Do|To Do|
