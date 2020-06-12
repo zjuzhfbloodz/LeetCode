@@ -47,34 +47,52 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 153
-    word = '电脑明天到！学校也不知道开不开学，难受！'
-    idea = '进入二分查找部分，这个题目需要转化一下，其实target就是nums[-1]'
+    id = 34
+    word = '电脑到了！感觉不错！不知科研助理如何说法！问问朋哥吧！'
+    idea = '进入二分查找部分，这个题目就是利用二分查找找到左右区间的两端'
     code = '''
-> target就是nums[-1]，如果比他大说明是翻转的后半部分l=mid+1，如果小则是前半部分由于mid可能就是最小故r=mid，直到最后只剩一个元素
+> 我的想法是先找到等于target的元素（如果没找到说明没有），然后再分别从(l,target)和(target,r)中二分查找找到端点，感觉也不错
 ```python
-#自己的想法，复杂一些，思想是一样的
-class Solution:
-    def findMin(self, nums: List[int]) -> int:
-        l,r = 0,len(nums)-1
-        if r == 0 or nums[0] < nums[-1]: return nums[0]
-        while True:
-            mid = l + (r-l)//2
-            if nums[mid] > nums[-1]: l = mid + 1
-            else:
-                if nums[mid-1] > nums[mid]: return nums[mid]
-                else: r = mid - 1
-#改进后的算法
-class Solution:
-    def findMin(self, nums: List[int]) -> int:
-        l,r = 0,len(nums)-1
-        while l < r: 最后l=r输出
-            mid = l + (r-l)//2
-            if nums[mid] > nums[-1]: l = mid + 1
-            else: r = mid
-        return nums[l]
+#思路是RBK格式的就不放了，其实一样
+```
+> 一个比较成熟的专门找左右端点的方法，labuladong总结的[这里](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/solution/er-fen-cha-zhao-suan-fa-xi-jie-xiang-jie-by-labula/)
+```python
+class Solution(object):
+    def searchRange(self, nums, target):
+        return [self.left_bound(nums,target), self.right_bound(nums,target)]
+    #找右边端点
+    def right_bound(self, nums, target):
+        if len(nums) == 0:
+            return -1
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                left = mid + 1
+            elif nums[mid] < target:
+                left = mid + 1
+            elif nums[mid] > target:
+                right = mid - 1
+        if right >= 0 and nums[right] == target: return right # 注意
+        else: return -1
+    #找左边端点
+    def left_bound(self, nums, target):
+        if len(nums) == 0:
+            return -1
+        left, right = 0, len(nums) - 1
+
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                right = mid - 1
+            elif nums[mid] < target:
+                left = mid + 1
+            elif nums[mid] > target:
+                right = mid - 1
+        if left <= len(nums)-1 and nums[left] == target: return left  # 注意
+        else: return -1
 ```
 '''
-    thoughts = '毕业论文交完和学校的联系可能就更少了吧！之后的人生路也要努力！！！努力终有结果，加油！！！'
+    thoughts = '既然一时间找不到工作就先把比赛搞搞好！努力总会有结果！加油！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
