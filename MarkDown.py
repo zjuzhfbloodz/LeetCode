@@ -42,29 +42,29 @@ class Markdown:
             f.write('### 代码:\n' + self.code + '\n')
             f.write('### 思考:\n' + '>{}\n'.format(self.thoughts) + '\n')
         
-        shutil.copy(file_path,'D:\Markdown\LEETCODE')
+        shutil.copy(file_path,'D:\Data\Markdown\LEETCODE')
             
 
 if __name__ == "__main__":
 
-    id = 540
-    word = '毕设93分，自己感觉对得起自己了，继续努力！'
-    idea = '进入二分查找部分，这个题目不是单纯的按大小二分查找了，需要思考'
+    id = 455
+    word = '转眼间已经开学两个月，NUS的midterm都过去了，太快了，瘸腿在家休息，但是学习不能落下，遂捡起leetcode'
+    idea = '贪心算法，我的思路是从大到小（因为不能给小的比他大太多的），但是大家都是从小到大'
     code = '''
-> 对偶数序号的进行二分查找，如果他和后面的元素相等，那么说明单个儿元素在其后，l挪到后面；否则，单个儿元素在其前或在其位，r挪到mid。依次直至剩下一个元素。
+> 从大到小排序孩子和糖果，依次检索，如果当前孩子不够吃就不给这个孩子了，够吃就都+1，最后糖果划过的窗口数就是喂了的孩子数。
 ```python
 class Solution:
-    def singleNonDuplicate(self, nums: List[int]) -> int:
-        l,r = 0,len(nums)-1
-        if r == 0 : return nums[0]
-        while l < r:
-            mid = l + (r-l)//2
-            if mid % 2 != 0: mid -= 1
-            if nums[mid] == nums[mid+1]: l = mid+2
-            else: r = mid
-        return nums[l]
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        g = sorted(g,reverse=True)
+        s = sorted(s,reverse=True)
+        i,j = 0,0 #i代表孩子指针，j代表食物指针同时也是已经喂孩子的量
+        while i < len(g) and j < len(s):
+            if g[i] <= s[j]:
+                j += 1
+            i += 1
+        return j
 ```
 '''
-    thoughts = '进入二分查找问题！做完之后复习一遍！'
+    thoughts = '之前做的也还没复习完，这次想先从DP动态规划入手开始学起'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
