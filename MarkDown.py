@@ -47,7 +47,6 @@ class Markdown:
 
 if __name__ == "__main__":
 
-<<<<<<< HEAD
     id = 455
     word = '转眼间已经开学两个月，NUS的midterm都过去了，太快了，瘸腿在家休息，但是学习不能落下，遂捡起leetcode'
     idea = '贪心算法，我的思路是从大到小（因为不能给小的比他大太多的），但是大家都是从小到大'
@@ -67,54 +66,5 @@ class Solution:
 ```
 '''
     thoughts = '之前做的也还没复习完，这次想先从DP动态规划入手开始学起'
-=======
-    id = 34
-    word = '电脑到了！感觉不错！不知科研助理如何说法！问问朋哥吧！'
-    idea = '进入二分查找部分，这个题目就是利用二分查找找到左右区间的两端'
-    code = '''
-> 我的想法是先找到等于target的元素（如果没找到说明没有），然后再分别从(l,target)和(target,r)中二分查找找到端点，感觉也不错
-```python
-#思路是RBK格式的就不放了，其实一样
-```
-> 一个比较成熟的专门找左右端点的方法，labuladong总结的[这里](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/solution/er-fen-cha-zhao-suan-fa-xi-jie-xiang-jie-by-labula/)
-```python
-class Solution(object):
-    def searchRange(self, nums, target):
-        return [self.left_bound(nums,target), self.right_bound(nums,target)]
-    #找右边端点
-    def right_bound(self, nums, target):
-        if len(nums) == 0:
-            return -1
-        left, right = 0, len(nums) - 1
-        while left <= right:
-            mid = (left + right) // 2
-            if nums[mid] == target:
-                left = mid + 1
-            elif nums[mid] < target:
-                left = mid + 1
-            elif nums[mid] > target:
-                right = mid - 1
-        if right >= 0 and nums[right] == target: return right # 注意
-        else: return -1
-    #找左边端点
-    def left_bound(self, nums, target):
-        if len(nums) == 0:
-            return -1
-        left, right = 0, len(nums) - 1
-
-        while left <= right:
-            mid = (left + right) // 2
-            if nums[mid] == target:
-                right = mid - 1
-            elif nums[mid] < target:
-                left = mid + 1
-            elif nums[mid] > target:
-                right = mid - 1
-        if left <= len(nums)-1 and nums[left] == target: return left  # 注意
-        else: return -1
-```
-'''
-    thoughts = '既然一时间找不到工作就先把比赛搞搞好！努力总会有结果！加油！'
->>>>>>> a5d1982fcd20a0f5476b3fa5319bfdb9fe80cfe3
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()
