@@ -47,24 +47,23 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 455
-    word = '转眼间已经开学两个月，NUS的midterm都过去了，太快了，瘸腿在家休息，但是学习不能落下，遂捡起leetcode'
-    idea = '贪心算法，我的思路是从大到小（因为不能给小的比他大太多的），但是大家都是从小到大'
+    id = 135
+    word = '5203的作业完成得不错，老师发来邮件，但是不知道回复的是否恰当，人生总是纠结'
+    idea = '仍然是贪心算法，但是今天这个题思维难度不小，需要同时满足左条件和右条件，可以两次遍历完成'
     code = '''
-> 从大到小排序孩子和糖果，依次检索，如果当前孩子不够吃就不给这个孩子了，够吃就都+1，最后糖果划过的窗口数就是喂了的孩子数。
+> 对于每一个孩子，需要同时满足和左右两位孩子的关系即满足题目要求，故先从左到右遍历一边满足左关系，再从右到左遍历一遍使其在不影响左关系的前提下满足右关系，[详见](https://leetcode-cn.com/problems/candy/solution/candy-cong-zuo-zhi-you-cong-you-zhi-zuo-qu-zui-da-/)
 ```python
 class Solution:
-    def findContentChildren(self, g: List[int], s: List[int]) -> int:
-        g = sorted(g,reverse=True)
-        s = sorted(s,reverse=True)
-        i,j = 0,0 #i代表孩子指针，j代表食物指针同时也是已经喂孩子的量
-        while i < len(g) and j < len(s):
-            if g[i] <= s[j]:
-                j += 1
-            i += 1
-        return j
+    def candy(self, ratings):
+        n = len(ratings)
+        ns = [1 for i in range(n)]
+        for i in range(1,n):
+            if ratings[i] > ratings[i-1]: ns[i] = ns[i-1] + 1
+        for j in range(n-2,-1,-1):
+            if ratings[j] > ratings[j+1]: ns[j] = max(ns[j],ns[j+1]+1)
+        return sum(ns)
 ```
 '''
-    thoughts = '之前做的也还没复习完，这次想先从DP动态规划入手开始学起'
+    thoughts = '其实我还有另外一种想法，是官方解法的方法四，但是没有实现，之后可以尝试'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

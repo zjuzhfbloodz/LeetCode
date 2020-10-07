@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-10-06 18:10:36, 我已经完成了 **100** / **1468** 的题目， 还有 **231** 道题目未解锁:lock:（就是没买）.
+截止到 2020-10-07 16:44:25, 我已经完成了 **101** / **1468** 的题目， 还有 **231** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 100 
+1. Markdown: 101 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -142,7 +142,7 @@
 |132|[Palindrome Partitioning II](https://leetcode.com/problems/palindrome-partitioning-ii/description/) |Hard|To Do|To Do|
 |133|[Clone Graph](https://leetcode.com/problems/clone-graph/description/) |Medium|To Do|To Do|
 |134|[Gas Station](https://leetcode.com/problems/gas-station/description/) |Medium|To Do|To Do|
-|135|[Candy](https://leetcode.com/problems/candy/description/) |Hard|To Do|To Do|
+|135|[Candy](https://leetcode.com/problems/candy/description/) |Hard|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/135.%20Candy/0135.md)|To Do|
 |136|[Single Number](https://leetcode.com/problems/single-number/description/) |Easy|To Do|To Do|
 |137|[Single Number II](https://leetcode.com/problems/single-number-ii/description/) |Medium|To Do|To Do|
 |138|[Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/description/) |Medium|To Do|To Do|
@@ -566,7 +566,7 @@
 |617|[Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/617.%20Merge%20Two%20Binary%20Trees/0617.md)|To Do|
 |621|[Task Scheduler](https://leetcode.com/problems/task-scheduler/description/) |Medium|To Do|To Do|
 |623|[Add One Row to Tree](https://leetcode.com/problems/add-one-row-to-tree/description/) |Medium|To Do|To Do|
-|624|[Maximum Distance in Arrays](https://leetcode.com/problems/maximum-distance-in-arrays/description/) :lock:|Easy|To Do|To Do|
+|624|[Maximum Distance in Arrays](https://leetcode.com/problems/maximum-distance-in-arrays/description/) :lock:|Medium|To Do|To Do|
 |625|[Minimum Factorization](https://leetcode.com/problems/minimum-factorization/description/) :lock:|Medium|To Do|To Do|
 |628|[Maximum Product of Three Numbers](https://leetcode.com/problems/maximum-product-of-three-numbers/description/) |Easy|To Do|To Do|
 |629|[K Inverse Pairs Array](https://leetcode.com/problems/k-inverse-pairs-array/description/) |Hard|To Do|To Do|
