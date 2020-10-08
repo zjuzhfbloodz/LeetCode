@@ -47,23 +47,34 @@ class Markdown:
 
 if __name__ == "__main__":
 
-    id = 135
-    word = '5203的作业完成得不错，老师发来邮件，但是不知道回复的是否恰当，人生总是纠结'
-    idea = '仍然是贪心算法，但是今天这个题思维难度不小，需要同时满足左条件和右条件，可以两次遍历完成'
+    id = 673
+    word = '昨天果然说错话了，覆水难收，吸取教训之后改正吧！5102x的成绩也不错，继续加油啊！人生应该积极向上，无论躺着还是站着！'
+    idea = '本来以为做的是la说的第一题，结果没想到做的是复杂版本，还要求最长序列个数，不过还好想出来了'
     code = '''
-> 对于每一个孩子，需要同时满足和左右两位孩子的关系即满足题目要求，故先从左到右遍历一边满足左关系，再从右到左遍历一遍使其在不影响左关系的前提下满足右关系，[详见](https://leetcode-cn.com/problems/candy/solution/candy-cong-zuo-zhi-you-cong-you-zhi-zuo-qu-zui-da-/)
+> 我的思路是找到以nums[i]结尾的最长递增子序列，同时追踪这个最长子序列可以由多少个之前的序列构成（即最长子序列个数），最后只需要根据maxdp叠加所有的个数即可
 ```python
 class Solution:
-    def candy(self, ratings):
-        n = len(ratings)
-        ns = [1 for i in range(n)]
+    def findNumberOfLIS(self, nums: List[int]) -> int:
+        #我的思路是找到以nums[i]结尾的最长递增子序列
+        n,maxdp = len(nums),0
+        if n == 0 or n == 1: return n
+        dp = [(1,1)] * n #第一维度是长度，后面是这个长度可以由之前的几个序列得到比如12547，最后的7最长是4，可以由1257和1247构成，就是（4，2）
         for i in range(1,n):
-            if ratings[i] > ratings[i-1]: ns[i] = ns[i-1] + 1
-        for j in range(n-2,-1,-1):
-            if ratings[j] > ratings[j+1]: ns[j] = max(ns[j],ns[j+1]+1)
-        return sum(ns)
+            maxlen,count = 0,1
+            for j in range(i):
+                if nums[j] < nums[i]:
+                    if  maxlen < dp[j][0]:
+                        maxlen = dp[j][0]
+                        count = dp[j][1]
+                    elif maxlen == dp[j][0]: count += dp[j][1]
+            maxdp = max(maxdp,maxlen + 1)
+            dp[i] = (maxlen + 1,count)
+        #针对maxdp的所有序列数求和
+        output = sum([p[1] for p in dp if p[0] == maxdp])
+
+        return output
 ```
 '''
-    thoughts = '其实我还有另外一种想法，是官方解法的方法四，但是没有实现，之后可以尝试'
+    thoughts = '人总会说错话，不要拘泥于此，但是要学会成长，希望多和爸妈聊天！'
     mk = Markdown(id,word,idea,code,thoughts)
     mk.create_solution()

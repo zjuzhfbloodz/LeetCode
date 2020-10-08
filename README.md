@@ -1,8 +1,8 @@
 # 每日一题活动！冲啊！
-截止到 2020-10-07 16:44:25, 我已经完成了 **101** / **1468** 的题目， 还有 **231** 道题目未解锁:lock:（就是没买）.
+截止到 2020-10-08 10:54:09, 我已经完成了 **103** / **1468** 的题目， 还有 **231** 道题目未解锁:lock:（就是没买）.
 
 完成情况统计（我都是用Python写的，思路记录在了Markdown里）: 
-1. Markdown: 101 
+1. Markdown: 103 
 2. Python: 0
 ----------------
 ## LeetCode题解
@@ -612,8 +612,8 @@
 |670|[Maximum Swap](https://leetcode.com/problems/maximum-swap/description/) |Medium|To Do|To Do|
 |671|[Second Minimum Node In a Binary Tree](https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/671.%20Second%20Minimum%20Node%20In%20a%20Binary%20Tree/0671.md)|To Do|
 |672|[Bulb Switcher II](https://leetcode.com/problems/bulb-switcher-ii/description/) |Medium|To Do|To Do|
-|673|[Number of Longest Increasing Subsequence](https://leetcode.com/problems/number-of-longest-increasing-subsequence/description/) |Medium|To Do|To Do|
-|674|[Longest Continuous Increasing Subsequence](https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/) |Easy|To Do|To Do|
+|673|[Number of Longest Increasing Subsequence](https://leetcode.com/problems/number-of-longest-increasing-subsequence/description/) |Medium|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/673.%20Number%20of%20Longest%20Increasing%20Subsequence/0673.md)|To Do|
+|674|[Longest Continuous Increasing Subsequence](https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/) |Easy|[Markdown](https://github.com/zjuzhfbloodz/LeetCode/blob/master/leetcode-algorithms/674.%20Longest%20Continuous%20Increasing%20Subsequence/0674.md)|To Do|
 |675|[Cut Off Trees for Golf Event](https://leetcode.com/problems/cut-off-trees-for-golf-event/description/) |Hard|To Do|To Do|
 |676|[Implement Magic Dictionary](https://leetcode.com/problems/implement-magic-dictionary/description/) |Medium|To Do|To Do|
 |677|[Map Sum Pairs](https://leetcode.com/problems/map-sum-pairs/description/) |Medium|To Do|To Do|
