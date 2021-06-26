@@ -4,7 +4,8 @@
 
 ## 原理
 
-1. python dict和set的查询都是O(1)，因为都采用了hash的[方法](https://blog.csdn.net/zhao_crystal/article/details/82620524)
+1. python dict和set的查询都是O(1)，因为都采用了hash的[方法](https://blog.csdn.net/zhao_crystal/article/details/82620524)，初始化一个8行3列的数组，hash(key)得到的值i放到对应index=i的格子里，冲突的时候采取了开放寻址的方法，按一定规则找到下一个有空余的位置存放
+2. Python3.6之后字典都是有序的，但是占空间更少且查询更快，[原理](https://www.cnblogs.com/xieqiankun/p/python_dict.html)
 
 
 
@@ -44,6 +45,55 @@ class Solution:
             else: y += 1
         return False
 ```
+
+#### 29. 顺时针打印矩阵
+
+顺时针打印遵循的顺序是右下左上，故可以设定四个方向，每次走到头或者遇到已经打印的数就换方向，直到nxm个数字都被打印出来，这是一个思路；另一个思路是右下左上走一层，往内深入一层继续迭代
+
+```python
+class Solution:
+  #方法1
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix or not matrix[0]: return []
+        n,m = len(matrix), len(matrix[0])
+        r = []
+        history = [[False for i in range(m)] for j in range(n)]
+        directions = [(0,1),(1,0),(0,-1),(-1,0)]
+        cur,di = (0,0),0 # di表示方向的index
+        for i in range(n*m):
+            d = directions[di]
+            r.append(matrix[cur[0]][cur[1]])
+            history[cur[0]][cur[1]] = True
+            new = (cur[0]+d[0], cur[1]+d[1])
+            if not (0<=new[0]<n and 0<=new[1]<m) or history[new[0]][new[1]]:
+                di = (di+1) % 4
+                d = directions[di]
+                new = (cur[0]+d[0], cur[1]+d[1])
+            cur = new
+        return r
+  #方法2
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix or not matrix[0]:
+            return list()
+        
+        rows, columns = len(matrix), len(matrix[0])
+        order = list()
+        left, right, top, bottom = 0, columns - 1, 0, rows - 1
+        while left <= right and top <= bottom:
+            for column in range(left, right + 1):
+                order.append(matrix[top][column])
+            for row in range(top + 1, bottom + 1):
+                order.append(matrix[row][right])
+            if left < right and top < bottom: #这层判断主要是为了排除只有一层或一列的情况
+                for column in range(right - 1, left, -1):
+                    order.append(matrix[bottom][column])
+                for row in range(bottom, top, -1):
+                    order.append(matrix[row][left])
+            left, right, top, bottom = left + 1, right - 1, top + 1, bottom - 1
+        return order
+```
+
+
 
 ### 链表
 
@@ -128,4 +178,23 @@ class CQueue:
 
 
 
+
+### 动态规划
+
+#### 10- I. 斐波那契数列
+
+维护一个DP数组即可，注意取模不要用1e9+7，python有bug，同10-II
+
+```python
+class Solution:
+    def __init__(self,):
+        self.dp = [0,1]
+
+    def fib(self, n: int) -> int:
+        if len(self.dp) > n: return int(self.dp[n] % (1000000007))
+        while len(self.dp) <= n:
+            cur = self.dp[-2] + self.dp[-1]
+            self.dp.append(cur)
+        return int(self.dp[n] % (1000000007))
+```
 
