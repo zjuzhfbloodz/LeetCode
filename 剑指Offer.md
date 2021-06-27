@@ -131,6 +131,122 @@ class Solution:
         return r
 ```
 
+#### 18. 删除链表的节点
+
+需要提前判断当前节点的next的val不是指定的val，个人习惯加个dummy，注意判断特殊情况（见注释）
+
+```python
+class Solution:
+    def deleteNode(self, head: ListNode, val: int) -> ListNode:
+        if not head: return None
+        dummy = ListNode()
+        dummy.next = head
+        node = dummy
+        while node.next and node.next.val != val: #判断node.next和下面的if同作用，避免val不在
+            node = node.next
+        if node.next:
+            node.next = node.next.next
+        return dummy.next
+```
+
+#### 22. 链表中倒数第k个节点
+
+同样是双指针，一个走得快cur的先走k步，这样cur为None时pre正好位于倒数第k
+
+```python
+class Solution:
+    def getKthFromEnd(self, head: ListNode, k: int) -> ListNode:
+        # 双指针
+        if not head: return None
+        pre,cur = head,head
+        for i in range(k): cur = cur.next
+        while cur:
+            pre,cur = pre.next,cur.next
+        return pre
+```
+
+#### 24. 反转链表
+
+同样是加个dummy在前面，然后翻转即可
+
+```python
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if not head: return None
+        pre,cur = None,head #None就是dummy
+        while cur:
+            tmp = cur.next
+            cur.next = pre
+            pre,cur = cur,tmp
+        return pre
+```
+
+#### 25. 合并两个排序的链表
+
+依然采用加dummy伪头节点的方法，比较熟悉
+
+```python
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        dummy = ListNode()
+        node = dummy
+        while l1 and l2:
+            if l1.val <= l2.val:
+                node.next = l1
+                l1 = l1.next
+            else:
+                node.next = l2
+                l2 = l2.next
+            node = node.next
+        if l1: node.next = l1
+        if l2: node.next = l2
+        return dummy.next
+```
+
+#### 35. 复杂链表的复制
+
+感觉一脸懵逼，后来才知道是复制一摸一样的链表，且不能是原来的那个；如果是普通链表，那么直接复制val然后next即可， 但是现在你在复制的过程中不知道random指向的val是什么，故需要两次遍历，存在dict中
+
+```python
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        if not head: return
+        dic = {}
+        # 3. 复制各节点，并建立 “原节点 -> 新节点” 的 Map 映射
+        cur = head
+        while cur:
+            dic[cur] = Node(cur.val)
+            cur = cur.next
+        cur = head
+        # 4. 构建新节点的 next 和 random 指向
+        while cur:
+            dic[cur].next = dic.get(cur.next)
+            dic[cur].random = dic.get(cur.random)
+            cur = cur.next
+        # 5. 返回新链表的头节点
+        return dic[head]
+```
+
+
+
+#### 52. 两个链表的第一个公共节点
+
+两个链表连起来即可，注意如果没有交叉点也没问题，最后i==j==None也会输出
+
+```python
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        i,j = headA,headB
+        while i != j:
+            i = i.next if i else headB
+            j = j.next if j else headA
+        return i
+```
+
+
+
+
+
 ### 树
 
 #### [07. 重建二叉树](https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/)
@@ -175,6 +291,52 @@ class CQueue:
         return self.s2.pop()
 ```
 
+#### 30. 包含min函数的栈
+
+这个题目比较难想的就是pop的时候如何更改最小值，即如何记录除最小值之外的后续min；思路是，在当前min之后入栈的数字如果比min大，那么在他们出栈的时候min都不会改变，故他们没有记录的价值，只有比min小的才有记录的价值，因为他们出栈的时候min会自动变成当前的min，故按从大到小记录min即可
+
+```python
+class MinStack:
+    # 在min值上面的元素都是没价值的，因为他们的pop不会改变min值
+    def __init__(self):
+        self.stack = []
+        self.order = []
+
+
+    def push(self, x: int) -> None:
+        self.stack.append(x)
+        if not self.order or x <= self.order[-1]:
+            self.order.append(x)
+
+    def pop(self) -> None:
+        a = self.stack.pop()
+        if a == self.order[-1]:
+            self.order.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def min(self) -> int:
+        return self.order[-1]
+```
+
+#### 31. 栈的压入、弹出序列
+
+这个题目容易想复杂，实际上是通过一个辅助栈来模拟入出栈的过程（利用先入后出），按pushed的顺序入栈，遇到popped的第一个元素就要出栈了，不然后续入新的元素之后不可能是第一个出栈，最后stack为空即True
+
+```python
+class Solution:
+    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+        stack = []
+        j = 0
+        for i in pushed:
+            stack.append(i)
+            while stack and stack[-1] == popped[j]:
+                stack.pop()
+                j += 1
+        return not stack
+```
+
 
 
 
@@ -196,5 +358,57 @@ class Solution:
             cur = self.dp[-2] + self.dp[-1]
             self.dp.append(cur)
         return int(self.dp[n] % (1000000007))
+```
+
+
+
+### 双指针
+
+#### 57 - II. 和为s的连续正数序列
+
+可以用数学方法解，也可以用双指针的方法通过滑动窗口的方式来解，i和j从1和2开始，小了j往右走，大了i往右走，求i和j之间所有数的和即可，当i==j的时候说明i-1+i>target，到达中止条件
+
+```python
+# 数学方法
+class Solution:
+    def findContinuousSequence(self, target: int):
+        n = target // 2
+        r = []
+        for i in range(1,n+1):
+            n_seq = ((1-2*i)+((2*i-1)**2+8*target)**0.5)/2
+            if n_seq == int(n_seq):
+                r.append([j for j in range(i,i+int(n_seq))])
+        return r
+# 双指针
+    def findContinuousSequence(self, target: int) -> List[List[int]]:
+        i, j, s, res = 1, 2, 3, []
+        while i < j:
+            if s == target:
+                res.append(list(range(i, j + 1)))
+            if s >= target:
+                s -= i
+                i += 1
+            else:
+                j += 1
+                s += j
+        return res
+
+      
+```
+
+#### 58 - I. 翻转单词顺序
+
+```python
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        s = s.strip() # 删除首尾空格
+        i = j = len(s) - 1
+        res = []
+        while i >= 0:
+            while i >= 0 and s[i] != ' ': i -= 1 # 搜索首个空格
+            res.append(s[i + 1: j + 1]) # 添加单词
+            while s[i] == ' ': i -= 1 # 跳过单词间空格
+            j = i # j 指向下个单词的尾字符
+        return ' '.join(res) # 拼接并返回
 ```
 
