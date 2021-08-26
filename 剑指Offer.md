@@ -205,26 +205,26 @@ class Solution:
 
 #### 35. 复杂链表的复制
 
-感觉一脸懵逼，后来才知道是复制一摸一样的链表，且不能是原来的那个；如果是普通链表，那么直接复制val然后next即可， 但是现在你在复制的过程中不知道random指向的val是什么，故需要两次遍历，存在dict中
+感觉一脸懵逼，后来才知道是复制一模一样的链表，且不能是原来的那个；如果是普通链表，那么直接复制val然后next即可， 但是现在你在复制的过程中不知道random指向的val是什么，故需要两次遍历，存在dict中
 
 ```python
 class Solution:
     def copyRandomList(self, head: 'Node') -> 'Node':
         if not head: return
-        dic = {}
+        hashmap = {}
+        node = head
         # 3. 复制各节点，并建立 “原节点 -> 新节点” 的 Map 映射
-        cur = head
-        while cur:
-            dic[cur] = Node(cur.val)
-            cur = cur.next
+        while node:
+            hashmap[node] = Node(x=node.val)
+            node= node.next
         cur = head
         # 4. 构建新节点的 next 和 random 指向
         while cur:
-            dic[cur].next = dic.get(cur.next)
-            dic[cur].random = dic.get(cur.random)
+            hashmap[cur].next = hashmap.get(cur.next,None)
+            hashmap[cur].random = hashmap.get(cur.random,None)
             cur = cur.next
         # 5. 返回新链表的头节点
-        return dic[head]
+        return hashmap[head]
 ```
 
 
@@ -266,6 +266,229 @@ class Solution:
         root_node.right = right_node
         return root_node
 ```
+
+#### [剑指 Offer 28. 对称的二叉树](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/)
+
+内置一个判断左右子树是否为镜像二叉树的函数，如果节点值相等，转到左左右右和左右右左
+
+```python
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if not root: return True
+        def inner(left,right):
+            if not left and not right: return True
+            if not left or not right: return False
+            if left.val == right.val:
+                return inner(left.right,right.left) and inner(left.left,right.right)
+            return False
+        return inner(root.left,root.right)
+```
+
+- 依次是：普通层序，分层层序，之字形层序
+
+#### [剑指 Offer 32 - I. 从上到下打印二叉树](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)
+
+```python
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[int]:
+        #层序遍历
+        if not root: return []
+        queue = [root]
+        output = []
+        while queue:
+            node = queue.pop(0)
+            output.append(node.val)
+            if node.left: queue.append(node.left)
+            if node.right: queue.append(node.right)
+        return output
+```
+
+#### [剑指 Offer 32 - II. 从上到下打印二叉树 II](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/)
+
+```python
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        #层序遍历
+        if not root: return []
+        queue = [(root,0)]
+        depth = -1
+        output = []
+        while queue:
+            node,d = queue.pop(0)
+            if d > depth:
+                depth = d
+                output.append([])
+            output[-1].append(node.val)
+            if node.left: queue.append((node.left,d+1))
+            if node.right: queue.append((node.right,d+1))
+        return output
+```
+
+#### [剑指 Offer 32 - III. 从上到下打印二叉树 III](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/)
+
+```python
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        #层序遍历
+        if not root: return []
+        queue = [(root,0)]
+        depth = -1
+        output = []
+        while queue:
+            node,d = queue.pop(0)
+            if d > depth:
+                depth = d
+                output.append([])
+            if d%2 == 1:
+                output[-1].insert(0,node.val)
+            else:
+                output[-1].append(node.val)
+            if node.left: queue.append((node.left,d+1))
+            if node.right: queue.append((node.right,d+1))
+        return output
+```
+
+
+
+#### [*剑指 Offer 33. 二叉搜索树的后序遍历序列](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
+
+后序遍历左-右-根，先判断左<根且右>根，如果这个都不满足就False，否则继续判断左和右是不是，终止条件就是一个节点的时候
+
+```python
+class Solution:
+    def verifyPostorder(self, postorder: [int]) -> bool:
+        def recur(i, j):
+            if i >= j: return True
+            p = i
+            while postorder[p] < postorder[j]: p += 1
+            m = p
+            while postorder[p] > postorder[j]: p += 1
+            return p == j and recur(i, m - 1) and recur(m, j - 1)
+
+        return recur(0, len(postorder) - 1)
+```
+
+
+
+#### [剑指 Offer 34. 二叉树中和为某一值的路径](https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)
+
+DFS和BFS都可以做
+
+```python
+class Solution:
+    def pathSum(self, root: TreeNode, target: int) -> List[List[int]]:
+        output = []
+        def dfs(root,target,path):
+            if not root: return 
+            path.append(root.val)
+            if root.val == target and not root.left and not root.right: 
+                output.append(path[:])
+            dfs(root.left,target-root.val,path[:])
+            dfs(root.right,target-root.val,path[:])
+        dfs(root,target,[])
+        return output
+```
+
+
+
+#### [剑指 Offer 37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/)
+
+层序遍历，空为None；反序列的时候同样走一次层序遍历
+
+```python
+class Codec:
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        queue = [root]
+        output = []
+        while queue:
+            node = queue.pop(0)
+            if not node:
+                output.append('null')
+            else:
+                output.append(str(node.val))
+                queue.append(node.left)
+                queue.append(node.right)
+        return ' '.join(output)
+        
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        data = data.split(' ')
+        if data == ['null']: return None
+        root = TreeNode(int(data.pop(0)))
+        queue = [root]
+        while queue:
+            node = queue.pop(0)
+            leftval = data.pop(0)
+            if leftval == 'null':
+                node.left = None
+            else:
+                left = TreeNode(int(leftval))
+                node.left = left
+                queue.append(left)
+            rightval = data.pop(0)
+            if rightval == 'null':
+                node.right = None
+            else:
+                right = TreeNode(int(rightval))
+                node.right = right
+                queue.append(right)
+        return root
+            
+
+        
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.deserialize(codec.serialize(root))
+```
+
+
+
+#### [剑指 Offer 68 - I. 二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
+
+利用二叉搜索树性质去找
+
+```python
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if not root: return
+        if p.val > q.val: p,q = q,p
+        if p.val <= root.val <= q.val: return root
+        elif root.val < p.val: return self.lowestCommonAncestor(root.right,p,q)
+        else: return self.lowestCommonAncestor(root.left,p,q)
+```
+
+
+
+#### [剑指 Offer 68 - II. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
+
+祖先要么==p要么==q，要么p和q在祖先的左右子树上，递归找下去即可
+
+```python
+class Solution:
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+        #p和q在祖先的左右子树上
+        if not root: return 
+        if root == p or root == q: return root
+        left = self.lowestCommonAncestor(root.left,p,q)
+        right = self.lowestCommonAncestor(root.right,p,q)
+        if left and right: return root
+        if left: return left
+        return right
+```
+
+
 
 ### 堆栈
 
@@ -360,9 +583,135 @@ class Solution:
         return int(self.dp[n] % (1000000007))
 ```
 
+#### [剑指 Offer 42. 连续子数组的最大和](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
+
+DP或者前缀和
+
+```python
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        #DP也行
+        #前缀和？
+        if not nums: return 0
+        n = len(nums)
+        minsum = min(nums[0],0)
+        output = nums[0]
+        cursum = nums[0]
+        for i in range(1,n):
+            cursum += nums[i]
+            output = max(output,cursum-minsum)
+            minsum = min(minsum,cursum)
+        return output
+```
+
+#### [剑指 Offer 46. 把数字翻译成字符串](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)
+
+动态规划，注意506这种06不能翻译为6
+
+```python
+class Solution:
+    def translateNum(self, num: int) -> int:
+        #DP，DP[i]表示nums[:i]有几种翻译方式
+        num = list(str(num))
+        n = len(num)
+        dp = [0 for i in range(n+1)]
+        dp[0] = 1
+        dp[1] = 1
+        for i in range(2,n+1):
+            dp[i] += dp[i-1]
+            if 9 < int(num[i-2] + num[i-1]) < 26:
+                dp[i] += dp[i-2]
+        return dp[-1]
 
 
-### 双指针
+```
+
+#### [剑指 Offer 47. 礼物的最大价值](https://leetcode-cn.com/problems/li-wu-de-zui-da-jie-zhi-lcof/)
+
+可以优化到1D
+
+```python
+class Solution:
+    def maxValue(self, grid: List[List[int]]) -> int:
+        m,n = len(grid),len(grid[0])
+        dp = []
+        r = 0
+        for i in range(n):
+            r += grid[0][i]
+            dp.append(r)
+        for i in range(1,m):
+            for j in range(n):
+                if j == 0:
+                    dp[j] += grid[i][j]
+                else:
+                    dp[j] = max(dp[j],dp[j-1]) + grid[i][j]
+        return dp[-1]
+```
+
+
+
+#### [剑指 Offer 60. n个骰子的点数](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/)
+
+n=1易得，n=2可以看作在1的基础上又投了一次骰子，故1/6的概率+1+2+3+4+5+6，滑动窗口依次加上
+
+```python
+class Solution:
+    def dicesProbability(self, n: int):
+        dp = [1/6 for _ in range(6)]
+        for i in range(1,n):
+            newdp = [0 for _ in range(6+5*i)] #新的是6+5i种可能
+            for j in range(6):
+                k = len(dp)
+                for x in range(k):
+                    newdp[j+x] += dp[x]*1/6 #第i颗骰子有1-6种可能，故滑动加即可
+            dp = newdp
+        return dp
+```
+
+
+
+### 双指针&滑动窗口
+
+#### [剑指 Offer 48. 最长不含重复字符的子字符串](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
+
+同lc3，滑动窗口，可以用字典存储
+
+```python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        n = len(s)
+        hashmap = {}
+        l = 0
+        output = 0
+        for r in range(n):
+            if s[r] in hashmap:
+                output = max(output,len(hashmap))
+                index = hashmap[s[r]]
+                for i in range(l,index+1):
+                    hashmap.pop(s[i])
+                l = index+1
+            hashmap[s[r]] = r
+        return max(output,len(hashmap))
+```
+
+#### [*剑指 Offer 49. 丑数](https://leetcode-cn.com/problems/chou-shu-lcof/)
+
+dp[i]只能是从之前数的235倍得到，故构造三指针，每次用过了之后就要+1，表示下一个可以被235乘的数
+
+```python
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        dp, a, b, c = [1] * n, 0, 0, 0
+        for i in range(1, n):
+            n2, n3, n5 = dp[a] * 2, dp[b] * 3, dp[c] * 5
+            dp[i] = min(n2, n3, n5)
+            if dp[i] == n2: a += 1
+            if dp[i] == n3: b += 1
+            if dp[i] == n5: c += 1
+        return dp[-1]
+```
+
+
 
 #### 57 - II. 和为s的连续正数序列
 
@@ -410,5 +759,266 @@ class Solution:
             while s[i] == ' ': i -= 1 # 跳过单词间空格
             j = i # j 指向下个单词的尾字符
         return ' '.join(res) # 拼接并返回
+```
+
+
+
+### 字符串
+
+#### [剑指 Offer 67. 把字符串转换成整数](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/)
+
+考虑空字符串，空格字符串，首字母可以是+-但仅有一个+-不行
+
+```python
+class Solution:
+    def strToInt(self, str: str) -> int:
+        s = [x for x in str.split(' ') if x]
+        if not s: return 0
+        s = s[0]
+        if s[0] not in ['-','+'] and not s[0].isdigit():
+            return 0
+        n = len(s)
+        i = 1
+        while i < n:
+            if s[i].isdigit():
+                i += 1
+            else: break
+        if i == 1 and s[0] in ['-','+']: return 0 #仅有一个+-，排除
+        s = int(s[:i])
+        if s < -1*2**31:
+            return -1*2**31
+        else:
+            return min(s,2**31-1)
+```
+
+### 贪心算法
+
+#### [剑指 Offer 63. 股票的最大利润](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/)
+
+每天卖出的最大值等于当天-前i天的最小值
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices: return 0
+        n = len(prices)
+        minprice = prices[0]
+        output = 0
+        for i in range(n):
+            if prices[i] > minprice:
+                output = max(output,prices[i]-minprice)
+            else:
+                minprice = prices[i]
+        return output
+```
+
+### 数学
+
+#### [剑指 Offer 39. 数组中出现次数超过一半的数字](https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/)
+
+投票法，超过半数一定比其他所有的-1都大
+
+```python
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        if not nums: return
+        n = len(nums)
+        can = -1
+        count = 0
+        for i in range(n):
+            if count == 0:
+                can = nums[i]
+                count += 1
+                continue
+            if nums[i] == can:
+                count += 1
+            else:
+                count -= 1
+        return can
+```
+
+
+
+#### [*剑指 Offer 43. 1～n 整数中 1 出现的次数](https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)
+
+分别计算1-n中每一位上的数字1的个数如1234中十位上1的个数，1200中每100个包含完整的10个10-19，34如果超过20也包含10个，否则有几个算几个。
+
+```python
+class Solution:
+    def countDigitOne(self, n: int) -> int:
+        # mulk 表示 10^k
+        # 在下面的代码中，可以发现 k 并没有被直接使用到（都是使用 10^k）
+        # 但为了让代码看起来更加直观，这里保留了 k
+        k, mulk = 0, 1
+        ans = 0
+        while n >= mulk:
+            ans += (n // (mulk * 10)) * mulk + min(max(n % (mulk * 10) - mulk + 1, 0), mulk)
+            k += 1
+            mulk *= 10
+        return ans
+```
+
+#### [剑指 Offer 44. 数字序列中某一位的数字](https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)
+
+确定位数+确定数值+确定数字位置
+
+```python
+class Solution:
+    def findNthDigit(self, n: int) -> int:
+        digits = 1
+        r = 9
+        while n >= r*digits:
+            n -= r*digits
+            r *= 10
+            digits += 1
+        value = 10**(digits-1)+n//digits
+        #print(value,n)
+        if n%digits == 0: 
+            value -= 1
+        #确定数字位置
+        index = n%digits
+        return int(str(value)[index-1])
+```
+
+#### [剑指 Offer 45. 把数组排成最小的数](https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/)
+
+字符串排序，高位值大的在前面，注意3和31或3和34这种需要比较之后再放，故使用cmp_to_key的函数
+
+```python
+class Solution:
+    def minNumber(self, nums: List[int]) -> str:
+        def sort_rule(x, y):
+            a, b = x + y, y + x
+            if a > b: return 1
+            elif a < b: return -1
+            else: return 0
+        
+        strs = [str(num) for num in nums]
+        strs.sort(key = functools.cmp_to_key(sort_rule))
+        return ''.join(strs)
+```
+
+
+
+#### [剑指 Offer 62. 圆圈中最后剩下的数字](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)
+
+f(n)=(f(n-1)+m)%n，递推即可[思路](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/jian-zhi-offer-62-yuan-quan-zhong-zui-ho-dcow/)
+
+```python
+class Solution:
+    def lastRemaining(self, n: int, m: int) -> int:
+        #
+        x = 0
+        for i in range(2,n+1):
+            x = (x+m)%i
+        return x
+```
+
+
+
+### 搜索&回溯
+
+#### [剑指 Offer 38. 字符串的排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
+
+类似全排列，但是有重复字符，故加一个验证：即同一位置不能有同样的字符出现两次
+
+```python
+class Solution:
+    def permutation(self, s: str) -> List[str]:
+        #回溯
+        n = len(s)
+        output = []
+        s = list(s)
+        def traceback(index):
+            if index == n:
+                output.append(''.join(s[:]))
+                return
+            r = set()
+            for i in range(index,n):
+                if s[i] in r:  #即同一位置不能有同样的字符出现两次
+                    continue
+                r.add(s[i])
+                s[index],s[i] = s[i],s[index]
+                traceback(index+1)
+                s[index],s[i] = s[i],s[index]
+        traceback(0)
+        return output
+```
+
+
+
+### 其他
+
+#### [剑指 Offer 66. 构建乘积数组](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/)
+
+前缀和，两次遍历，一次乘左侧的乘积，一次乘右侧的乘积
+
+```python
+class Solution:
+    def constructArr(self, a):
+        #两次遍历
+        n = len(a)
+        b = [1 for _ in range(n)]
+        lefts = 1
+        for i in range(n):
+            b[i] *= lefts
+            lefts *= a[i]
+        rights = 1
+        for j in range(n-1,-1,-1):
+            b[j] *= rights
+            rights *= a[j]
+        return b
+```
+
+#### [剑指 Offer 64. 求1+2+…+n](https://leetcode-cn.com/problems/qiu-12n-lcof/)
+
+要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C），故采用and中的判断来终止迭代
+
+```python
+class Solution:
+    def __init__(self):
+        self.res = 0
+    def sumNums(self, n: int) -> int:
+        n > 1 and self.sumNums(n - 1)
+        #print(n)
+        self.res += n
+        return self.res
+```
+
+#### [剑指 Offer 61. 扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)
+
+我是依次把空缺的牌填上大小王0，如果不够了就是False，否则是True
+
+```python
+class Solution:
+    def isStraight(self, nums: List[int]) -> bool:
+        nums = sorted(nums)
+        n = len(nums)
+        count = 0
+        for i in range(n):
+            if nums[i] == 0:
+                count += 1
+            else: break
+        for j in range(count,n-1):
+            gap = nums[j+1] - nums[j]
+            if gap == 1:
+                continue
+            elif gap == 0:
+                return False
+            else:
+                count -= gap-1
+                if count < 0:
+                    return False
+        return True
+#新思路，只要最大牌-最小牌 < 5即可，最小牌就是joke的数量+1-1的位置
+class Solution:
+    def isStraight(self, nums: List[int]) -> bool:
+        joker = 0
+        nums.sort() # 数组排序
+        for i in range(4):
+            if nums[i] == 0: joker += 1 # 统计大小王数量
+            elif nums[i] == nums[i + 1]: return False # 若有重复，提前返回 false
+        return nums[4] - nums[joker] < 5 # 最大牌 - 最小牌 < 5 则可构成顺子
+
 ```
 
