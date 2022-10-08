@@ -543,3 +543,184 @@ class Solution:
                     dp[i+1][j+1] = max(dp[i][j],dp[i][j+1],dp[i+1][j])
         return dp[-1][-1]
 ```
+
+## 背包问题
+
+#### [416. 分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/)
+
+- 01背包问题，用子序列装满一个背包，只不过不是求max，而是求是否能装下；可以优化为1D
+
+```python
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        #子集和为sum/2
+        s = sum(nums)
+        if s % 2 == 1:
+            return False
+        target = s // 2
+        #DP[i][j]表示nums[:i]能否构成j
+        n = len(nums)
+        dp = [False for i in range(target+1)]
+        dp[0] = True
+        for x in range(1,n+1):
+            for y in range(target,nums[x-1]-1,-1):
+                dp[y] |= dp[y-nums[x-1]]
+        return dp[-1]
+```
+
+#### [494. 目标和](https://leetcode.cn/problems/target-sum/)
+
+- 同416划分数组
+- DP[i][j]表示前i个数能组成j的个数，1D空间倒序遍历
+
+```python
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        # 同416划分数组
+        # DP[i][j]表示前i个数能组成j的个数
+        s = sum(nums)
+        n = len(nums)
+        if (s-target)%2 == 1 or s < target:
+            return 0
+        target = (s-target) // 2
+        dp = [0 for i in range(target+1)]
+        dp[0] = 1
+        for i in range(n):
+            for j in range(target, nums[i]-1, -1):
+                dp[j] += dp[j-nums[i]]
+        return dp[-1]
+```
+
+#### [474. 一和零](https://leetcode.cn/problems/ones-and-zeroes/)
+
+- 依然是01背包问题，难点是升级到了2D
+
+```python
+class Solution:
+    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
+        # 2D的数组，dp[i][j]表示前k个字符，能满足i个0和j个1的最大长度
+        k = len(strs)
+        dp = [[0 for _ in range(n+1)] for _ in range(m+1)]
+        for i in range(k):
+            len_0 = len([z for z in strs[i] if z == "0"])
+            len_1 = len(strs[i]) - len_0
+            for x in range(m,len_0-1,-1):
+                for y in range(n,len_1-1,-1):
+                    dp[x][y] = max(dp[x][y],dp[x-len_0][y-len_1]+1)
+        
+```
+
+## 股票问题
+
+#### [714. 买卖股票的最佳时机含手续费](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)
+
+- 背包问题通解即可
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int], fee: int) -> int:
+        # 利润需要大于2才值，也不对，因为可以把两次并为一次交易
+        # 还是DP吧，dp[i][j]表示第i天持有股票和不持有股票的最大值，fee在买入时付
+        n = len(prices)
+        dp = [[-1*10**5,0] for _ in range(n+1)]
+        # dp[1][0] = -1 * (prices[0] + fee)
+        for i in range(1,n+1):
+            # 持有，从持有和不持有更新
+            dp[i][0] = max(dp[i-1][0], dp[i-1][1] - prices[i-1] - fee)
+            # 不持有
+            dp[i][1] = max(dp[i-1][0] + prices[i-1], dp[i-1][1])
+        return max(dp[-1])
+```
+
+#### [123. 买卖股票的最佳时机 III](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/)
+
+- 四种状态，分别更新即可
+- 之前应该根本没理解四种状态，这次理解了；股票交易，定状态，找转移，出结果
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        # 股票交易，定状态，找转移，出结果
+        # 本题共四个状态，1买，1卖，2买，2卖
+        n = len(prices)
+        dp = [0,0,0,0]
+        dp[0] = -1 * prices[0]
+        dp[2] = float("-inf")
+        for i in range(1,n):
+            dp[3] = max(dp[2] + prices[i], dp[3])
+            dp[2] = max(dp[1] - prices[i], dp[2])
+            dp[1] = max(dp[0] + prices[i], dp[1])
+            dp[0] = max(dp[0], -1 * prices[i])
+        return max(dp)
+
+```
+
+#### [188. 买卖股票的最佳时机 IV](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/)
+
+- 思路同123，定状态，找转移，出结果
+
+```python
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        # K，类似2，试试
+        n = len(prices)
+        # 第一天不可能有多笔交易，故赋值为负无穷
+        dp = [0 if i%2 == 1 else float("-inf") for i in range(k*2) ]
+        dp[0] = -1 * prices[0]
+        for p in range(1,n):
+            for q in range(k*2-1,-1,-1):
+                if q == 0:
+                    dp[q] = max(dp[q], -1 * prices[p])
+                elif q % 2 == 1:
+                    dp[q] = max(dp[q-1] + prices[p], dp[q])
+                else:
+                    dp[q] = max(dp[q-1] - prices[p], dp[q])
+        return max(dp)  
+```
+
+
+
+## 字符串编辑
+
+#### [583. 两个字符串的删除操作](https://leetcode.cn/problems/delete-operation-for-two-strings/)
+
+- 二维DP，字符类的通解
+
+```python
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        # 二维DP，dp[i][j]表示w1的前i和w2的前j的删除数量
+        m,n = len(word1), len(word2)
+        dp = [[0 for i in range(n+1)] for j in range(m+1)]
+        dp[0] = [_ for _ in range(n+1)]
+        for p in range(m+1):
+            dp[p][0] = p
+        for i in range(1,m+1):
+            for j in range(1,n+1):
+                if word1[i-1] == word2[j-1]:
+                    dp[i][j] = dp[i-1][j-1]
+                else:
+                    dp[i][j] = min(dp[i][j-1], dp[i-1][j]) + 1
+        return dp[-1][-1]
+                
+```
+
+#### [72. 编辑距离](https://leetcode.cn/problems/edit-distance/)
+
+- DP[i][j]表示word1[:i]和word2[:j]的最少编辑次数，思路同583，二维DP
+```
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        m,n = len(word1),len(word2)
+        dp = [[0]*(n+1) for _ in range(m+1)]
+        dp[0] = [x for x in range(n+1)]
+        for p in range(m+1):
+            dp[p][0] = p
+        for i in range(1,m+1):
+            for j in range(1,n+1):
+                if word1[i-1] == word2[j-1]:
+                    dp[i][j] = dp[i-1][j-1]
+                else:
+                    dp[i][j] = min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1])+1
+        return dp[-1][-1]
+```
